@@ -1,0 +1,44 @@
+<div class="ui segments" id="component" align="center">  
+  <div class="ui segment">
+    <div class="ui horizontal divider">Menu</div>
+    <div class="ui buttons">
+      <button class="ui green button"><i class="user plus icon"></i>Novo Usuário</button>
+      <button class="ui green button"><i class="users icon"></i>Listar Usuários</button>
+      <button class="ui green button"><i class="id card icon"></i>Consultar Usuário</button>
+      <button class="ui red button"><i class="edit icon"></i>Editar Usuário</button>
+      <button class="ui red button"><i class="user times icon"></i>Excluir Usuário</button>
+    </div>
+    <div class='ui horizontal divider'>Usuários</div><br/>
+    <table class='ui very basic table'>
+      <thead align='center'>
+        <tr>
+          <th>Codigo</th>
+          <th>Login</th>
+          <th>Status</th>
+          <th>Tipo Usuário</th>
+          <th>Data de Cadastro</th> 
+          <th>Opções</th>
+        </tr>
+      </thead>
+      <tbody align='center'>
+          {loop="$users"}
+          <tr>
+            <td>{$value.iduser}</td>
+            <td>{$value.txlogin}</td>
+            <td>{$value.txstatususer}</td>
+            <td>{$value.txnameusertype}</td>
+            <td>{$value.dtregisteruser}</td>
+            <td>
+              <a href="/admin/users/{$value.iduser}" class="circular ui blue icon button">
+                <i class="edit icon"></i>
+              </a>
+              <a href="/admin/users/{$value.iduser}/delete" class="circular ui red icon button">
+                <i class="delete icon"></i>
+              </a>
+            </td>
+          </tr>
+          {/loop}
+      </tbody>        
+    </table>
+  </div><br/>
+</div>
