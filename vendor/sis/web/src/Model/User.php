@@ -59,6 +59,30 @@
 			return $database->select("SELECT * FROM tb_users u, tb_userstype ut WHERE u.usertype = ut.idusertype ORDER BY iduser");
 		}
 
-	}
+		private function maxId(){
+			$database = new Database();
+			$id = $database->select("SELECT MAX(iduser) FROM tb_users");
+			return $id;
+		}
+
+		public function saveUser(){
+			$database = new Database();
+			$iduser = maxId()+1;
+			$user->setiduser($iduser);
+			echo "iduser".$iduser;
+			$results = $database->query(
+				"INSERT INTO tb_users(iduser, txlogin, txpassword, txstatususer, usertype, dtregisteruser)
+				VALUES (:ID, :LOGIN, :PASSWORD, :STATUS, USERTYPE, DTREGISTERUSER);",array(
+					":ID"=>$this->getiduser(),
+					":LOGIN"=>$this->gettxlogin(),
+					":PASSWORD"=>$this->gettxpassword(),
+					":STATUS"=>$this->getstatususer(),
+					":USERTYPE"=>$this->getusertype(),
+					"DTREGISTERUSER"=>$this->getdetregisteruser()
+				));
+			$this->setData($results[0]);	
+		}
+
+	}//Fim da classe
 
  ?>

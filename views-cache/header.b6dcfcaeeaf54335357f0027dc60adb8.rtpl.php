@@ -163,7 +163,7 @@
 </div>
 
 <!-- Sidebar Menu -->
-<div class="ui vertical inverted sidebar menu left">
+<div class="ui green vertical inverted sidebar menu left">
   <a class="active item" href="/">Inicio</a>
   <a class="item">Trabalho</a>
   <a class="item">Empresa</a>
@@ -174,10 +174,10 @@
 
 <!-- Page Contents -->
 <div class="pusher">
-  <div class="ui inverted vertical masthead center aligned segment">
+  <div class="ui green inverted vertical masthead center aligned segment">
 
     <div class="ui container">
-      <div class="ui large secondary inverted pointing menu">
+      <div class="ui green large secondary inverted pointing menu">
         <a class="toc item">
           <i class="sidebar icon"></i>
         </a>

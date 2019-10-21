@@ -6,20 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-    <link rel="stylesheet" type="text/css" href="../res/semantic/dist/semantic.css">
-    <link rel="stylesheet" type="text/css" href="../res/semantic/dist/semantic.min.css">
-    <link rel="stylesheet" type="text/css" src="../res/semantic/dist/semantic.js">
-    <link rel="stylesheet" type="text/css" src="../res/semantic/dist/semantic.min.js">
+    <link rel="stylesheet" type="text/css" href="../../res/semantic/dist/semantic.css">
+    <link rel="stylesheet" type="text/css" href="../../res/semantic/dist/semantic.min.css">
+    <link rel="stylesheet" type="text/css" src="../../res/semantic/dist/semantic.js">
+    <link rel="stylesheet" type="text/css" src="../../res/semantic/dist/semantic.min.js">
 
     <!-- Scripts -->
-    <script type="text/javascript" src="../res/semantic/examples/assets/library/jquery.min.js"></script>
-    <script type="text/javascript" src="../res/semantic/examples/assets/library/iframe.js"></script>
-    <script type="text/javascript" src="../res/semantic/dist/components/visibility.js"></script>
-    <script type="text/javascript" src="../res/semantic/dist/components/sidebar.js"></script>
-    <script type="text/javascript" src="../res/semantic/examples/assets/library/iframe-content.js"></script>
-      <script src="../res/semantic/examples/assets/library/iframe-content.js"></script>
-      <script type="text/javascript" src="../res/semantic/dist/components/transition.js"></script>
-    <script type="text/javascript" src="../res/semantic/dist/components/dropdown.js"></script>  
+    <script type="text/javascript" src="../../res/semantic/examples/assets/library/jquery.min.js"></script>
+    <script type="text/javascript" src="../../res/semantic/examples/assets/library/iframe.js"></script>
+    <script type="text/javascript" src="../../res/semantic/dist/components/visibility.js"></script>
+    <script type="text/javascript" src="../../res/semantic/dist/components/sidebar.js"></script>
+    <script type="text/javascript" src="../../res/semantic/examples/assets/library/iframe-content.js"></script>
+      <script src="../../res/semantic/examples/assets/library/iframe-content.js"></script>
+      <script type="text/javascript" src="../../res/semantic/dist/components/transition.js"></script>
+    <script type="text/javascript" src="../../res/semantic/dist/components/dropdown.js"></script>  
 
     <script>
       $(document)
@@ -56,25 +56,25 @@
 
     <!-- Site Properties -->
     <link type="text/css" rel="stylesheet" charset="UTF-8" href="https://translate.googleapis.com/translate_static/css/translateelement.css">
-    <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/reset.css">
-    <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/site.css">
-    <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/container.css">
-    <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/grid.css">
-    <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/header.css">
-    <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/image.css">
-    <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/menu.css">
-    <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/divider.css">
-    <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/segment.css">
-    <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/form.css">
-    <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/input.css">
-    <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/button.css">
-    <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/list.css">
-    <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/message.css">
-    <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/icon.css">
-    <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/dropdown.css">
-    <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/transition.css">
-    <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/sidebar.css">
-    <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/popup.css">
+    <link rel="stylesheet" type="text/css" href="../../res/semantic/dist/components/reset.css">
+    <link rel="stylesheet" type="text/css" href="../../res/semantic/dist/components/site.css">
+    <link rel="stylesheet" type="text/css" href="../../res/semantic/dist/components/container.css">
+    <link rel="stylesheet" type="text/css" href="../../res/semantic/dist/components/grid.css">
+    <link rel="stylesheet" type="text/css" href="../../res/semantic/dist/components/header.css">
+    <link rel="stylesheet" type="text/css" href="../../res/semantic/dist/components/image.css">
+    <link rel="stylesheet" type="text/css" href="../../res/semantic/dist/components/menu.css">
+    <link rel="stylesheet" type="text/css" href="../../res/semantic/dist/components/divider.css">
+    <link rel="stylesheet" type="text/css" href="../../res/semantic/dist/components/segment.css">
+    <link rel="stylesheet" type="text/css" href="../../res/semantic/dist/components/form.css">
+    <link rel="stylesheet" type="text/css" href="../../res/semantic/dist/components/input.css">
+    <link rel="stylesheet" type="text/css" href="../../res/semantic/dist/components/button.css">
+    <link rel="stylesheet" type="text/css" href="../../res/semantic/dist/components/list.css">
+    <link rel="stylesheet" type="text/css" href="../../res/semantic/dist/components/message.css">
+    <link rel="stylesheet" type="text/css" href="../../res/semantic/dist/components/icon.css">
+    <link rel="stylesheet" type="text/css" href="../../res/semantic/dist/components/dropdown.css">
+    <link rel="stylesheet" type="text/css" href="../../res/semantic/dist/components/transition.css">
+    <link rel="stylesheet" type="text/css" href="../../res/semantic/dist/components/sidebar.css">
+    <link rel="stylesheet" type="text/css" href="../../res/semantic/dist/components/popup.css">
     
     <style type="text/css">
           .hidden.menu {
@@ -278,7 +278,11 @@
         }
       }"); 
     </style>
-
+    <script type="text/javascript">
+      $('.ui.dropdown')
+        .dropdown()
+      ;
+    </script>
     <script>
           $(document)
             .ready(function() {
@@ -312,9 +316,9 @@
   <div class="pusher">
     <div class="ui stackable container menu">
       <a class="item" href="/admin">
-        <i class="home big icon"></i>
+        <i class="green home big icon"></i>
       </a>
-      <form class="ui dropdown item" method="POST" tabindex="0"><i class="archive icon"></i>Cadastros
+      <form class="ui dropdown item" method="POST" tabindex="0"><i class="green archive icon"></i>Cadastros
         <i class="dropdown icon"></i>
         <div class="menu transition hidden" tabindex="-1">
           <a class="item" href=""><i class="images icon"></i>Fazendas</a>
@@ -322,25 +326,20 @@
             <i class="address book icon"></i>Endereços</a>
           <a class="item" href=""><i class="box icon"></i>Produtos</a>
           <a class="item" href=""><i class="list icon"></i>Implementos</a>
-          <a class="item" href="">Fornecedores</a>
+          <a class="item" href=""><i class="dolly icon"></i>Fornecedores</a>
           <div class="divider"></div>
-          <a class="item" href="">
-            <i class="users icon"></i>Funcionários Fazenda</a>
-          <a class="item" href="">
-            <i class="users icon"></i>Clientes</a>
-          <a class="item" href="">
-            <i class="users icon"></i>Tecnicos</a>
-          <a class="item" href="/admin/users">
-            <i class="users icon"></i>Usuários
-          </a>
+          <a class="item" href=""><i class="users icon"></i>Funcionários Fazenda</a>
+          <a class="item" href=""><i class="users icon"></i>Clientes</a>
+          <a class="item" href=""><i class="users icon"></i>Tecnicos</a>
+          <a class="item" href="/admin/users"><i class="users icon"></i>Usuários</a>
           <div class="divider"></div>
           <a class="item" href="requisitions.php"><i class="clipboard icon"></i>Requisições</a>
           <a class="item" href=""><i class="tasks icon"></i>Liberações</a>
           <a class="item" href="/admin/requests"><i class="clipboard icon"></i>Solicitações</a>
-          <a class="item" href="orderreports.php">Relatório</a>
+          <a class="item" href="orderreports.php"><i class="clipboard list icon"></i>Relatório</a>
         </div>
       </form>
-      <form class="ui dropdown item" method="POST" tabindex="0"><i class="cogs icon"></i>Serviços
+      <form class="ui dropdown item" method="POST" tabindex="0"><i class="green cogs icon"></i>Serviços
         <i class="dropdown icon"></i>
         <div class="menu transition hidden" tabindex="-1">
           <a class="item" href=""><i class="file alternate icon"></i>Orçamento conserto</a>
@@ -357,7 +356,7 @@
           <a class="item" href="relatorioServico.php">Relatrios</a>
         </div>
       </form>
-      <form class="ui dropdown item" method="POST" tabindex="0"><i class="shopping cart icon"></i>Vendas
+      <form class="ui dropdown item" method="POST" tabindex="0"><i class="green shopping cart icon"></i>Vendas
         <i class="dropdown icon"></i>
         <div class="menu transition hidden" tabindex="-1">
           <a class="item" href="presale.php">Pré-Venda</a>
@@ -373,7 +372,7 @@
           <a class="item">Relatorios de Vendas</a>
         </div>
       </form>
-      <form action="" method="POST" class="ui dropdown item" tabindex="0"><i class="boxes icon"></i>Estoque
+      <form action="" method="POST" class="ui dropdown item" tabindex="0"><i class="green boxes icon"></i>Estoque
         <i class="dropdown icon"></i>
         <div class="menu transition hidden" tabindex="-1">
           <a class="item" href="">Gerenciar Estoque</a>
@@ -389,7 +388,7 @@
           <div class="item">Entradas</div>
         </div>
       </form>
-      <form class="ui dropdown item" action="" method="POST" tabindex="0"><i class="chart line icon"></i>Financeiro
+      <form class="ui dropdown item" action="" method="POST" tabindex="0"><i class="green chart line icon"></i>Financeiro
         <i class="dropdown icon"></i>
         <div class="menu transition hidden" tabindex="-1">
           <a class="item" href="accountsreceive.php">Contas a Receber</a>
@@ -406,7 +405,7 @@
           <div class="item" href="chartofaccounts.php">Plano de Contas</div>
         </div>
       </form>
-      <form class="ui dropdown item" action="" method="POST" tabindex="0"><i class="book icon"></i>Fiscal
+      <form class="ui dropdown item" action="" method="POST" tabindex="0"><i class="green book icon"></i>Fiscal
         <i class="dropdown icon"></i>
         <div class="menu transition hidden" tabindex="-1">
           <a class="item" href="">Nota Fiscal Eletrônica(NF-e)</a>
@@ -424,10 +423,10 @@
           <div class="item">Contabilidade</div>
         </div>
       </form>
-      <form class="ui dropdown item" tabindex="0"><i class="file alternate icon"></i>Relatórios
+      <form class="ui dropdown item" tabindex="0"><i class="green file alternate icon"></i>Relatórios
         <i class="dropdown icon"></i>
         <div class="menu transition hidden" tabindex="-1">
-          <a href="/admin/relatoriocriar" class="item">Criar SQL</a>
+          <a href="/admin/sql/create" class="item">Criar SQL</a>
           <a href="" class="item">Relatorio Semanal</a>
           <a href="" class="item">Relatorio Mensal</a>
           <a href="" class="item">Relatorio Anual</a>
@@ -435,15 +434,15 @@
       </form>
 
       <div class="right menu">
-        <div class="ui dropdown item" tabindex="0"><i class="user icon"></i>Conta
+        <div class="ui dropdown item" tabindex="0"><i class="green user icon"></i>Conta
           <i class="dropdown icon"></i>
           <div class="menu transition hidden" tabindex="-1">
-            <a class="item" href="">Perfil</a>
-            <a class="item">Dados</a>
-            <a class="item">Segurança</a>
-            <a class="item">Permissões</a>
+            <a class="item" href=""><i class="user icon"></i>Perfil</a>
+            <a class="item"><i class="info icon"></i>Dados</a>
+            <a class="item"><i class="exclamation triangle icon"></i>Segurança</a>
+            <a class="item"><i class="user secret icon"></i>Permissões</a>
             <div class="divider"></div>
-            <a class="item">Opções</a>
+            <a class="item"><i class="cogs icon"></i>Opções</a>
             <div class="divider"></div>
             <a class="item" href="/logout">
               <div class="ui red button">Sair</div>

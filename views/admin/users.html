@@ -2,12 +2,22 @@
   <div class="ui segment">
     <div class="ui horizontal divider">Menu</div>
     <div class="ui buttons">
-      <button class="ui green button"><i class="user plus icon"></i>Novo Usuário</button>
-      <button class="ui green button"><i class="users icon"></i>Listar Usuários</button>
-      <button class="ui green button"><i class="id card icon"></i>Consultar Usuário</button>
-      <button class="ui red button"><i class="edit icon"></i>Editar Usuário</button>
-      <button class="ui red button"><i class="user times icon"></i>Excluir Usuário</button>
-    </div>
+      <a class="ui green button" href="/admin/users/create">
+        <i class="user plus icon"></i>Novo Usuário
+      </a>
+      <a class="ui green button" href="/admin/users">
+        <i class="users icon"></i>Listar Usuários
+      </a>
+      <a class="ui green button" href="/admin/">
+        <i class="id card icon"></i>Consultar Usuário
+      </a>
+      <a class="ui green button" href="/admin/">
+        <i class="edit icon"></i>Editar Usuário
+      </a>
+      <a class="ui red button" href="/admin/">
+        <i class="user times icon"></i>Excluir Usuário
+      </a>
+    </div><br/><br/>
     <div class='ui horizontal divider'>Usuários</div><br/>
     <table class='ui very basic table'>
       <thead align='center'>
@@ -29,7 +39,7 @@
             <td>{$value.txnameusertype}</td>
             <td>{$value.dtregisteruser}</td>
             <td>
-              <a href="/admin/users/{$value.iduser}" class="circular ui blue icon button">
+              <a href="/admin/users/{$value.iduser}" class="circular ui green icon button">
                 <i class="edit icon"></i>
               </a>
               <a href="/admin/users/{$value.iduser}/delete" class="circular ui red icon button">
