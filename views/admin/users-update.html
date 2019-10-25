@@ -9,7 +9,7 @@
 	      <a class="ui green button" href="/admin/users">
 	        <i class="users icon"></i>Listar Usuários
 	      </a>
-	      <a class="ui green button" href="/admin/">
+	      <a class="ui green button" href="/admin/users/consult">
 	        <i class="id card icon"></i>Consultar Usuário
 	      </a>
 	      <a class="ui green button" href="/admin/">
@@ -21,36 +21,32 @@
 	    </div><br/><br/>
 
 
-	    <div class="ui horizontal divider">Adicionar Usuário</div>
-		<form class="ui form" action="/admin/users/create" method="POST">
+	    <div class="ui horizontal divider">Alterar Usuário</div>
+		<form class="ui form" action="/admin/users/{$user.iduser}" method="POST">
 			<div class="ui container">
 				<div class="field" align="left">
 				    <label>Usuário:</label>
-				    <input type="text" name="txlogin" placeholder="Usuário"><br><br>
-				    <label>Senha:</label>
-				    <input type="password" name="txpassword" placeholder="Senha de acesso"><br><br>
+				    <input type="text" name="txlogin" value="{$user.txlogin}"><br><br>
 
 	                <label>Status:</label>
 	                <select class="uis selection" name='txstatususer'>
-	                	<option value="Ativo">Ativo</option>
-	                	<option value="Solicitado">Solicitar</option>
-	                	<option value="Inativo">Inativo</option>
-	                	<option value="">Aguardando liberação</option>
+	                	<option class="item">Selecione o status</option>
+	                	{loop="$status"}
+	                		<option class="item" value="{$value.idstatus}" 
+	                		{if="$user.statususer == $value.idstatus"}selected{/if}>{$value.txnamestatus}</option>
+	                	{/loop}
 	                </select></br>
 
 	                <label>Tipo de Usuario: </label>
 	                <select class="ui selection" name="usertype">
 	                    <option value='0' selected="0">Selecione o tipo de usuário</option>
-	                    {loop="$userstypes"}<option value="{$value.idusertype}">{$value.txnameusertype}</option>{/loop}
+	                    {loop="$userstypes"}
+	                    <option value="{$value.idusertype}" {if="$user.usertype == $value.idusertype"}selected{/if}>{$value.txnameusertype}</option>
+	                    {/loop}
 	                </select></br>
-
-	                <label>Data de registro:</label>
-				    <div class="ui disable input">
-				    	<input type="date" name="dtregisteruser">
-				    </div>
 				</div>
 				<div class="ui buttons">
-					<button class="ui green button" type="submit"><i class="save icon"></i>Salvar</button>
+					<button class="ui green button" type="submit"><i class="save icon"></i>Alterar</button>
 					<a class="ui red button" href="/admin/users/create"> <i class="delete icon"></i>Cancelar</a>
 				</div>
 			</div>

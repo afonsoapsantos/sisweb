@@ -1,4 +1,5 @@
-<?php if(!class_exists('Rain\Tpl')){exit;}?><div class="ui segments" id="component" align="center">  
+<?php if(!class_exists('Rain\Tpl')){exit;}?><title>Sisweb - Usuários</title>
+<div class="ui segments" id="component" align="center">  
   <div class="ui segment">
     <div class="ui horizontal divider">Menu</div>
     <div class="ui buttons">
@@ -8,13 +9,13 @@
       <a class="ui green button" href="/admin/users">
         <i class="users icon"></i>Listar Usuários
       </a>
-      <a class="ui green button" href="/admin/">
+      <a class="ui green button" href="/admin/users/consult">
         <i class="id card icon"></i>Consultar Usuário
       </a>
-      <a class="ui green button" href="/admin/">
+      <a class="ui green button" href="/admin/users/edit">
         <i class="edit icon"></i>Editar Usuário
       </a>
-      <a class="ui red button" href="/admin/">
+      <a class="ui red button" href="/admin/users/delete">
         <i class="user times icon"></i>Excluir Usuário
       </a>
     </div><br/><br/>
@@ -35,14 +36,14 @@
           <tr>
             <td><?php echo htmlspecialchars( $value1["iduser"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
             <td><?php echo htmlspecialchars( $value1["txlogin"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-            <td><?php echo htmlspecialchars( $value1["txstatususer"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+            <td><?php echo htmlspecialchars( $value1["txnamestatus"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
             <td><?php echo htmlspecialchars( $value1["txnameusertype"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
             <td><?php echo htmlspecialchars( $value1["dtregisteruser"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
             <td>
               <a href="/admin/users/<?php echo htmlspecialchars( $value1["iduser"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="circular ui green icon button">
                 <i class="edit icon"></i>
               </a>
-              <a href="/admin/users/<?php echo htmlspecialchars( $value1["iduser"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/delete" class="circular ui red icon button">
+              <a href="/admin/users/<?php echo htmlspecialchars( $value1["iduser"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/delete" onclick="return confirm('Deseja realmente excluir?')" class="circular ui red icon button">
                 <i class="delete icon"></i>
               </a>
             </td>

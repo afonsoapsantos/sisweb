@@ -7,9 +7,9 @@
 	/**
 	 * 
 	 */
-	class Manager extends Model {
+	class Category extends Model
+	{
 		
 	}
-
 
  ?>

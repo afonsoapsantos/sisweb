@@ -11,6 +11,7 @@ use \Sisweb\PageCustomer;
 use \Sisweb\PageManager;
 use \Sisweb\PageTechnical;
 use \Sisweb\PageFarmworker;
+use \Sisweb\Model\Person;
 use \Sisweb\Model\User;
 use \Sisweb\Model\Administrator;
 use \Sisweb\Model\Customer;
@@ -52,9 +53,6 @@ $app->post("/login", function() {
 	$user = new User();
 	$user = User::login($_POST["login"],$_POST["password"]);
 	$usertype = $user->getusertype();
-	if($usertype === NULL){
-		$usertype = 0;
-	}
 	switch ($usertype) {
 		case 1:
 			header("Location: /admin");
@@ -111,35 +109,78 @@ $app->get('/admin/users', function() {
 	));
 });
 
+$app->get("/admin/users/consult", function(){
+	User::verifyLogin();
+	$users = User::listAll();
+	$page = new PageAdmin();
+	$page->setTpl("users-select",array(
+		"users"=>$users
+	));
+});
+
 $app->get("/admin/users/create", function (){
 	User::verifyLogin();
+	$userstypes = User::listUsersTypes();
 	$page = new PageAdmin();
-	$page->setTpl("users-create");
+	$page->setTpl("users-create", array(
+		"userstypes"=>$userstypes
+	));
 });
 
 $app->post("/admin/users/create", function(){
 	User::verifyLogin();
 	$user = new User();
+
+	if($_POST['usertype'] === "1"){
+		$_POST['usertype'] = 1;
+	}else if($_POST['usertype'] === "2"){
+		$_POST['usertype'] = 2;
+	}else if ($_POST['usertype'] === "3") {
+		$_POST['usertype'] = 3;
+	}elseif ($_POST['usertype'] === "4") {
+		$_POST['usertype'] = 4;
+	}elseif ($_POST['usertype'] === "5") {
+		$_POST['usertype'] = 5;
+	}
 	$user->setData($_POST);
-	$user->save();
-	header("/admin/users");
+	$user->saveUser();
+	header("Location: /admin/users");
 	exit;
 });
 
-$app->get("/admin/users/:iduser/delete", function (){
+$app->get("/admin/users/:iduser/delete", function ($iduser){
 	User::verifyLogin();
-	$page = new PageAdmin();
-	$page->setTpl("");
+	$user = new User();
+	$user->getUser((int)$iduser);
+	$user->deleteUser();
+
+	header("Location: /admin/users");
+	exit;
 });
 
 $app->get("/admin/users/:iduser", function ($iduser){
 	User::verifyLogin();
+	$user = new User();
+	$userstypes = User::listUsersTypes();
+	$status = User::listStatusUser();
+	$user->getUser((int)$iduser);
 	$page = new PageAdmin();
-	$page->setTpl("users-update");
+	$page->setTpl("users-update", array(
+		"user"=>$user->getValues(),
+		"userstypes"=>$userstypes,
+		"status"=>$status
+	));
+	exit;
 });
 
-$app->post("/admin/users/:iduser", function (){
+$app->post("/admin/users/:iduser", function ($iduser){
 	User::verifyLogin();
+	$user = new User();
+	$user->getUser((int)$iduser);
+	$user->setData($_POST);
+	$user->updateUser();
+	header("Location: /admin/users");
+	exit;
 });
 
 $app->get("/admin/sql/create", function(){
@@ -147,6 +188,26 @@ $app->get("/admin/sql/create", function(){
 	$page = new PageAdmin();
 	$page->setTpl("sql-create");
 });
+
+$app->get("/admin/requests", function(){
+	User::verifyLogin();
+	$requests = Request::listRequests();
+	$page = new PageAdmin();
+	$page->setTpl("requests");
+});
+
+$app->get("/admin/requests/create", function(){
+	User::verifyLogin();
+	$page = new PageAdmin();
+	$page->setTpl("requests-create");
+});
+
+$app->get("/admin/technical", function(){
+	User::verifyLogin();
+	$page = new PageAdmin();
+	$page->setTpl("technical");
+});
+
 ## Fim das rotas do ADMIN
 
 ##Rotas do GERENTE

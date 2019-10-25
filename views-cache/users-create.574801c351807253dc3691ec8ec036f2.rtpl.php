@@ -1,4 +1,5 @@
-<?php if(!class_exists('Rain\Tpl')){exit;}?><div class="ui segments" id="component" align="center">  
+<?php if(!class_exists('Rain\Tpl')){exit;}?><title>Sisweb - Usuários</title>
+<div class="ui segments" id="component" align="center">  
   	<div class="ui segment">
 	    <div class="ui horizontal divider">Menu</div>
 	    <div class="ui buttons">
@@ -11,7 +12,7 @@
 	      <a class="ui green button" href="/admin/">
 	        <i class="id card icon"></i>Consultar Usuário
 	      </a>
-	      <a class="ui red button" href="/admin/">
+	      <a class="ui green button" href="/admin/">
 	        <i class="edit icon"></i>Editar Usuário
 	      </a>
 	      <a class="ui red button" href="/admin/">
@@ -25,31 +26,27 @@
 			<div class="ui container">
 				<div class="field" align="left">
 				    <label>Usuário:</label>
-				    <input type="text" name="login" placeholder="Usuário"><br><br>
+				    <input type="text" name="txlogin" placeholder="Usuário"><br><br>
 				    <label>Senha:</label>
-				    <input type="password" name="password" placeholder="Senha de acesso"><br><br>
-					
-				    <label>Tipo de Usuario: </label>
-	                <select class="ui selection" name="usertype">
-	                    <option value='0' selected="0">Selecione o tipo</option>
-	                    <option value=1>Administrador</option>
-	                    <option value=2>Gerente</option>
-	                    <option value=3>Técnico</option>
-	                    <option value=4>Cliente</option>
-	                    <option value=5>Funcionario Fazenda</option>
-	                </select></br>
+				    <input type="password" name="txpassword" placeholder="Senha de acesso"><br><br>
 
 	                <label>Status:</label>
-	                <select class="uis selection" name='usertype'>
-	                	<option>Ativo</option>
-	                	<option>Solicitado</option>
-	                	<option>Inativo</option>
-	                	<option>Aguardando liberação</option>
+	                <select class="uis selection" name='txstatususer'>
+	                	<option value="Ativo">Ativo</option>
+	                	<option value="Solicitado">Solicitar</option>
+	                	<option value="Inativo">Inativo</option>
+	                	<option value="">Aguardando liberação</option>
+	                </select></br>
+
+	                <label>Tipo de Usuario: </label>
+	                <select class="ui selection" name="usertype">
+	                    <option value='0' selected="0">Selecione o tipo de usuário</option>
+	                    <?php $counter1=-1;  if( isset($userstypes) && ( is_array($userstypes) || $userstypes instanceof Traversable ) && sizeof($userstypes) ) foreach( $userstypes as $key1 => $value1 ){ $counter1++; ?><option value="<?php echo htmlspecialchars( $value1["idusertype"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["txnameusertype"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option><?php } ?>
 	                </select></br>
 
 	                <label>Data de registro:</label>
 				    <div class="ui disable input">
-				    	<input type="date" name="dtregisteruser" value="">
+				    	<input type="date" name="dtregisteruser">
 				    </div>
 				</div>
 				<div class="ui buttons">

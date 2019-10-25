@@ -5,7 +5,7 @@
 	use \Sisweb\Model;
 	use \Sisweb\DB\Database;
 
-	class User extends Model {
+	class User extends Person {
 
 		const SESSION = "User";
 
@@ -29,9 +29,7 @@
 				$_SESSION[User::SESSION] = $user->getValues();
 				return $user;
 			} else {
-				return $msg = "Usuário ou senha inválidos";
-				header("Location: /login");
-				#throw new \Exception("Usuário inexistente ou senha inválida.");
+				throw new \Exception("Usuário inexistente ou senha inválida.");
 			}
 
 		}
@@ -56,31 +54,76 @@
 		public static function listAll(){
 			$database = new Database();
 
-			return $database->select("SELECT * FROM tb_users u, tb_userstype ut WHERE u.usertype = ut.idusertype ORDER BY iduser");
+			return $database->select("SELECT * FROM tb_users u, tb_userstype ut, tb_status s WHERE u.usertype = ut.idusertype AND u.statususer = s.idstatus ORDER BY u.iduser;");
 		}
 
-		private function maxId(){
+		public static function listUsersTypes()
+		{
 			$database = new Database();
-			$id = $database->select("SELECT MAX(iduser) FROM tb_users");
-			return $id;
+			$userstypes = $database->select("SELECT * FROM tb_userstype;");
+			return $userstypes;
+		}
+
+		public static function listStatusUser(){
+			$database = new Database();
+			$status = $database->select("SELECT * FROM tb_status;");
+			return $status;
 		}
 
 		public function saveUser(){
 			$database = new Database();
-			$iduser = maxId()+1;
-			$user->setiduser($iduser);
-			echo "iduser".$iduser;
-			$results = $database->query(
-				"INSERT INTO tb_users(iduser, txlogin, txpassword, txstatususer, usertype, dtregisteruser)
-				VALUES (:ID, :LOGIN, :PASSWORD, :STATUS, USERTYPE, DTREGISTERUSER);",array(
-					":ID"=>$this->getiduser(),
-					":LOGIN"=>$this->gettxlogin(),
-					":PASSWORD"=>$this->gettxpassword(),
-					":STATUS"=>$this->getstatususer(),
-					":USERTYPE"=>$this->getusertype(),
-					"DTREGISTERUSER"=>$this->getdetregisteruser()
+			#$id = $database->select("SELECT MAX(iduser) FROM tb_users;");
+			#foreach ($id as $key => $value) {
+			#	$iduser = $value['max'];
+			#}
+			#$this->setiduser($iduser);
+
+			$results = $database->select(
+				"INSERT INTO tb_users(txlogin, txpassword, usertype, dtregisteruser, statususer)
+				VALUES (:login, :password, :usertype, :dtregisteruser, :status);",array(
+					":login"=>$this->gettxlogin(),
+					":password"=>$this->gettxpassword(),
+					":usertype"=>$this->getusertype(),
+					":dtregisteruser"=>$this->getdtregisteruser(),
+					":status"=>$this->getstatususer()
 				));
 			$this->setData($results[0]);	
+		}
+
+		public function getUser($iduser){
+			$database = new Database();
+			$results = $database->select("SELECT * FROM tb_users WHERE iduser = :iduser", array(
+				":iduser"=>$iduser
+			));
+
+			$this->setData($results[0]);
+		}
+
+		public function updateUser(){
+			$database = new Database();
+			$results = $database->select(
+				"UPDATE tb_users SET txlogin=:login, 
+									txpassword=:password, usertype=:usertype, 
+									dtregisteruser=:dtregisteruser, statususer=:status
+					WHERE iduser = :iduser;",
+				array(
+					":iduser"=>$this->getiduser(),
+					":login"=>$this->gettxlogin(),
+					":password"=>$this->gettxpassword(),
+					":usertype"=>$this->getusertype(),
+					":dtregisteruser"=>$this->getdtregisteruser(),
+					":status"=>$this->getstatususer()
+				));
+			echo " Resutls: ".var_dump($results);
+			$this->setData($results[0]);
+		}
+
+		public function deleteUser(){
+			$database = new Database();
+			#$iduser = $this->getiduser();
+			$database->query("DELETE FROM tb_users WHERE iduser = :iduser", array(
+				":iduser"=>$this->getiduser()
+			));
 		}
 
 	}//Fim da classe

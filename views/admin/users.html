@@ -1,3 +1,4 @@
+<title>Sisweb - Usuários</title>
 <div class="ui segments" id="component" align="center">  
   <div class="ui segment">
     <div class="ui horizontal divider">Menu</div>
@@ -8,13 +9,13 @@
       <a class="ui green button" href="/admin/users">
         <i class="users icon"></i>Listar Usuários
       </a>
-      <a class="ui green button" href="/admin/">
+      <a class="ui green button" href="/admin/users/consult">
         <i class="id card icon"></i>Consultar Usuário
       </a>
-      <a class="ui green button" href="/admin/">
+      <a class="ui green button" href="/admin/users/edit">
         <i class="edit icon"></i>Editar Usuário
       </a>
-      <a class="ui red button" href="/admin/">
+      <a class="ui red button" href="/admin/users/delete">
         <i class="user times icon"></i>Excluir Usuário
       </a>
     </div><br/><br/>
@@ -35,14 +36,14 @@
           <tr>
             <td>{$value.iduser}</td>
             <td>{$value.txlogin}</td>
-            <td>{$value.txstatususer}</td>
+            <td>{$value.txnamestatus}</td>
             <td>{$value.txnameusertype}</td>
             <td>{$value.dtregisteruser}</td>
             <td>
               <a href="/admin/users/{$value.iduser}" class="circular ui green icon button">
                 <i class="edit icon"></i>
               </a>
-              <a href="/admin/users/{$value.iduser}/delete" class="circular ui red icon button">
+              <a href="/admin/users/{$value.iduser}/delete" onclick="return confirm('Deseja realmente excluir?')" class="circular ui red icon button">
                 <i class="delete icon"></i>
               </a>
             </td>

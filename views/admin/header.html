@@ -330,11 +330,11 @@
           <div class="divider"></div>
           <a class="item" href=""><i class="users icon"></i>Funcionários Fazenda</a>
           <a class="item" href=""><i class="users icon"></i>Clientes</a>
-          <a class="item" href=""><i class="users icon"></i>Tecnicos</a>
+          <a class="item" href="/admin/technical"><i class="users icon"></i>Tecnicos</a>
           <a class="item" href="/admin/users"><i class="users icon"></i>Usuários</a>
           <div class="divider"></div>
-          <a class="item" href="requisitions.php"><i class="clipboard icon"></i>Requisições</a>
-          <a class="item" href=""><i class="tasks icon"></i>Liberações</a>
+          <a class="item" href=""><i class="clipboard icon"></i>Requisições</a>
+          <a class="item" href="/admin/requisitions"><i class="tasks icon"></i>Liberações</a>
           <a class="item" href="/admin/requests"><i class="clipboard icon"></i>Solicitações</a>
           <a class="item" href="orderreports.php"><i class="clipboard list icon"></i>Relatório</a>
         </div>
