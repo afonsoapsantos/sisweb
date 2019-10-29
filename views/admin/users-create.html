@@ -1,30 +1,39 @@
 <title>Sisweb - Usuários</title>
-<div class="ui segments" id="component" align="center">  
-  	<div class="ui segment">
-	    <div class="ui horizontal divider">Menu</div>
-	    <div class="ui buttons">
-	      <a class="ui green button" href="/admin/users/create">
-	        <i class="user plus icon"></i>Novo Usuário
-	      </a>
-	      <a class="ui green button" href="/admin/users">
-	        <i class="users icon"></i>Listar Usuários
-	      </a>
-	      <a class="ui green button" href="/admin/">
-	        <i class="id card icon"></i>Consultar Usuário
-	      </a>
-	      <a class="ui green button" href="/admin/">
-	        <i class="edit icon"></i>Editar Usuário
-	      </a>
-	      <a class="ui red button" href="/admin/">
-	        <i class="user times icon"></i>Excluir Usuário
-	      </a>
-	    </div><br/><br/>
+	<div class="ui horizontal divider">Menu</div>
+        <div class="ui buttons">
+          <a class="ui green button" href="/admin/users/create">
+            <i class="user plus icon"></i>Novo Usuário
+          </a>
+          <a class="ui green button" href="/admin/users">
+            <i class="users icon"></i>Listar Usuários
+          </a>
+          <a class="ui green button" href="/admin/users/consult">
+            <i class="id card icon"></i>Consultar Usuário
+          </a>
+          <a class="ui green button" href="/admin/users/edit">
+            <i class="edit icon"></i>Editar Usuário
+          </a>
+          <a class="ui red button" href="/admin/users/delete">
+            <i class="user times icon"></i>Excluir Usuário
+          </a>
+    </div><br/><br/>
 
 
 	    <div class="ui horizontal divider">Adicionar Usuário</div>
 		<form class="ui form" action="/admin/users/create" method="POST">
 			<div class="ui container">
 				<div class="field" align="left">
+					<div class="ui horizontal divider">Dados</div>
+					<label>Nome Completo:</label>
+				    <input type="text" name="txperson" placeholder="Nome Completo"><br><br>
+				    <label>RG:</label>
+				    <input type="number" name="nurg" placeholder="RG"><br><br>
+				    <label>CPF/CNPJ:</label>
+				    <input type="number" name="nucpf" placeholder="CPF"><br><br>
+				    <label>email:</label>
+				    <input type="email" name="txemail" placeholder="Email"><br><br>
+				    
+				    <div class="ui horizontal divider">Dados de Acesso</div>
 				    <label>Usuário:</label>
 				    <input type="text" name="txlogin" placeholder="Usuário"><br><br>
 				    <label>Senha:</label>
@@ -32,6 +41,7 @@
 
 	                <label>Status:</label>
 	                <select class="uis selection" name='txstatususer'>
+	                	<option value="0">Selecione o status</option>
 	                	<option value="Ativo">Ativo</option>
 	                	<option value="Solicitado">Solicitar</option>
 	                	<option value="Inativo">Inativo</option>
@@ -43,15 +53,12 @@
 	                    <option value='0' selected="0">Selecione o tipo de usuário</option>
 	                    {loop="$userstypes"}<option value="{$value.idusertype}">{$value.txnameusertype}</option>{/loop}
 	                </select></br>
-
-	                <label>Data de registro:</label>
-				    <div class="ui disable input">
-				    	<input type="date" name="dtregisteruser">
-				    </div>
 				</div>
 				<div class="ui buttons">
 					<button class="ui green button" type="submit"><i class="save icon"></i>Salvar</button>
-					<a class="ui red button" href="/admin/users/create"> <i class="delete icon"></i>Cancelar</a>
+					<a class="ui red button" href="/admin/users/create">
+						<i class="delete icon"></i>Cancelar
+					</a>
 				</div>
 			</div>
 		</form>

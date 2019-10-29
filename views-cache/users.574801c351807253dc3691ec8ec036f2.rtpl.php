@@ -1,24 +1,24 @@
 <?php if(!class_exists('Rain\Tpl')){exit;}?><title>Sisweb - Usuários</title>
-<div class="ui segments" id="component" align="center">  
-  <div class="ui segment">
-    <div class="ui horizontal divider">Menu</div>
-    <div class="ui buttons">
-      <a class="ui green button" href="/admin/users/create">
-        <i class="user plus icon"></i>Novo Usuário
-      </a>
-      <a class="ui green button" href="/admin/users">
-        <i class="users icon"></i>Listar Usuários
-      </a>
-      <a class="ui green button" href="/admin/users/consult">
-        <i class="id card icon"></i>Consultar Usuário
-      </a>
-      <a class="ui green button" href="/admin/users/edit">
-        <i class="edit icon"></i>Editar Usuário
-      </a>
-      <a class="ui red button" href="/admin/users/delete">
-        <i class="user times icon"></i>Excluir Usuário
-      </a>
-    </div><br/><br/>
+  
+  <div class="ui horizontal divider">Menu</div>
+        <div class="ui buttons">
+          <a class="ui green button" href="/admin/users/create">
+            <i class="user plus icon"></i>Novo Usuário
+          </a>
+          <a class="ui green button" href="/admin/users">
+            <i class="users icon"></i>Listar Usuários
+          </a>
+          <a class="ui green button" href="/admin/users/consult">
+            <i class="id card icon"></i>Consultar Usuário
+          </a>
+          <a class="ui green button" href="/admin/users/edit">
+            <i class="edit icon"></i>Editar Usuário
+          </a>
+          <a class="ui red button" href="/admin/users/delete">
+            <i class="user times icon"></i>Excluir Usuário
+          </a>
+        </div><br/><br/>
+
     <div class='ui horizontal divider'>Usuários</div><br/>
     <table class='ui very basic table'>
       <thead align='center'>
@@ -51,5 +51,3 @@
           <?php } ?>
       </tbody>        
     </table>
-  </div><br/>
-</div>

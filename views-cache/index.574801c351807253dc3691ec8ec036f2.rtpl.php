@@ -1,10 +1,11 @@
 <?php if(!class_exists('Rain\Tpl')){exit;}?><!-- Page Contents -->
 <title>SisWeb - Painel</title>
-<div class="ui segments" id="component">
+<div class="ui segments" id="component" align="left">
   <div class="ui horizontal divider">Seja Bem Vindo(a)!</div>
   <div class="ui vertical segments">
     <div class="ui segment">
       <div class="ui horizontal divider">Solicitações</div>
+
       <div class="ui relaxed divided items">
         <div class="item">
           <div class="ui small image">
@@ -21,6 +22,7 @@
             </div>
           </div>
         </div>
+        
         <div class="ui relaxed divided items">
           <div class="item">
             <div class="ui small image">

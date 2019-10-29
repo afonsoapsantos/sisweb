@@ -1,6 +1,4 @@
 <?php if(!class_exists('Rain\Tpl')){exit;}?><title>Sisweb - Solicitações</title>
-<div class="ui segments" id="component" align="center">  
-  	<div class="ui segment">
   		<div class="ui horizontal divider">Menu</div>
   		<div class="ui buttons">
 	      	<a class="ui green button" href="/admin/requests/create">
@@ -53,5 +51,3 @@
 	            <!--<?php } ?>-->
 	        </tbody>        
 	    </table>
-	</div>
-</div>

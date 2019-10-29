@@ -1,4 +1,6 @@
-<?php if(!class_exists('Rain\Tpl')){exit;}?>  <div class="ui inverted vertical footer segment" align="center">
+<?php if(!class_exists('Rain\Tpl')){exit;}?>    </div><br/>
+  </div>  
+  <div class="ui inverted vertical footer segment" align="center">
   <div class="ui inverted vertical footer segment" align="center">
       <div class="ui inverted black divided equal height stackable grid">
         <div class="three wide column black">

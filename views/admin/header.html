@@ -451,3 +451,6 @@
         </div>
       </div>
     </div>
+
+    <div class="ui segments" id="component" align="center">  
+      <div class="ui segment">

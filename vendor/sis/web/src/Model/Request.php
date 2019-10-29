@@ -11,19 +11,21 @@
 		
 		public static function listRequests(){
 			$database = new Database();
-			return $database->select("SELECT r.*, c.idcustomer, c.txnamecustomer, s.* FROM tb_requests r, tb_customers c, tb_status s");
+			return $database->select("SELECT r.*, c.idcustomer, c.txnamecustomer, s.* FROM tb_requests r, tb_customers c, tb_status s WHERE r.customerfk = c.idcustomer AND r.statusfk = s.idstatus");
 		}
 
-		public function saveRequest()
-		{
-			# code...
+		public function saveRequest(){
+			$database = new Database();
 		}
 
-		public function updateRequest()
-		{
-			# code...
+		public function updateRequest(){
+			$database = new Database();
 		}
 		
+		public function deleteRequest(){
+			$database = new Database();
+		}
+
 	}
 
  ?>

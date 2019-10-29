@@ -18,6 +18,7 @@ use \Sisweb\Model\Customer;
 use \Sisweb\Model\Manager;
 use \Sisweb\Model\Technician;
 use \Sisweb\Model\Farmworker;
+use \Sisweb\Model\Request;
 
 $app = new \Slim\Slim();
 

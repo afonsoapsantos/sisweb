@@ -9,17 +9,23 @@
 	 */
 	class Person extends Model{
 		
-		public function svaePerson()
-		{
-			# code...
+		public function savePerson(){
+			$database = new Database();
 		}
 
-		public function updatePerson()
-		{
-			# code...
+		public function updatePerson(){
+			$database = new Database();
+		}
+
+		public function deletePerson(){
+			$database = new Database();
+		}
+
+		public function listPersons(){
+			$database = new Database();
 		}
 		
-	}
+	}//Fim da CLasse Person
 
 
 
