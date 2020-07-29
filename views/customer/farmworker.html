@@ -1,0 +1,64 @@
+<title>Sisweb - Funcionarios Fazendas</title>
+
+<div class="ui segment">
+  <div class="field"> 
+    <div class="ui horizontal divider">Menu</div>
+    <div class="ui buttons">
+          <a class="ui green button" href="/customer/farmworker/create">
+            <i class="plus icon"></i>Novo Funcionario
+          </a>
+          <a class="ui green button" href="/customer/farmworker">
+            <i class="list icon"></i>Listar Funcionarios
+          </a>
+      </div>
+  </div>
+  <br>
+  <div class="field" id="margin">
+    {if="$success != ''"}
+      <div class="ui success message">
+        <div class="header">{$success}</div>
+      </div>
+    {/if}
+    {if="$error != ''"}
+      <div class="ui negative message">
+        <div class="header">{$error}</div>
+      </div>
+    {/if}
+    <div class="ui horizontal divider">Funcionarios Fazendas</div>
+      <table class="ui very basic table">
+        <thead align="center">
+          <tr>
+            <th>Codigo</th>
+            <th>Nome:</th>
+            <th>Ultimo Nome</th>
+            <th>Função</th>
+            <th>Opções</th>
+          </tr>
+        </thead>
+        <tbody align="center">
+          {loop="$farmworker"}
+          <tr>
+            <td>{$value.pkfarmworker}</td>
+            <td>{$value.txname}</td>
+            <td>{$value.txlastname}</td>
+            <td>{$value.txfuncao}</td>
+            <td>
+              <a class="circular ui icon green button" href="/customer/farmworker/update/{$value.pkfarmworker}">
+                Editar <i class="edit icon"></i>
+              </a>
+              <a class="circular ui icon red button" onclick="return confirm('Deseja realmente excluir?')" href="/customer/farmworker/delete/{$value.pkfarmworker}">
+                <i class="delete icon"></i>
+              </a>
+              <a class="circular ui icon button" href="/customer/farmworker/consult/{$value.pkfarmworker}">
+                <i class="info icon"></i>
+              </a>
+              <a class="circular ui icon button" href="/customer/farms/address/{$value.idaddress}">
+                <i class="address book icon"></i>
+              </a>
+            </td>
+          </tr>
+          {/loop}
+        </tbody>
+      </table><br>
+  </div>
+</div>

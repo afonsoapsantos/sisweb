@@ -1,0 +1,65 @@
+<title>Sisweb - Solicitações</title> 	
+<div class="field">	
+	<div class="ui horizontal divider">Menu</div>
+	<div class="ui buttons">
+      	<a class="ui green button" href="/customer/requests/create">
+        	<i class="plus icon"></i>Nova Solicitação
+      	</a>
+      	<a class="ui green button" href="/customer/requests">
+        	<i class="list icon"></i>Solicitações
+      	</a>
+    </div>
+</div><br>
+{if="$success != ''"}
+  <div class="field">
+    <div class="ui success message">
+      <div class="header">{$success}</div>
+    </div>
+  </div>
+{/if}
+{if="$error != ''"}
+  <div class="field">
+    <div class="ui negative message">
+      <div class="header">{$error}</div>
+    </div>
+  </div>
+{/if}
+<div class="field" style="margin-right: 60px; margin-left: 60px;">
+    <div class="ui horizontal divider">Solicitações</div>
+    <table class='ui very basic table'>
+        <thead align='center'>
+	        <tr>
+	        	<th>Codigo</th>
+            <th>Problema</th>
+            <th>Situação</th>
+            <th>Status</th> 
+            <th>Opções</th>
+	        </tr>
+        </thead>
+        <tbody align='center'>
+            {loop="$requests"}
+            	<tr>
+            		<td>{$value.idrequest}</td>
+            		<td>{$value.txproblem}</td>
+            		<td>{$value.txsituation}</td>
+                <td>{$value.txnamestatus}</td>
+                <td style="width: 200px;">
+                  <a class="circular ui green icon button" href="/customer/requests/update/{$value.idrequest}">
+                    Editar <i class="edit icon"></i>
+                  </a>
+                  <a class="circular ui icon button" href="/customer/requests/media/{$value.idrequest}">
+                    <i class="upload icon"></i>
+                  </a>
+                  <a class="circular ui red icon button" href="/customer/requests/delete/{$value.idrequest}">
+                    <i class="delete icon"></i>
+                  </a>
+                  <a class="circular ui icon button" href="/customer/requests/consult/{$value.idrequest}">
+                    <i class="info icon"></i>
+                  </a>
+                </td>
+            	</tr>
+            {/loop}
+        </tbody>        
+    </table>
+    <br>
+</div>

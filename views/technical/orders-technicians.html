@@ -1,0 +1,56 @@
+  <title>Sisweb - Usuários</title>
+  <div class="ui segment">
+    <div class="field">
+      <div class="ui horizontal divider">Menu</div>
+      <div class="ui buttons">
+        <a class="ui green button" href="/technical/orders/customer/select">
+          <i class="user plus icon"></i>Nova Ordem
+        </a>
+        <a class="ui green button" href="/technical/orders">
+          <i class="users icon"></i>Ordens de Serviço
+        </a>
+      </div>
+    </div><br>
+    <div class='ui horizontal divider'>Ordens de Serviço</div><br/>
+    {if="$success != ''"}
+      <div class="ui success message">
+        <div class="header">{$success}</div>
+      </div>
+    {/if}
+    {if="$error != ''"}
+      <div class="ui negative message">
+        <div class="header">{$error}</div>
+      </div>
+    {/if}
+    <div class="field" id="margins">
+      <table class='ui very basic table'>
+        <thead align='center'>
+          <tr>
+            <th>Codigo</th>
+            <th>Descrição</th>
+            <th>Local</th>
+            <th>Fazenda</th>
+            <th>Implemento</th>
+            <th>Status</th>
+            <th>Opções</th>
+          </tr>
+        </thead>
+        <tbody align='center'>
+            {loop="$orders"}
+            <tr>
+              <td>{$value.idorder}</td>
+              <td>{$value.txdescription}</td>
+              <td>{$value.txlocation}</td>
+              <td>{$value.txnamefarm}</td>
+              <td>{$value.txnameimplement}</td>
+              <td>{$value.txnamestatus}</td>
+              <td style="width: 300px;">
+                <a href="/technical/orders/finish/{$value.idorder}/delete" onclick="return confirm('Deseja realmente excluir?')" class="circular ui red icon button"><i class="close icon"></i></a>
+                <a href="/technical/orders/medias/{$value.idorder}" class="circular ui icon button"><i class="download icon"></i><a>
+              </td>
+            </tr>
+            {/loop}
+        </tbody>        
+      </table>
+    </div><br>
+  </div>

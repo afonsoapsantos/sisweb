@@ -1,37 +1,33 @@
 <title>Sisweb - Usuários</title>
-
+<div class="ui segment">
   <div class="ui horizontal divider">Menu</div>
-        <div class="ui buttons">
-          <a class="ui green button" href="/admin/users/create">
-            <i class="user plus icon"></i>Novo Usuário
-          </a>
-          <a class="ui green button" href="/admin/users">
-            <i class="users icon"></i>Listar Usuários
-          </a>
-          <a class="ui green button" href="/admin/users/consult">
-            <i class="id card icon"></i>Consultar Usuário
-          </a>
-          <a class="ui green button" href="/admin/users/edit">
-            <i class="edit icon"></i>Editar Usuário
-          </a>
-          <a class="ui red button" href="/admin/users/delete">
-            <i class="user times icon"></i>Excluir Usuário
-          </a>
-        </div><br/><br/>
-        
+    <div class="ui buttons">
+      <a class="ui green button" href="/admin/users/create">
+        <i class="user plus icon"></i>Novo Usuário
+      </a>
+      <a class="ui green button" href="/admin/users">
+        <i class="users icon"></i>Listar Usuários
+      </a>
+      <a class="ui green button" href="/admin/users/consult">
+        <i class="id card icon"></i>Consultar Usuário
+      </a>
+    </div><br/><br/>
+    
+  <div class="field">
     <div class='ui horizontal divider'>Usuários</div><br/>
-    <form class="ui form">
-      <select class="ui selection" name="iduser">
-        <option value='0'>Selecione o usuário</option>
-        {loop="$users"}
-          <option class="item" value="{$value.iduser}">{$value.iduser} - {$value.txlogin}</option>
-        {/loop}
-      </select></br>
-
-      <div class="ui buttons">
-        <a class="ui green button" type="submit">Alterar</a>
-        <a class="ui green button" type="submit">Consultar</a>
-        <a class="ui red button" href="/admin/users">Cancelar</a>
-      </div>
-
-    </form>
+    <table class="ui very basic table">
+      <thead>
+        <tr>
+          <th>Codigo</th>
+          <th>Login</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div><br><br><br><br><br>

@@ -1,0 +1,51 @@
+<?php if(!class_exists('Rain\Tpl')){exit;}?><div class="ui segment">
+	<div class="field">
+		<div class="ui buttons">
+			<a href="/admin/products/create" class="ui green button">
+				<i class="plus icon"></i> Novo Produto
+			</a>
+			<a href="/admin/products" class="ui green button">
+				<i class="list icon"></i> Listar Produtos
+			</a>
+			<a href="" class="ui green button">
+				<i class="info icon"></i> Consultar Produto
+			</a>
+		</div>	
+	</div><br>
+	<div class="field" id="margins">
+
+		<div class="ui horizontal divider">Novo Produto</div>
+		<form class="ui form" action="" method="POST" align="left">
+			<div class="field">
+				<label>Nome: </label>
+				<input type="text" name="txnameproduct">
+			</div>
+			<div class="field">
+				<label>Descrição: </label>
+				<input type="text" name="txdescriptionproduct">
+			</div>
+			<div class="field">
+				<label>Preço: </label>
+				<input type="text" name="priceproduct">
+			</div>
+			<div class="field">
+				<label>Quantidade: </label>
+				<input type="text" name="nuamountproduct">
+			</div>
+			<div class="field">
+				<label>Marca: </label>
+				<select class="ui selection">
+					<option>Selecione a marca</option>
+				</select>
+			</div>
+			<div class="field" align="center">
+					<a class="ui black button" href="">
+						Nova Marca?
+					</a>
+				</div>
+		</form>
+		
+	</div>
+</div>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>

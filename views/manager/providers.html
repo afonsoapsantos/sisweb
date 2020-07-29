@@ -1,0 +1,54 @@
+<div class="field">
+	<div class="ui horizontal divider">Menu</div>
+		<div class="ui buttons">
+      	<a class="ui green button" href="/manager/providers/create">
+        	<i class="plus icon"></i>Novo Fornecedor
+      	</a>
+      	<a class="ui green button" href="/manager/providers">
+        	<i class="list icon"></i>Listar Fornecedor
+      	</a>
+    </div>
+</div>
+<br>
+<div class="field" id="margins">
+	{if="$success != ''"}
+	<div class="ui message">
+		<div class="header">{$success}</div>
+	</div>
+	{/if}
+	{if="$error != ''"}
+	<div class="ui message">
+		<div class="header">{$error}</div>
+	</div>
+	{/if}
+	<div class="ui horizontal divider">Solicitações</div>
+	<table class='ui very basic table'>
+	    <thead align='center'>
+	        <tr>
+	        	<th>Codigo</th>
+	            <th>Fornecedor</th>
+	            <th>Razao Social</th>
+	            <th>CNPJ</th>
+	            <th>Opções</th>
+	        </tr>
+	    </thead>
+	    <tbody align='center'>
+	        {loop="$providers"}
+	        	<tr>
+	        		<td>{$value.idprovider}</td>
+	        		<td>{$value.txfantasyname}</td>
+	        		<td>{$value.txcorporatename}</td>
+	        		<td>{$value.nucnpj}</td>
+	        		<td>
+		                <a href="/manager/providers/update/{$value.idprovider}" class="circular ui green icon button">
+		                  <i class="edit icon"></i>
+		                </a>
+		                <a href="/manager/providers/delete/{$value.idprovider}" onclick="return confirm('Deseja realmente excluir?')" class="circular ui red icon button">
+		                  <i class="delete icon"></i>
+		                </a>
+	          		</td>
+	        	</tr>
+	        {/loop}
+	    </tbody>        
+	</table>
+</div><br>

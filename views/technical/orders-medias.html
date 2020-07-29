@@ -1,0 +1,48 @@
+<title>Sisweb - Midia</title>
+<div class="ui segment">
+
+	<div class="field" id="margin">
+		<div class="ui horizontal divider">Menu</div>
+		<div class="ui buttons">
+			<a class="ui green button" href="/technical/orders">
+				<i class="list icon"></i>Midias
+			</a>
+			<a class="ui green button" href="/technical/orders">
+				<i class="list icon"></i>Ordens
+			</a>
+		</div>
+	</div>
+
+	<div class="field" id="margins">
+		<div class="ui horizontal divider">Midias</div>
+		<table class="ui very basic table">
+			<thead>
+				<tr>
+					<th>codigo</th>
+					<th>Nome</th>
+					<th>Local</th>
+					<th>descrição</th>
+					<th>Registro</th>
+					<th>Opções</th>
+				</tr>
+			</thead>
+			<tbody>
+				{loop="$mediasOrders"}
+				<tr>
+					<td>{$value.idmedia}</td>
+					<td>{$value.txnamemedia}</td>
+					<td>{$value.txlocalmedia}</td>
+					<td>{$value.txdescription}</td>
+					<td>{$value.dtmedia}</td>
+					<td>
+						<a class="circular ui icon red button" href="/technical/media/download/{$value.idmedia}">
+							<i class="download icon"></i>
+						</a>
+					</td>
+				</tr>
+				{/loop}
+			</tbody>
+		</table>
+	</div>
+	<br>
+</div>

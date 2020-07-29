@@ -1,0 +1,30 @@
+  <title>Sisweb - Usuários</title>
+  <div class="ui segment">
+    <div class='ui horizontal divider'>Ordens de Serviço</div><br/>
+    <div class="field" id="margins">
+      <table class='ui very basic table'>
+        <thead align='center'>
+          <tr>
+            <th>Codigo</th>
+            <th>Descrição</th>
+            <th>Local</th>
+            <th>Fazenda</th>
+            <th>Implemento</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody align='center'>
+            {loop="$orders"}
+            <tr>
+              <td>{$value.idorder}</td>
+              <td>{$value.txdescription}</td>
+              <td>{$value.txlocation}</td>
+              <td>{$value.txnamefarm}</td>
+              <td>{$value.txnameimplement}</td>
+              <td>{$value.txnamestatus}</td>
+            </tr>
+            {/loop}
+        </tbody>        
+      </table>
+    </div><br>
+  </div>

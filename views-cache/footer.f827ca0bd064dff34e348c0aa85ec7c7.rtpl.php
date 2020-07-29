@@ -1,29 +1,13 @@
-<?php if(!class_exists('Rain\Tpl')){exit;}?>  <div class="ui inverted vertical footer segment" align="center">
-      <div class="ui inverted black divided equal height stackable grid">
-        <div class="three wide column black">
-          <h4 class="ui inverted header">About</h4>
-          <div class="ui inverted link list">
-            <a href="#" class="item">Sitemap</a>
-            <a href="#" class="item">Contact Us</a>
-            <a href="#" class="item">Religious Ceremonies</a>
-            <a href="#" class="item">Gazebo Plans</a>
-          </div>
-        </div>
-        <div class="three wide column black">
-          <h4 class="ui inverted header">Services</h4>
-          <div class="ui inverted link list">
-            <a href="#" class="item">Banana Pre-Order</a>
-            <a href="#" class="item">DNA FAQ</a>
-            <a href="#" class="item">How To Access</a>
-            <a href="#" class="item">Favorite X-Men</a>
-          </div>
-        </div>
-        <div class="seven wide column black">
-          <h4 class="ui inverted header">Footer Header</h4>
-          <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
-        </div>
-      </div>
-  </div>
+<?php if(!class_exists('Rain\Tpl')){exit;}?>
+	</div>  
+  	<div class="ui inverted vertical footer segment">
+    	<div class="ui inverted black stackable" align="center">
+	      	<div class="field">
+	        	<h4 class="ui inverted header">Oficina Martins - Sempre Buscando a melhor Qualidade!</h4>
+	        	<p>© COPYRIGHT 2019 - ANDRE ADREANE DOS SANTOS ME. - Todos os direitos reservados.</p>
+	      	</div>
+    	</div>
+  	</div>
 </div>
 </body>
 </html>

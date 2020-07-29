@@ -6,20 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-    <link rel="stylesheet" type="text/css" href="../res/semantic/dist/semantic.css">
-    <link rel="stylesheet" type="text/css" href="../res/semantic/dist/semantic.min.css">
-    <link rel="stylesheet" type="text/css" src="../res/semantic/dist/semantic.js">
-    <link rel="stylesheet" type="text/css" src="../res/semantic/dist/semantic.min.js">
+    <link rel="stylesheet" type="text/css" href="../../../../res/semantic/dist/semantic.css">
+    <link rel="stylesheet" type="text/css" href="../../../../res/semantic/dist/semantic.min.css">
+    <link rel="stylesheet" type="text/css" src="../../../../res/semantic/dist/semantic.js">
+    <link rel="stylesheet" type="text/css" src="../../../../res/semantic/dist/semantic.min.js">
 
     <!-- Scripts -->
-    <script type="text/javascript" src="../res/semantic/examples/assets/library/jquery.min.js"></script>
-    <script type="text/javascript" src="../res/semantic/examples/assets/library/iframe.js"></script>
-    <script type="text/javascript" src="../res/semantic/dist/components/visibility.js"></script>
-    <script type="text/javascript" src="../res/semantic/dist/components/sidebar.js"></script>
-    <script type="text/javascript" src="../res/semantic/examples/assets/library/iframe-content.js"></script>
-      <script src="../res/semantic/examples/assets/library/iframe-content.js"></script>
-      <script type="text/javascript" src="../res/semantic/dist/components/transition.js"></script>
-    <script type="text/javascript" src="../res/semantic/dist/components/dropdown.js"></script>  
+    <script type="text/javascript" src="../../res/semantic/examples/assets/library/jquery.min.js"></script>
+    <script type="text/javascript" src="../../res/semantic/examples/assets/library/iframe.js"></script>
+    <script type="text/javascript" src="../../res/semantic/dist/components/visibility.js"></script>
+    <script type="text/javascript" src="../../res/semantic/dist/components/sidebar.js"></script>
+    <script type="text/javascript" src="../../res/semantic/examples/assets/library/iframe-content.js"></script>
+      <script src="../../res/semantic/examples/assets/library/iframe-content.js"></script>
+      <script type="text/javascript" src="../../res/semantic/dist/components/transition.js"></script>
+    <script type="text/javascript" src="../../res/semantic/dist/components/dropdown.js"></script>  
 
     <script>
       $(document)
@@ -49,32 +49,36 @@
 
     <style type="text/css">
       #component{ 
-        margin-top: 80px;
+        margin-top: 60px;
         margin-bottom: 80px; 
+      }
+      #margin{
+        margin-left: 80px;
+        margin-right: 80px;
       }
     </style>
 
     <!-- Site Properties -->
     <link type="text/css" rel="stylesheet" charset="UTF-8" href="https://translate.googleapis.com/translate_static/css/translateelement.css">
-    <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/reset.css">
-    <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/site.css">
-    <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/container.css">
-    <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/grid.css">
-    <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/header.css">
-    <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/image.css">
-    <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/menu.css">
-    <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/divider.css">
-    <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/segment.css">
-    <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/form.css">
-    <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/input.css">
-    <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/button.css">
-    <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/list.css">
-    <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/message.css">
-    <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/icon.css">
-    <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/dropdown.css">
-    <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/transition.css">
-    <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/sidebar.css">
-    <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/popup.css">
+    <link rel="stylesheet" type="text/css" href="../../res/semantic/dist/components/reset.css">
+    <link rel="stylesheet" type="text/css" href="../../res/semantic/dist/components/site.css">
+    <link rel="stylesheet" type="text/css" href="../../res/semantic/dist/components/container.css">
+    <link rel="stylesheet" type="text/css" href="../../res/semantic/dist/components/grid.css">
+    <link rel="stylesheet" type="text/css" href="../../res/semantic/dist/components/header.css">
+    <link rel="stylesheet" type="text/css" href="../../res/semantic/dist/components/image.css">
+    <link rel="stylesheet" type="text/css" href="../../res/semantic/dist/components/menu.css">
+    <link rel="stylesheet" type="text/css" href="../../res/semantic/dist/components/divider.css">
+    <link rel="stylesheet" type="text/css" href="../../res/semantic/dist/components/segment.css">
+    <link rel="stylesheet" type="text/css" href="../../res/semantic/dist/components/form.css">
+    <link rel="stylesheet" type="text/css" href="../../res/semantic/dist/components/input.css">
+    <link rel="stylesheet" type="text/css" href="../../res/semantic/dist/components/button.css">
+    <link rel="stylesheet" type="text/css" href="../../res/semantic/dist/components/list.css">
+    <link rel="stylesheet" type="text/css" href="../../res/semantic/dist/components/message.css">
+    <link rel="stylesheet" type="text/css" href="../../res/semantic/dist/components/icon.css">
+    <link rel="stylesheet" type="text/css" href="../../res/semantic/dist/components/dropdown.css">
+    <link rel="stylesheet" type="text/css" href="../../res/semantic/dist/components/transition.css">
+    <link rel="stylesheet" type="text/css" href="../../res/semantic/dist/components/sidebar.css">
+    <link rel="stylesheet" type="text/css" href="../../res/semantic/dist/components/popup.css">
     
     <style type="text/css">
           .hidden.menu {
@@ -312,67 +316,32 @@
   <div class="pusher">
     <div class="ui stackable container menu">
       <div class="item">
-        <img src="../res/semantic/examples/assets/images/logo.png" class="image">
         <div class="content" style="font-size: 18px;">Oficina Martins</div>
       </div>
       <a class="item" href="/customer"><i class="home icon"></i>Inicio</a>
-      <a class="item" href="/customer/store"><i class="shopping cart icon"></i>Loja</a>
-      <form class="ui dropdown item" method="POST" tabindex="0"><i class="archive icon"></i>Cadastro
-        <i class="dropdown icon"></i>
-        <div class="menu transition hidden" tabindex="-1">
-          <a class="item" href="/farms">
-            <i class="images   icon"></i>Fazendas</a>
-          <a class="item" href="/customer/farms">
-            <i class="users icon"></i>Funcionários Fazenda</a>
-          <a class="item" href="/customer/farmworker">
-            <i class="file alternate icon"></i>Requisições</a>
-          <a class="item" href="/customer/requests">
-            <i class="clipboard icon"></i>Solicitações</a>
-          <a class="item" href="/customer/">
-            <i class="chart bar icon"></i>Relatório das Fazendas</a>
-        </div>
-      </form>
+      <a class="item" href="/customer/farms">
+        <i class="images   icon"></i>Fazendas
+      </a>
+      <a class="item" href="/customer/farmworker">
+        <i class="users icon"></i>Funcionários Fazenda
+      </a>
 
-      <form class="ui dropdown item" method="POST" tabindex="0"><i class="cogs icon"></i>Máquinas
-        <i class="dropdown icon"></i>
-        <div class="menu transition hidden" tabindex="-1">
-          <a class="item" href="/customer/">
-            <i class="cog icon"></i>Máquinas Estacionarias
-          </a>
-          <a class="item" href="/customer/">
-            <i class="cog icon"></i>Tratores
-          </a>
-          <a class="item" href="/customer/implements">
-            <i class="cog icon"></i>Implementos
-            </a>
-          <a class="item" href="/customer/">
-            <i class="wrench icon"></i>Serviços
-          </a>
-        </div>
-      </form>
+      <a class="item" href="/customer/implements">
+        <i class="cog icon"></i>Implementos
+      </a>
+
+      <a class="item" href="/customer/requests">
+        <i class="clipboard icon"></i>Solicitações
+      </a>
+
+      <a class="item" href="/customer/orders">
+        <i class="clipboard icon"></i>Ordens de Serviço
+      </a>
 
       <div class="right menu">
-        <div class="ui dropdown item" tabindex="0"> Conta
-          <i class="dropdown icon"></i>
-          <div class="menu transition hidden" tabindex="-1">
-            <a class="item" href="/customer/profile">
-              <i class="user icon"></i>Perfil</a>
-            <a class="item" href="/customer/dice">
-              <i class="address card outline icon"></i>Dados</a>
-            <a class="item" href="/customer/safety">
-              <i class="exclamation triangle icon"></i>Segurança</a>
-            <a class="item" href="/customer/acesses">
-              <i class="user secret icon"></i>Acessos</a>
-            <div class="divider"></div>
-            <a class="item" href="/customer/options">
-              <i class="cogs icon"></i>Opções</a>
-            <div class="divider"></div>
-            <div class="item">
-              <a href="/logout">
-                <div class="ui red button"><i class="sign-out icon"></i>Sair</div>
-              </a>
-            </div>
-          </div>
-        </div>
+          <a class="item" href="/logout">
+            <div class="ui red button">Sair</div>
+          </a>
       </div>
     </div>
+    <div class="ui segments" id="component" align="center">  

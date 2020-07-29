@@ -1,0 +1,66 @@
+<title>Sisweb - Implementos</title>
+<div class="field" id="margin">
+	<div class="field">	
+		<div class="ui horizontal divider">Menu</div>
+		<div class="ui buttons">
+	      	<a class="ui green button" href="/customer/implements/create">
+	        	<i class="plus icon"></i>Novo Implemento
+	      	</a>
+	      	<a class="ui green button" href="/customer/implements">
+	        	<i class="list icon"></i>Implementos
+	      	</a>
+	    </div>
+	</div><br>
+	<div class="field">
+		{if="$error != ''"}
+			<div class="field">
+				<div class="ui negative message">
+					<div class="header">{$error}</div>
+				</div>
+			</div>
+		{/if}
+		{if="$sucess != ''"}
+			<div class="field" style="top: 2px;">
+				<div class="ui success message">
+					<div class="header">{$sucess}</div>
+				</div>
+			</div>
+		{/if}
+		<div class="ui horizontal divider">Implementos</div>
+		<table class="ui stackable very basic table">
+			<thead align="center">
+				<th>Codigo</th>
+				<th>Nome</th>
+				<th>Modelo</th>
+				<th>Tipo</th>
+				<th>Ano</th>
+				<th>Descrição</th>
+				<th>Opções</th>
+			</thead>
+			<tbody align="center">
+				{loop="$implements"}
+				<tr>
+					<td>{$value.idimplement}</td>
+					<td>{$value.txnameimplement}</td>
+					<td>{$value.txmodelimplement}</td>
+					<td>{$value.txtype}</td>
+					<td>{$value.nuanofabricacaoimp}</td>
+					<td>{$value.txdescricaoimp}</td>
+					<td style="width: 200px;">
+						<a class="circular ui green icon button" href="/customer/implements/update/{$value.idimplement}">
+							<i class="edit icon"></i>
+						</a>
+						<a class="circular ui red icon button" onclick="return confirm('Deseja realmente excluir?')" href="/customer/implements/delete/{$value.idimplement}">
+							<i class="delete icon"></i>
+						</a>
+						<a class="circular ui icon button" href="/customer/implements/consult/{$value.idimplement}">
+				        	<i class="info icon"></i>
+				      	</a>
+					</td>
+				</tr>
+				{/loop}
+			</tbody>
+		</table>
+	</div><br>
+</div><br>
+</div>

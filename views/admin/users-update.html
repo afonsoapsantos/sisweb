@@ -1,6 +1,6 @@
 <title>Sisweb - Usuários</title>
-	
-	<div class="ui horizontal divider">Menu</div>
+	<div class="ui segment">
+		<div class="ui horizontal divider">Menu</div>
         <div class="ui buttons">
           <a class="ui green button" href="/admin/users/create">
             <i class="user plus icon"></i>Novo Usuário
@@ -11,35 +11,29 @@
           <a class="ui green button" href="/admin/users/consult">
             <i class="id card icon"></i>Consultar Usuário
           </a>
-          <a class="ui green button" href="/admin/users/edit">
-            <i class="edit icon"></i>Editar Usuário
-          </a>
-          <a class="ui red button" href="/admin/users/delete">
-            <i class="user times icon"></i>Excluir Usuário
-          </a>
         </div><br/><br/>
 
 	    <div class="ui horizontal divider">Alterar Usuário</div>
-		<form class="ui form" action="/admin/users/{$user.iduser}" method="POST">
+		<form class="ui form" action="/admin/users/{$user.pkuser}" method="POST">
 			<div class="ui container">
 				<div class="field" align="left">
 				    <label>Usuário:</label>
 				    <input type="text" name="txlogin" value="{$user.txlogin}"><br><br>
 
 	                <label>Status:</label>
-	                <select class="uis selection" name='txstatususer'>
+	                <select class="uis selection" name='fkstatususer'>
 	                	<option class="item">Selecione o status</option>
 	                	{loop="$status"}
-	                		<option class="item" value="{$value.idstatus}" 
-	                		{if="$user.statususer == $value.idstatus"}selected{/if}>{$value.txnamestatus}</option>
+	                		<option class="item" value="{$value.pkstatus}" 
+	                		{if="$user.fkstatususer == $value.pkstatus"}selected{/if}>{$value.txnamestatus}</option>
 	                	{/loop}
 	                </select></br>
 
 	                <label>Tipo de Usuario: </label>
-	                <select class="ui selection" name="usertype">
+	                <select class="ui selection" name="fkusertype">
 	                    <option value='0' selected="0">Selecione o tipo de usuário</option>
 	                    {loop="$userstypes"}
-	                    <option value="{$value.idusertype}" {if="$user.usertype == $value.idusertype"}selected{/if}>{$value.txnameusertype}</option>
+	                    <option value="{$value.idusertype}" {if="$user.fkusertype == $value.idusertype"}selected{/if}>{$value.txnameusertype}</option>
 	                    {/loop}
 	                </select></br>
 				</div>
@@ -49,3 +43,4 @@
 				</div>
 			</div>
 		</form>
+	</div>

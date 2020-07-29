@@ -1,0 +1,65 @@
+<title>Sisweb - Usuários</title>
+<div class="ui segment">
+  <div class="ui horizontal divider">Usuários</div><br>
+  <div class="fields" id="margins">
+    <div class="ui stackable grid">
+      <div class="four wide column">
+        <div class="ui vertical buttons" align="left">
+          <a class="ui button" href="/manager/users">Gerentes</a>
+          <a class="ui button" href="/manager/users/technical">Técnicos</a>
+          <a class="ui button" href="/manager/users/customers">Clientes</a>
+          <a class="ui button" href="/manager/users/farmworker">Funcionários Fazenda</a>
+        </div>
+      </div>
+
+      <div class=" twelve wide column" align="center">
+        <div class="field">
+          <div class="ui horizontal divider">Menu</div>
+          <div class="ui buttons">
+            <a class="ui green button" href="/manager/users/customers/create">
+              <i class="plus icon"></i> Adicionar Técnico
+            </a>
+            <a class="ui green button" href="/manager/users/customers">
+              <i class="list icon"></i>Técnicos
+            </a>
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui horizontal divider">Clientes</div>
+          <table class='ui very basic table'>
+            <thead align='center'>
+              <tr>
+                <th>Codigo</th>
+                <th>Login</th>
+                <th>Status</th>
+                <th>Tipo Usuário</th>
+                <th>Data de Cadastro</th> 
+                <th>Opções</th>
+              </tr>
+            </thead>
+            <tbody align='center'>
+                {loop="$users"}
+                <tr>
+                  <td>{$value.pkuser}</td>
+                  <td>{$value.txlogin}</td>
+                  <td>{$value.txnamestatus}</td>
+                  <td>{$value.txnameusertype}</td>
+                  <td>{function="formatDate($value.dtregisteruser)"}</td>
+                  <td>
+                    <a href="/manager/users/{$value.pkuser}" class="circular ui green icon button">
+                      <i class="edit icon"></i>
+                    </a>
+                    <a href="/manager/users/{$value.pkuser}/delete" onclick="return confirm('Deseja realmente excluir?')" class="circular ui red icon button">
+                      <i class="delete icon"></i>
+                    </a>
+                  </td>
+                </tr>
+                {/loop}
+            </tbody>        
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+</div>

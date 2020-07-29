@@ -1,4 +1,5 @@
-<?php if(!class_exists('Rain\Tpl')){exit;}?><div class="ui segments" id="component" align="center">  
+<?php if(!class_exists('Rain\Tpl')){exit;}?><title>Sisweb - Relatórios</title>
+<div class="ui segments" id="component" align="center">  
   	<div class="ui segment">
 	    <div class="ui horizontal divider">Menu</div>
 	    <div class="ui buttons">
@@ -21,13 +22,13 @@
 		<form class="ui form">
 			<div class="field" align="left">
 			    <label>SQL:</label>
-			    <textarea name="sqlcmd"></textarea>
+			    <textarea rows="6" name="sqlcmd"></textarea>
 		  	</div>
 		</form><br/>
 
 		<div class="ui buttons">
 			<button class="ui green button">Gerar</button>
-			<button class="ui black button">Voltar</button>
+			<a class="ui black button" href="/admin/sql">Voltar</a>
 		</div>
 	</div>
 </div>

@@ -1,0 +1,50 @@
+<title>Sisweb - Produtos</title>
+<div class="ui segment">
+	<div class="field">
+		<div class="ui buttons">
+			<a href="/admin/products/create" class="ui green button">
+				<i class="plus icon"></i> Novo Produto
+			</a>
+			<a href="" class="ui green button">
+				<i class="list icon"></i> Listar Produtos
+			</a>
+		</div>	
+	</div><br>
+	<div class="field" id="margins">
+		<div class="ui horizontal divider">Produtos</div>
+		<table class="ui very basic table">
+			<thead>
+				<tr>
+					<th>Código</th>
+					<th>Produto</th>
+					<th>Descrição</th>
+					<th>Unitário</th>
+					<th>Quantidade</th>
+					<th>Marca</th>
+					<th>Opções</th>
+				</tr>
+			</thead>
+			<tbody>
+				{loop="$poduct"}
+					<tr>$value.pkproduct
+						<td>{$value.pkproduct}</td>
+						<td>{$value.txnameproduct}</td>
+						<td>{$value.txdescriptionproduct}</td>
+						<td>{$value.priceproduct}</td>
+						<td>{$value.nuamountproduct}</td>
+						<td>{$value.txnamebrand}</td>
+						<td>
+							<a href="/admin/products/{$value.pkproduct}" class="circular ui green icon button">
+                				<i class="edit icon"></i>
+              				</a>
+              				<a href="/admin/products/{$value.pkproduct}/delete" onclick="return confirm('Deseja realmente excluir?')" class="circular ui red icon button">
+                				<i class="delete icon"></i>
+              				</a>
+						</td>
+					</tr>
+				{/loop}
+			</tbody>
+		</table>
+	</div>
+</div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>

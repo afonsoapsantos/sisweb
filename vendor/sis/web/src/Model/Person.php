@@ -9,19 +9,19 @@
 	 */
 	class Person extends Model{
 		
-		public function savePerson(){
+		public function insert(){
 			$database = new Database();
 		}
 
-		public function updatePerson(){
+		public function update(){
 			$database = new Database();
 		}
 
-		public function deletePerson(){
+		public function delete(){
 			$database = new Database();
 		}
 
-		public function listPersons(){
+		public function listAll(){
 			$database = new Database();
 		}
 		

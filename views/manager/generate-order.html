@@ -1,0 +1,66 @@
+<title>Sisweb - Gerar Ordem</title>
+
+<div class="ui segment">
+	<div class="ui horizontal divider">Menu</div>
+	<div class="ui buttons">
+		<a class="ui green button" href="/manager/requests"><i class="list icon"></i>Solicitações</a>
+		<a class="ui green button" href="/manager/orders"><i class="list icon"></i>Ordens</a>
+		<a class="ui green button" href="/manager/customers"><i class="list icon"></i>Clientes</a>
+	</div>
+	<br><br>
+	<div>
+		<div class="ui horizontal divider">Gerar Ordem de Serviço</div>
+		<div class="field" id="margins">
+			{if="$error != ''"}
+				<div class="ui warning message">
+					<div class="header">{$error}!</div> 
+				</div>
+			{/if}
+		</div><br>
+		<form class="ui form" method="POST" action="/manager/orders/create">
+			<div class="ui field" id="margins">
+				<div align="left" class="field">
+					<label class="ui grey label">Cliente: </label>
+					<input type="hidden" name="customerfk" value="{$request.idcustomer}">
+					<input type="text" readonly="true" name="txcorporatename" value="{$request.txcorporatename}">
+				</div>
+
+				<div align="left" class="field">
+					<label class="ui grey label">Implemento: </label>
+					<input type="hidden" name="implementfk" value="{$request.idimplement}">
+					<input type="text" name="txnameimplement" readonly="true" value="{$request.txnameimplement}">
+				</div>
+
+				<div align="left" class="field">
+					<label class="ui grey label">Fazenda: </label>
+					<input type="hidden" name="farmfk" value="{$request.idfarm}">
+					<input type="text" name="" readonly="true" value="{$request.txnamefarm}">
+				</div>
+
+				<div align="left" class="field">
+					<label class="ui grey label">Situação: </label>
+					<input type="text" readonly="true" name="txlocation" value="{$request.txsituation}">
+				</div>
+
+				<div align="left" class="field">
+					<label class="ui grey label">Problema: </label>
+					<input type="text" readonly="true" name="txdescription" value="{$request.txproblem}">
+				</div>
+
+				<div class="field" align="left">
+					<label class="ui grey label">Status:</label>
+					<input type="hidden" name="statusfk" value="1">
+					<input type="text" value="Aberta" readonly="true">
+				</div>
+				<input type="hidden" name="requestfk" value="{$request.idrequest}">
+
+			</div>
+
+			<div class="ui buttons">
+				<button class="ui green button" type="submit"><i class="clipboard icon"></i>Gerar</button>
+				<a class="ui red button" href="/manager/requests"><i class="delete icon"></i>Cancelar</a>
+			</div><br>	
+		</form><br>
+
+	</div>
+</div>

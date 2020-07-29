@@ -1,0 +1,64 @@
+<title>Sisweb - Fazendas</title>
+<div class="ui segment">
+  <div class="field"> 
+    <div class="ui horizontal divider">Menu</div>
+    <div class="ui buttons">
+          <a class="ui green button" href="/customer/farms/create">
+            <i class="plus icon"></i>Nova Fazenda
+          </a>
+          <a class="ui green button" href="/customer/farms">
+            <i class="list icon"></i>Listar Fazendas
+          </a>
+      </div>
+  </div>
+  {if="$error != ''"}
+  <div class="ui horizontal divider">Mensagem do Sistema</div>
+  <div class="ui negative message">
+    <div class="header">{$error}</div>
+  </div>
+  {/if}
+  {if="$sucess != ''"}
+  <div class="ui horizontal divider">Mensagem do Sistema</div>
+  <div class="ui success message">
+    <div class="header">{$sucess}</div>
+  </div>
+  {/if}
+  <div class="field" id="margin">
+    <div class="ui horizontal divider">Fazendas</div>
+    <table class="ui very basic table">
+      <thead align="center">
+        <tr>
+          <th>Codigo</th>
+          <th>Nome</th>
+          <th>Descrição</th>
+          <th>Endereço</th>
+          <th>Opções</th>
+        </tr>
+      </thead>
+      <tbody align="center">
+        {loop="$farms"}
+          <tr>
+            <td>{$value.idfarm}</td>
+            <td>{$value.txnamefarm}</td>
+            <td>{$value.txdescriptionfarm}</td>
+            <td>{$value.txnameaddress}, {$value.txneighborhood} - {$value.txcomplement}, {$value.txnamecity}/{$value.txabbreviation}</td>
+            <td>
+              <a class="circular ui icon green button" href="/customer/farms/{$value.idfarm}">
+                Editar <i class="edit icon"></i>
+              </a>
+              <a class="circular ui icon red button" onclick="return confirm('Deseja realmente excluir?')" href="/customer/farms/delete/{$value.idfarm}">
+                <i class="delete icon"></i>
+              </a>
+              <a class="circular ui icon button" href="/customer/farms/consult/{$value.idfarm}">
+                <i class="info icon"></i>
+              </a>
+              <a class="circular ui icon button" href="/customer/farms/address/{$value.idaddress}">
+                <i class="address book icon"></i>
+              </a>
+            </td>
+          </tr>
+        {/loop}
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+<div class="ui segment">
+	<div class="field">
+	    <div class="ui horizontal divider">Menu</div>
+	    <div class="ui buttons">
+		    <a class="ui green button" href="/admin/orders/customer/select">
+		    	<i class="user plus icon"></i>Nova Ordem
+		    </a>
+	    	<a class="ui green button" href="/admin/orders">
+	        	<i class="users icon"></i>Ordens de Serviço
+	    	</a>
+	    	<a class="ui green button" href="/admin/orders/consult">
+	        	<i class="id card icon"></i>Consultar Ordem
+	    	</a>
+	    </div>
+	</div><br>
+
+	<div class="field" style="margin-right: 60px; margin-left: 60px;">
+		<div class="ui horizontal divider">Selecione o cliente:</div>
+		<table class="ui very basic table">
+			<thead align="center">
+				<tr>
+				<th>Codigo</th>
+				<th>Nome</th>
+				<th>Opção</th>
+			</tr>
+			</thead>
+			<tbody align="center">
+				{loop="$customers"}
+					<tr>
+						<td>{$value.idcustomer}</td>
+						<td>{$value.txcorporatename}</td>
+						<td>
+							<a href="/admin/orders/create/{$value.idcustomer}" class="circular ui blue icon button">
+				                <i class="plus icon"></i>
+				            </a>
+						</td>
+					</tr>
+				{/loop}
+			</tbody>
+		</table>
+	</div>
+</div><br><br>

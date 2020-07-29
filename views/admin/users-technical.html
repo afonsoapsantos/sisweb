@@ -1,0 +1,49 @@
+<div class="ui segment">
+	<div class="field">
+		<div class="ui horizontal divider">Menu</div>
+		<div class="ui buttons">
+			<a class="ui green button" href="">
+				<i class="plus icon"></i>Novo Técnico
+			</a>
+			<a class="ui green button" href="">
+				<i class="list icon"></i>Técnicos
+			</a>
+			<a class="ui green button" href="">
+				<i class="info icon"></i>Consultar Técnico
+			</a>
+		</div>
+	</div><br>
+	<div class="field" align="left" id="margins">
+		<table class='ui very basic table'>
+			<thead align='center'>
+				<tr>
+				  <th>Codigo</th>
+				  <th>Login</th>
+				  <th>Status</th>
+				  <th>Tipo Usuário</th>
+				  <th>Data de Cadastro</th> 
+				  <th>Opções</th>
+				</tr>
+			</thead>
+			<tbody align='center'>
+				{loop="$technical"}
+					<tr>
+					    <td>{$value.pkuser}</td>
+					    <td>{$value.txlogin}</td>
+					    <td>{$value.txnamestatus}</td>
+					    <td>{$value.txnameusertype}</td>
+					    <td>{$value.dtregisteruser}</td>
+					    <td>
+					    	<a href="/admin/users/{$value.pkuser}" class="circular ui green icon button">
+					        	<i class="edit icon"></i>
+					    	</a>
+					    	<a href="/admin/users/admins/{$value.pkuser}/delete" onclick="return confirm('Deseja realmente excluir?')" class="circular ui red icon button">
+					        	<i class="delete icon"></i>
+					    	</a>
+					    </td>
+					</tr>
+				{/loop}
+			</tbody>        
+			</table>
+	</div><br>
+</div>

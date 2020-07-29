@@ -1,0 +1,73 @@
+<div class="ui segment">
+	<div class="field" id="margins">
+		<div class="ui horizontal divider">Iniciar Serviço</div>
+		{if="$success != ''"}
+		<div class="ui success message">
+		<div class="header">{$success}</div>
+		</div>
+		{/if}
+		{if="$error != ''"}
+		<div class="ui negative message">
+		<div class="header">{$error}</div>
+		</div>
+		{/if}
+		<div class="field" align="left">
+			<form class="ui form" action="/technical/orders/start/{$order.idorder}" method="POST">
+				<div class="field">
+					<label>Descrição:</label>
+					<input type="text" readonly="true" name="" value="{$order.txdescription}">
+				</div>
+				<div class="field">
+					<label>Local:</label>
+					<input type="text" readonly="true" name="" value="{$order.txlocation}">
+				</div>
+				<div class="field">
+					<label>Cliente:</label>
+					<input type="text" readonly="true" name="customer" value="{$order.txcorporatename}">
+					<input type="hidden" name="" value="{$order.customerfk}">
+				</div>
+				<div class="field">
+					<label>Cliente:</label>
+					<input type="text" readonly="true" name="customer" value="{$order.txnamefarm}">
+					<input type="hidden" name="" value="{$order.farmfk}">
+				</div>
+				<div class="field">
+					<label>Implemento</label>
+					<input type="text" readonly="true" name="txnameimplement" value="{$order.txnameimplement}">
+					<input type="hidden" value="{$order.implementfk}">
+				</div>
+				<div class="field">
+					<label>Status:</label>
+					<input type="text" readonly="true" name="txnamestatus" value="{$order.txnamestatus}">
+					<input type="hidden" name="statusfk" value="2">
+				</div>
+				<div class="ui stackable grid">
+					<div class="eight wide column">
+						<div class="field">
+							<label>Data de inicio:</label>
+							<input type="date" readonly="true" name="dtstart" value="{$data}">
+						</div>
+					</div>
+					<div class="eight wide column">
+						<div class="field">
+							<label>Hora de inicio:</label>
+							<input type="time" readonly="true" name="hrstart" value="{$hora}">
+						</div>
+					</div>
+				</div>
+				<br>		
+				<div class="field">
+					<label>Técnico</label>
+					<input type="text" readonly="true" name="" value="{$technician.txnametec}">
+					<input type="hidden" name="technicianfk" value="{$technician.pktechnician}">
+				</div><br>
+				<div class="field" align="center">
+					<div class="ui buttons">
+						<button class="ui green button" type="submit">Iniciar Serviço</button>
+						<a class="ui red button" href="/technical/orders"><i class="delete icon"></i>Cancelar</a>
+					</div>
+				</div><br>
+			</form>
+		</div>
+	</div>
+</div>

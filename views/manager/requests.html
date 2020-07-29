@@ -1,0 +1,40 @@
+<title>Sisweb - Solicitações</title> 	
+
+<div class="field" style="margin-right: 60px; margin-left: 60px;">
+    <div class="ui horizontal divider">Solicitações</div>
+    <table class='ui very basic table'>
+        <thead align='center'>
+	        <tr>
+	        	<th>Codigo</th>
+	            <th>Cliente</th>
+	            <th>Implemento</th>
+	            <th>Problema</th>
+	            <th>Status</th> 
+	            <th>Opções</th>
+	        </tr>
+        </thead>
+        <tbody align='center'>
+            {loop="$requests"}
+            	<tr>
+            		<td>{$value.idrequest}</td>
+            		<td>{$value.txcorporatename}</td>
+            		<td>{$value.txnameimplement}</td>
+            		<td>{$value.txproblem}</td>
+            		<td>{$value.txnamestatus}</td>
+            		<td>
+            			<a href="/manager/requests/generate/order/{$value.idrequest}" class="circular ui black icon button">
+            				<i class="clipboard icon"></i>
+            			</a>
+		                <a href="/manager/requests/{$value.idrequest}" class="circular ui green icon button">
+		                  <i class="edit icon"></i>
+		                </a>
+		                <a href="/manager/requests/{$value.idrequest}/delete" onclick="return confirm('Deseja realmente excluir?')" class="circular ui red icon button">
+		                  <i class="delete icon"></i>
+		                </a>
+              		</td>
+            	</tr>
+            {/loop}
+        </tbody>        
+    </table>
+</div>
+<br>
