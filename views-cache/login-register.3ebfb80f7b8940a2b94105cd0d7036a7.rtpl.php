@@ -19,11 +19,13 @@
           <fieldset>
             <legend>Dados Físicos</legend>
             <div class="field"><label for="name">Nome</label><input name=""></div>
-            <div class="field"><label for="">RG</label><input name=""></div>
-            <div class="field"><label for="">CPF</label><input name=""></div>
-            <div class="field"><label for="">Endereço</label><input name=""></div>
-            <div class="field"><label for="">Estado</label><input name=""></div>
-            <div class="field"><label for="">Cidade</label><input name=""></div>
+            <div class="field"><label for="rgnu">RG</label><input name=""></div>
+            <div class="field"><label for="cpf">CPF</label><input name=""></div>
+            <div class="field"><label for="address">Endereço</label><input name=""></div>
+            <optgroup>
+              <select name="city">Fartura</select>
+              <select name="state">SP</select>
+            </optgroup>
 
             <legend>Dados Juridicos</legend>
             <div class="field"><label for="">Razão Social</label><input name=""></div>
