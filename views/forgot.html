@@ -5,74 +5,24 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <!-- Site Properties -->
-  <title>Sisweb - Recuperar senha</title>
-  <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/reset.css">
-  <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/site.css">
-
-  <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/container.css">
-  <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/grid.css">
-  <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/header.css">
-  <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/image.css">
-  <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/menu.css">
-
-  <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/divider.css">
-  <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/segment.css">
-  <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/form.css">
-  <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/input.css">
-  <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/button.css">
-  <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/list.css">
-  <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/message.css">
-  <link rel="stylesheet" type="text/css" href="../res/semantic/dist/components/icon.css">
-
-  <script src="../res/semantic/examples/assets/library/jquery.min.js"></script>
-  <script src="../res/semantic/dist/components/form.js"></script>
-  <script src="../res/semantic/dist/components/transition.js"></script>
-
-  <style type="text/css">
-    body {
-      background-color: #DADADA;
-    }
-    body > .grid {
-      height: 100%;
-    }
-    .image {
-      margin-top: -100px;
-    }
-    .column {
-      max-width: 450px;
-    }
-  </style>
+  <!-- Links -->
+  <link rel="stylesheet" type="text/css" href="../css/forgot.css">
+ 
 </head>
 <body>
-
-<div class="ui middle aligned center aligned grid">
-  <div class="column">
-    <h2 class="ui green image header">
-      <img src="../res/semantic/examples/assets/images/logo.png" class="image">
-      <div class="content">
-        Recupere sua conta
-      </div>
-    </h2>
-    <form class="ui large form" method="POST" action="/forgot">
-      <div class="ui stacked segment">
-        <div class="field">
-          <div class="ui left icon input">
-            <i class="envelope icon"></i>
-            <input type="email" name="email" placeholder="Email">
-          </div>
-        </div>
-        <button type="submit" class="ui fluid large green submit button">Recuperar</button><br/>
+  <div class="container">
+    <h2>Solicite a recuperação da Conta</h2>
+    <form action="/forgot" method="POST,">
+      <div class="field">
+        <label for="email">E-mail</label>
+        <input type="text" name="email">
       </div>
 
-      <div class="ui error message"></div>
-
+      <div class="buttons">
+        <button>Solicitar</button>
+        <button type="button" onclick="history.go(-1)">Voltar</button>
+      </div>
     </form>
   </div>
-</div>
-
-
-
-
 </body>
 </html>

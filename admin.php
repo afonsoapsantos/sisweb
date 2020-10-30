@@ -294,11 +294,11 @@
 		exit;
 	});
 
-	$app->get("/admin/services/update/:pkservice", function($pkservice){
+	$app->get("/admin/services/update/:servicepk", function($servicepk){
 		User::validateAdmin();
 
 		$service = new Service();
-		$service->setpkservice($pkservice);
+		$service->setservicepk($servicepk);
 		$service->get();
 		$page = new PageAdmin();
 		$page->setTpl("services-update",[
@@ -306,10 +306,10 @@
 		]);
 	});
 
-	$app->post("/admin/services/update/:pkservice", function($pkservice){
+	$app->post("/admin/services/update/:servicepk", function($servicepk){
 		User::validateAdmin();
 		$service = new Service();
-		$service->setpkservice($pkservice);
+		$service->setservicepk($servicepk);
 		$service->get();
 		$service->setData($_POST);
 		$service->update();
@@ -317,11 +317,11 @@
 		exit;
 	});
 
-	$app->get("/admin/services/delete/:pkservice", function($pkservice){
+	$app->get("/admin/services/delete/:servicepk", function($servicepk){
 		User::validateAdmin();
 
 		$service = new Service();
-		$service->setpkservice($pkservice);
+		$service->setservicepk($servicepk);
 		$service->get();
 		$service->delete();
 		header("Location: /admin/services");

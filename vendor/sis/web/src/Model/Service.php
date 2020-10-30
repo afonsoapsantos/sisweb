@@ -13,9 +13,9 @@
 		public function insert(){
 			$database = new Database();
 			$results = $database->select(
-				"INSERT INTO public.tb_services (pkservice, txnameservice, txdescriptionservice, vlprice)
-					VALUES (:pkservice, :txnameservice, :txdescriptionservice, :vlprice);", array(
-						":pkservice"=>$this->getpkservice(),
+				"INSERT INTO public.tb_services (servicepk, txnameservice, txdescriptionservice, vlprice)
+					VALUES (:servicepk, :txnameservice, :txdescriptionservice, :vlprice);", array(
+						":servicepk"=>$this->getservicepk(),
 						":txnameservice"=>$this->gettxnameservice(),
 						":txdescriptionservice"=>$this->gettxdescriptionservice(),
 						":vlprice"=>$this->getvlprice()
@@ -26,8 +26,8 @@
 		public function update(){
 			$database = new Database();
 			$results = $database->select("UPDATE public.tb_services SET txnameservice = :txnameservice, txdescriptionservice = :txdescriptionservice, vlprice = :vlprice
-				WHERE pkservice = :pkservice;", array(
-						":pkservice"=>$this->getpkservice(),
+				WHERE servicepk = :servicepk;", array(
+						":servicepk"=>$this->getservicepk(),
 						":txnameservice"=>$this->gettxnameservice(),
 						":txdescriptionservice"=>$this->gettxdescriptionservice(),
 						":vlprice"=>$this->getvlprice()
@@ -37,16 +37,16 @@
 
 		public function delete(){
 			$database = new Database();
-			$results = $database->select("DELETE FROM tb_services ss WHERE ss.pkservice = :pkservice",array(
-				":pkservice"=>$this->getpkservice()
+			$results = $database->select("DELETE FROM tb_services ss WHERE ss.servicepk = :servicepk",array(
+				":servicepk"=>$this->getservicepk()
 			));
 		}//Fim método delete
 
 		public function get(){
 			$database = new Database();
 			$results = $database->select(
-				"SELECT * FROM tb_services WHERE pkservice = :pkservice", array(
-				":pkservice"=>$this->getpkservice()
+				"SELECT * FROM tb_services WHERE servicepk = :servicepk", array(
+				":servicepk"=>$this->getservicepk()
 			));
 
 			$data = $results[0];
@@ -56,12 +56,12 @@
 
 		public function getMaxId(){
 			$database = new Database();
-			$idmax = $database->select("SELECT MAX(pkservice) FROM tb_services;");
+			$idmax = $database->select("SELECT MAX(servicepk) FROM tb_services;");
 			foreach ($idmax as $key => $value) {
 				$idm = $value['max'];
 			}
 			$id = $idm + 1;
-			$this->setpkservice($id);
+			$this->setservicepk($id);
 		}//Fim método getMaxId
 
 		public function listAll(){

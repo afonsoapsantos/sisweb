@@ -24,9 +24,13 @@
 
 		public static function login($login, $password){
 			$database = new Database();
-			$results = $database->select("SELECT * FROM tb_users WHERE txlogin = :LOGIN",array(
-				":LOGIN"=>$login
-			));
+			$results = $database->select(
+				"SELECT * FROM tb_users as us, tb_userstype as ut 
+					WHERE us.txlogin = :LOGIN AND us.fkusertype = ut.idusertype",
+				array(
+					":LOGIN"=>$login
+				)
+			);
 			if (count($results) === 0)
 			{
 				throw new \Exception("Usuário inexistente ou senha inválida.");
@@ -67,7 +71,7 @@
 				||
 				!$_SESSION[User::SESSION]
 				||
-				!(int)$_SESSION[User::SESSION]["pkuser"] > 0
+				!(int)$_SESSION[User::SESSION]["userpk"] > 0
 			) {
 				//Não está logado
 				return false;
@@ -152,7 +156,7 @@
 				"SELECT * FROM tb_users us 
 					INNER JOIN tb_userstype ut ON us.fkusertype = ut.idusertype 
 					INNER JOIN tb_statususer su ON us.fkstatususer = su.pkstatus 
-					ORDER BY us.pkuser;");
+					ORDER BY us.userpk;");
 		}
 
 		public static function listAllAdmins(){
@@ -233,12 +237,12 @@
 
 		public function getMaxId(){
 			$database = new Database();
-			$idmax = $database->select("SELECT MAX(pkuser) FROM tb_users;");
+			$idmax = $database->select("SELECT MAX(userpk) FROM tb_users;");
 			foreach ($idmax as $key => $value) {
 				$iduser = $value['max'];
 			}
 			$idm = $iduser + 1;
-			$this->setpkuser($idm);
+			$this->setuserpk($idm);
 		}
 
 		public function saveUser(){
@@ -247,9 +251,9 @@
 			$this->getMaxId();
 
 			$results = $database->select(
-				"INSERT INTO tb_users(pkuser, txlogin, txpassword, fkusertype, fkstatususer, dtregisteruser)
-				VALUES (:pkuser, :login, :password, :fkusertype, :fkstatususer, :dtregisteruser);",array(
-					":pkuser"=>$this->getpkuser(),
+				"INSERT INTO tb_users(userpk, txlogin, txpassword, fkusertype, fkstatususer, dtregisteruser)
+				VALUES (:userpk, :login, :password, :fkusertype, :fkstatususer, :dtregisteruser);",array(
+					":userpk"=>$this->getuserpk(),
 					":login"=>$this->gettxlogin(),
 					":password"=>$this->gettxpassword(),
 					":fkusertype"=>$this->getfkusertype(),
@@ -259,10 +263,10 @@
 			$this->setData($results[0]);	
 		}
 
-		public function getUser($pkuser){
+		public function getUser($userpk){
 			$database = new Database();
-			$results = $database->select("SELECT * FROM tb_users WHERE pkuser = :pkuser", array(
-				":pkuser"=>$pkuser
+			$results = $database->select("SELECT * FROM tb_users WHERE userpk = :userpk", array(
+				":userpk"=>$userpk
 			));
 
 			if(count($results) === 0){
@@ -278,9 +282,9 @@
 				"UPDATE tb_users 
 					SET txlogin=:login, txpassword=:password, fkusertype=:fkusertype, 
 						fkstatususer=:fkstatususer, dtregisteruser=:dtregisteruser
-					WHERE pkuser = :pkuser;",
+					WHERE userpk = :userpk;",
 				array(
-					":pkuser"=>$this->getpkuser(),
+					":userpk"=>$this->getuserpk(),
 					":login"=>$this->gettxlogin(),
 					":password"=>$this->gettxpassword(),
 					":fkusertype"=>$this->getfkusertype(),
@@ -292,8 +296,8 @@
 
 		public function deleteUser(){
 			$database = new Database();
-			$database->query("DELETE FROM tb_users WHERE pkuser = :pkuser", array(
-				":pkuser"=>$this->getpkuser()
+			$database->query("DELETE FROM tb_users WHERE userpk = :userpk", array(
+				":userpk"=>$this->getuserpk()
 			));
 		}
 

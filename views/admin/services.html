@@ -26,15 +26,15 @@
 			<tbody align="center">
 				{loop="$services"}
 				<tr>
-					<td>{$value.pkservice}</td>
+					<td>{$value.servicepk}</td>
 					<td>{$value.txnameservice}</td>
 					<td>{$value.txdescriptionservice}</td>
 					<td>R${function="formPrice($value.vlprice)"}</td>
 					<td>
-						<a href="/admin/services/update/{$value.pkservice}" class="circular ui green icon button">
+						<a href="/admin/services/update/{$value.servicepk}" class="circular ui green icon button">
 			                <i class="edit icon"></i>
 			              </a>
-			              <a href="/admin/services/delete/{$value.pkservice}" onclick="return confirm('Deseja realmente excluir?')" class="circular ui red icon button">
+			              <a href="/admin/services/delete/{$value.servicepk}" onclick="return confirm('Deseja realmente excluir?')" class="circular ui red icon button">
 			                <i class="delete icon"></i>
 			              </a>
 					</td>

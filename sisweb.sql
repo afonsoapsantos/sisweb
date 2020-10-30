@@ -1,6 +1,8 @@
 --
 -- PostgreSQL database dump
 --
+--Comando docker para usar postgreSQL
+-- docker run --name postgreSQL --network=postgres-network -e "POSTGRES_PASSWORD=ASO97dpi9vb" -p 5432:5432 -v /home/afonso/PostgreSQL:/var/lib/postgresql/data -d postgres
 
 -- Dumped from database version 11.5
 -- Dumped by pg_dump version 12.0
@@ -59,7 +61,7 @@ COMMENT ON DATABASE sisweb IS 'Base de dados do sistema web agricola';
 CREATE FUNCTION public.fget_last_id() RETURNS integer
     LANGUAGE sql
     AS $$
-	SELECT MAX(iduser) FROM tb_users;
+	SELECT MAX(userpk) FROM tb_users;
 $$;
 
 
@@ -76,7 +78,7 @@ CREATE PROCEDURE public.sp_tb_users_insert(ptxlogin character varying, ptxpasswo
 
 	INSERT INTO tb_users(txlogin, txpassword, txstatususer, usertype, dtregisteruser) VALUES(ptxlogin, ptxpassword, pstatususer, pusertype, pdtregisteruser);
     
-    SELECT * FROM tb_users WHERE iduser = fget_last_id();
+    SELECT * FROM tb_users WHERE userpk = fget_last_id();
 
 $$;
 
@@ -737,7 +739,7 @@ COMMENT ON TABLE public.tb_transactions IS 'Tabela com as transações do caixa'
 --
 
 CREATE TABLE public.tb_users (
-    iduser integer NOT NULL,
+    userpk integer NOT NULL,
     txlogin character varying(100) NOT NULL,
     txpassword character varying(16) NOT NULL,
     usertype integer NOT NULL,
@@ -779,7 +781,7 @@ ALTER TABLE public.tb_users_iduser_seq OWNER TO postgres;
 -- Name: tb_users_iduser_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.tb_users_iduser_seq OWNED BY public.tb_users.iduser;
+ALTER SEQUENCE public.tb_users_iduser_seq OWNED BY public.tb_users.userpk;
 
 
 --
@@ -798,10 +800,10 @@ ALTER TABLE public.tb_userstype OWNER TO postgres;
 
 --
 -- TOC entry 2804 (class 2604 OID 24665)
--- Name: tb_users iduser; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: tb_users userpk; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.tb_users ALTER COLUMN iduser SET DEFAULT nextval('public.tb_users_iduser_seq'::regclass);
+ALTER TABLE ONLY public.tb_users ALTER COLUMN userpk SET DEFAULT nextval('public.tb_users_iduser_seq'::regclass);
 
 
 --
@@ -1063,21 +1065,21 @@ INSERT INTO public.tb_titles (idtitulo, nuparcelatitulo, idcliente, dtvencimento
 -- Data for Name: tb_users; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.tb_users (iduser, txlogin, txpassword, usertype, dtregisteruser, statususer) VALUES (4, 'Marvos', '54545', 4, '2019-08-31', 1);
-INSERT INTO public.tb_users (iduser, txlogin, txpassword, usertype, dtregisteruser, statususer) VALUES (8, 'OtavioMarcos', '564965', 4, '2019-09-01', 1);
-INSERT INTO public.tb_users (iduser, txlogin, txpassword, usertype, dtregisteruser, statususer) VALUES (3, 'Andre', '646513', 2, '2019-08-31', 1);
-INSERT INTO public.tb_users (iduser, txlogin, txpassword, usertype, dtregisteruser, statususer) VALUES (6, 'Edilson', '658498', 3, '2019-08-31', 1);
-INSERT INTO public.tb_users (iduser, txlogin, txpassword, usertype, dtregisteruser, statususer) VALUES (2, 'Guilherme', 'guilherme', 1, '2019-08-31', 1);
-INSERT INTO public.tb_users (iduser, txlogin, txpassword, usertype, dtregisteruser, statususer) VALUES (7, 'Everton', '465465', 3, '2019-08-31', 1);
-INSERT INTO public.tb_users (iduser, txlogin, txpassword, usertype, dtregisteruser, statususer) VALUES (9, 'Ricardo', '3254156', 5, '2019-09-01', 1);
-INSERT INTO public.tb_users (iduser, txlogin, txpassword, usertype, dtregisteruser, statususer) VALUES (11, 'JoseValdir', '49648', 4, '2019-09-01', 1);
-INSERT INTO public.tb_users (iduser, txlogin, txpassword, usertype, dtregisteruser, statususer) VALUES (12, 'AntonioMarcos', '248489', 4, '2019-09-01', 1);
-INSERT INTO public.tb_users (iduser, txlogin, txpassword, usertype, dtregisteruser, statususer) VALUES (18, 'Ramiro', '1234', 4, '2019-10-23', 1);
-INSERT INTO public.tb_users (iduser, txlogin, txpassword, usertype, dtregisteruser, statususer) VALUES (13, 'LuizHenrique', 'admin', 4, '2019-10-23', 4);
-INSERT INTO public.tb_users (iduser, txlogin, txpassword, usertype, dtregisteruser, statususer) VALUES (17, 'LuizHenrique', 'admin', 4, '2019-10-23', 4);
-INSERT INTO public.tb_users (iduser, txlogin, txpassword, usertype, dtregisteruser, statususer) VALUES (1, 'AfonsoSantos', '642691', 1, '2019-08-31', 1);
-INSERT INTO public.tb_users (iduser, txlogin, txpassword, usertype, dtregisteruser, statususer) VALUES (5, 'EuridesAntonioSimao', '5878956', 3, '2019-08-31', 1);
-INSERT INTO public.tb_users (iduser, txlogin, txpassword, usertype, dtregisteruser, statususer) VALUES (16, 'ValdenirVilasBoas', 'admin', 4, '2019-10-23', 4);
+INSERT INTO public.tb_users (userpk, txlogin, txpassword, usertype, dtregisteruser, statususer) VALUES (4, 'Marvos', '54545', 4, '2019-08-31', 1);
+INSERT INTO public.tb_users (userpk, txlogin, txpassword, usertype, dtregisteruser, statususer) VALUES (8, 'OtavioMarcos', '564965', 4, '2019-09-01', 1);
+INSERT INTO public.tb_users (userpk, txlogin, txpassword, usertype, dtregisteruser, statususer) VALUES (3, 'Andre', '646513', 2, '2019-08-31', 1);
+INSERT INTO public.tb_users (userpk, txlogin, txpassword, usertype, dtregisteruser, statususer) VALUES (6, 'Edilson', '658498', 3, '2019-08-31', 1);
+INSERT INTO public.tb_users (userpk, txlogin, txpassword, usertype, dtregisteruser, statususer) VALUES (2, 'Guilherme', 'guilherme', 1, '2019-08-31', 1);
+INSERT INTO public.tb_users (userpk, txlogin, txpassword, usertype, dtregisteruser, statususer) VALUES (7, 'Everton', '465465', 3, '2019-08-31', 1);
+INSERT INTO public.tb_users (userpk, txlogin, txpassword, usertype, dtregisteruser, statususer) VALUES (9, 'Ricardo', '3254156', 5, '2019-09-01', 1);
+INSERT INTO public.tb_users (userpk, txlogin, txpassword, usertype, dtregisteruser, statususer) VALUES (11, 'JoseValdir', '49648', 4, '2019-09-01', 1);
+INSERT INTO public.tb_users (userpk, txlogin, txpassword, usertype, dtregisteruser, statususer) VALUES (12, 'AntonioMarcos', '248489', 4, '2019-09-01', 1);
+INSERT INTO public.tb_users (userpk, txlogin, txpassword, usertype, dtregisteruser, statususer) VALUES (18, 'Ramiro', '1234', 4, '2019-10-23', 1);
+INSERT INTO public.tb_users (userpk, txlogin, txpassword, usertype, dtregisteruser, statususer) VALUES (13, 'LuizHenrique', 'admin', 4, '2019-10-23', 4);
+INSERT INTO public.tb_users (userpk, txlogin, txpassword, usertype, dtregisteruser, statususer) VALUES (17, 'LuizHenrique', 'admin', 4, '2019-10-23', 4);
+INSERT INTO public.tb_users (userpk, txlogin, txpassword, usertype, dtregisteruser, statususer) VALUES (1, 'AfonsoSantos', '642691', 1, '2019-08-31', 1);
+INSERT INTO public.tb_users (userpk, txlogin, txpassword, usertype, dtregisteruser, statususer) VALUES (5, 'EuridesAntonioSimao', '5878956', 3, '2019-08-31', 1);
+INSERT INTO public.tb_users (userpk, txlogin, txpassword, usertype, dtregisteruser, statususer) VALUES (16, 'ValdenirVilasBoas', 'admin', 4, '2019-10-23', 4);
 
 
 --
@@ -1189,7 +1191,7 @@ ALTER TABLE ONLY public.tb_mediatypes
 --
 
 ALTER TABLE ONLY public.tb_users
-    ADD CONSTRAINT "Users_pkey" PRIMARY KEY (iduser);
+    ADD CONSTRAINT "Users_pkey" PRIMARY KEY (userpk);
 
 
 --
@@ -1378,7 +1380,7 @@ ALTER TABLE ONLY public.tb_mediaorders
 --
 
 ALTER TABLE ONLY public.tb_person
-    ADD CONSTRAINT personfk FOREIGN KEY (userfk) REFERENCES public.tb_users(iduser) DEFERRABLE INITIALLY DEFERRED NOT VALID;
+    ADD CONSTRAINT personfk FOREIGN KEY (userfk) REFERENCES public.tb_users(userpk) DEFERRABLE INITIALLY DEFERRED NOT VALID;
 
 
 --
