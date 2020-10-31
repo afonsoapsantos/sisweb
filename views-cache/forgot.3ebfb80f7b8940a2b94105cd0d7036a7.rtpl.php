@@ -11,7 +11,7 @@
 </head>
 <body>
   <div class="container">
-    <h2>Solicite a recuperação da Conta</h2>
+    <h2>Recuperar Acesso</h2>
     <form action="/forgot" method="POST,">
       <div class="field">
         <label for="email">E-mail:</label>

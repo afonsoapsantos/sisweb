@@ -8,6 +8,7 @@
     <!-- Site Properties -->
     <title>Sisweb Login</title>
     <!-- Links -->
+    <link rel="stylesheet" type="text/css" href="../css/main.css">
     <link rel="stylesheet" type="text/css" href="../css/login.css">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
   </head>

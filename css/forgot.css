@@ -99,6 +99,8 @@ form .buttons button {
 	background: #FFF;
 	color: #384279;
 
+	cursor: pointer;
+
 	outline: none;
 }
 

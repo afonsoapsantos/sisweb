@@ -1,38 +1,28 @@
-*{
-	font: 400 1.8rem/1 'Nunito', sans-serif;
-	margin: 0 auto;
-	padding: 0;
-	-webkit-box-sizing: border-box;
-	   -moz-box-sizing: border-box;
-	        box-sizing: border-box;
-}
-
-:root {
-    font-size: 62.5%;
-}
-
-body {
-	background: #90a3ad;
-}
-
 #page-register {
-	height: 100%;
+	min-height: 100vh;
+	width: 85rem;
+	background: #FFF;
+	display: flex;
+	margin: 6.4rem auto;
 }
 
 #page-register .container {
-	width: 80rem;
-	background: #FFF;
-	margin: 6.4rem auto;
+	width: min(90%, 112rem);	
 	text-align: center;
 }
 
-#page-register .container>h1 {
-	font-size: 3.6rem;
+#title-register {
+	font-size: 2.4rem;
+	color: rgb(80,80,80);
+	height: 4.2rem;
+	margin: 1rem;
+	padding: 1.5rem
 }
 
 form {
 	margin: 1rem;
 	text-align: left;
+	outline: none;
 }
 
 fieldset {
@@ -40,12 +30,13 @@ fieldset {
 	margin: 0 auto;
 	padding: 0;
 	width: 100%;
+	outline: 0;
 }
 
 fieldset legend {
 	border-bottom: 2px solid gray;
 	text-align: left;
-	color: #DA552F;
+	color: rgb(100,100,100);
 	width: 100%;
 	padding-left: 1.5rem;
 	padding-bottom: 0.6rem;
@@ -74,8 +65,72 @@ fieldset .field input {
 	padding-left: 2rem;
 	border: 1px solid #006;
 	border-radius: 2rem;
+
+	outline: none;
+}
+
+form fieldset .field input:focus {
+	border: 2px solid #DA552F;
 }
 
 fieldset .field + legend {
 	margin-top: 1rem;
+}
+
+form .field {
+	width: 100%;
+}
+
+.field-two {
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	margin: 1rem;
+	margin-left: -4rem;
+}
+
+.field-two label {
+	color: #384279;
+	font-size: 1.6rem;
+	height: 4.2rem;
+	padding-top: 1.5rem;
+	padding-left: 2rem;
+
+}
+
+.field-two input {
+	height: 4.2rem;
+	width: 100%;
+	padding-left: 2rem;
+	border: 1px solid #006;
+	border-radius: 2rem;
+
+	outline: none;
+}
+
+.container form .buttons {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	margin: 0 auto;
+	padding: 0;
+}
+
+.container form .buttons button {
+	height: 4.2rem;
+	border: 2px solid #384279;
+	border-radius: 2rem;
+	background: #FFF;
+	width: 20rem;
+	margin-top: 2rem;
+	margin-bottom: 1.5rem;
+	color: #384279;
+
+	cursor: pointer;
+	outline: none;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
