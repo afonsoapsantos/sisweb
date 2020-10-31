@@ -1,6 +1,14 @@
+#page-login {
+	background: rgb(240, 240, 240);
+  	min-height: 100vh;
+  	text-align: center; 
+  	display: flex;
+}
+
 .container {
-	margin: auto;
-  	width: max(90%, 112rem);
+	margin: 0 auto;
+	width: max(90%, 112rem);
+	margin: 2rem auto;
 }
 
 form {
@@ -21,6 +29,7 @@ form {
 
 fieldset {
 	border: 0;
+	text-align: left;
 }
 
 .input-block + .input-block {
@@ -30,15 +39,8 @@ fieldset {
 .input-block label {
     color: #8FA7B3;
     margin-bottom: 0.8rem;
-    line-height: 1.5;
+    line-height: 1.2;
     padding-left: 1rem;
-}
-
-.input-block label span{
-    color: #8FA7B3;
-    font-size: 1.4rem;
-    margin-left: 2.4rem;
-    line-height: 1.5;
 }
 
 .input-block input {
@@ -88,7 +90,7 @@ fieldset {
 	align-items: center;
 
 	cursor: pointer;
-	transition: 0.2s;
+	transition: background 200ms;
 }
 
 .buttons button:hover {
@@ -100,7 +102,7 @@ fieldset {
 	width: 100%;
 	text-align: center;
 	color: #69999c;
-	margin: 2rem;
+	margin: 1rem 0;
 }
 
 .message-field {
@@ -108,7 +110,7 @@ fieldset {
 	flex-direction: row;
 	align-items: center;
 	justify-content: center;
-	margin: 1rem;
+	margin: 1rem 0;
 }
 
 .message p {
@@ -118,15 +120,17 @@ fieldset {
 .message a {
 	text-decoration: none;
 	font-size: 1.7rem;
-	margin-left: 2rem;
+	/*margin-left: -10rem;*/
 	color: initial;
+}
+
+.message-access-login {
+	height: 2.4rem;
+	margin: 1rem;
 }
 
 .message-login {
 	color: red;
 	text-align: center;
-	background: rgba(255,0,0, 0.2);
-	height: 2rem;
-	border-radius: 2rem;
-	berder: 2px solid red;
+	height: 2.4rem;
 }

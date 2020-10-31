@@ -12,11 +12,22 @@
 }
 
 body {
-	background: #90a3ad;
+	color: white;
+    background: #EBF2F5;
 	height: 100vh;
 }
 
 body, input, button, textarea {
     font: 400 1.8rem/1 'Nunito', sans-serif;
     outline: none;
+}
+
+.icon {
+	color: teal;
+	font-size: 1rem;
+	text-align: center;
+}
+
+.icon a {
+	font-size: 1rem;
 }

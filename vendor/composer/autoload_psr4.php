@@ -6,5 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Sisweb\\' => array($vendorDir . '/sis/web/src'),
+    'Sisweb\\' => array($vendorDir . '/sisweb/src'),
 );

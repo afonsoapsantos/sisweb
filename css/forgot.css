@@ -24,7 +24,7 @@ body, input, button, textarea {
   	width: 70rem;
   	min-height: 100%;
     margin: 6.4rem auto;
-    background: white;
+    background: #FFF;
     border: 1px solid #D3E2E5;
     border-radius: 2rem;
     padding: 8rem;
