@@ -1,0 +1,15 @@
+#page-admin-footer {
+	width: 100%;
+	height: 10rem;
+	background: #384279;
+	position: absolute;
+	bottom: 0;
+	text-align: center;
+	color: #FFF;
+}
+
+
+footer {
+	margin: 2rem;
+	padding: 1rem;
+}

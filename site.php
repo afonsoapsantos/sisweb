@@ -5,8 +5,11 @@
 
 	$app->get("/", function() {
     
-		header("Location: /login");
-		exit;
+		$page = new Page([
+			"header"=>false,
+			"footer"=>false
+		]);
+		$page->setTpl('login', ['error'=>User::getError()]);
 
 	});
 
@@ -44,19 +47,12 @@
 
 	$app->get("/register", function() {
 	    
-		$page = new Page();
-		$page->setTpl("register");
-
-	});
-
-	$app->get("/login/register", function() {
-	    
 		$page = new Page([
 			"header"=>false,
 			"footer"=>false
 		]);
+		$page->setTpl("register");
 
-		$page->setTpl("login-register");
 	});
 
 	$app->get("/login", function() {

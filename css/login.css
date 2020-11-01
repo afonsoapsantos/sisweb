@@ -1,5 +1,5 @@
 #page-login {
-	background: rgb(240, 240, 240);
+	background: rgba(240, 240, 240, 0.5);
   	min-height: 100vh;
   	text-align: center; 
   	display: flex;
@@ -41,6 +41,7 @@ fieldset {
     margin-bottom: 0.8rem;
     line-height: 1.2;
     padding-left: 1rem;
+    margin-left: 1rem;
 }
 
 .input-block input {

@@ -71,7 +71,7 @@
 				||
 				!$_SESSION[User::SESSION]
 				||
-				!(int)$_SESSION[User::SESSION]["userpk"] > 0
+				!(int)$_SESSION[User::SESSION]["iduser"] > 0
 			) {
 				//Não está logado
 				return false;
@@ -156,7 +156,7 @@
 				"SELECT * FROM tb_users us 
 					INNER JOIN tb_userstype ut ON us.fkusertype = ut.idusertype 
 					INNER JOIN tb_statususer su ON us.fkstatususer = su.pkstatus 
-					ORDER BY us.userpk;");
+					ORDER BY us.iduser;");
 		}
 
 		public static function listAllAdmins(){
@@ -237,12 +237,12 @@
 
 		public function getMaxId(){
 			$database = new Database();
-			$idmax = $database->select("SELECT MAX(userpk) FROM tb_users;");
+			$idmax = $database->select("SELECT MAX(iduser) FROM tb_users;");
 			foreach ($idmax as $key => $value) {
 				$iduser = $value['max'];
 			}
 			$idm = $iduser + 1;
-			$this->setuserpk($idm);
+			$this->setiduser($idm);
 		}
 
 		public function saveUser(){
@@ -251,9 +251,9 @@
 			$this->getMaxId();
 
 			$results = $database->select(
-				"INSERT INTO tb_users(userpk, txlogin, txpassword, fkusertype, fkstatususer, dtregisteruser)
-				VALUES (:userpk, :login, :password, :fkusertype, :fkstatususer, :dtregisteruser);",array(
-					":userpk"=>$this->getuserpk(),
+				"INSERT INTO tb_users(iduser, txlogin, txpassword, fkusertype, fkstatususer, dtregisteruser)
+				VALUES (:iduser, :login, :password, :fkusertype, :fkstatususer, :dtregisteruser);",array(
+					":iduser"=>$this->getiduser(),
 					":login"=>$this->gettxlogin(),
 					":password"=>$this->gettxpassword(),
 					":fkusertype"=>$this->getfkusertype(),
@@ -263,10 +263,10 @@
 			$this->setData($results[0]);	
 		}
 
-		public function getUser($userpk){
+		public function getUser($iduser){
 			$database = new Database();
-			$results = $database->select("SELECT * FROM tb_users WHERE userpk = :userpk", array(
-				":userpk"=>$userpk
+			$results = $database->select("SELECT * FROM tb_users WHERE iduser = :iduser", array(
+				":iduser"=>$iduser
 			));
 
 			if(count($results) === 0){
@@ -282,9 +282,9 @@
 				"UPDATE tb_users 
 					SET txlogin=:login, txpassword=:password, fkusertype=:fkusertype, 
 						fkstatususer=:fkstatususer, dtregisteruser=:dtregisteruser
-					WHERE userpk = :userpk;",
+					WHERE iduser = :iduser;",
 				array(
-					":userpk"=>$this->getuserpk(),
+					":iduser"=>$this->getiduser(),
 					":login"=>$this->gettxlogin(),
 					":password"=>$this->gettxpassword(),
 					":fkusertype"=>$this->getfkusertype(),
@@ -296,8 +296,8 @@
 
 		public function deleteUser(){
 			$database = new Database();
-			$database->query("DELETE FROM tb_users WHERE userpk = :userpk", array(
-				":userpk"=>$this->getuserpk()
+			$database->query("DELETE FROM tb_users WHERE iduser = :iduser", array(
+				":iduser"=>$this->getiduser()
 			));
 		}
 

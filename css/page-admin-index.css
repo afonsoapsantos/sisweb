@@ -1,0 +1,12 @@
+#page-admin-index {
+	margin: auto;
+	width: 100%;
+	min-height: 80vh;
+	display: flex;
+	background: #FFF;
+}
+
+.container {
+	color: #384279;
+	margin: 2rem auto;
+}

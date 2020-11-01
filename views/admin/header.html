@@ -6,13 +6,42 @@
     <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-    <link rel="stylesheet" type="text/css" href="../../../../res/semantic/dist/semantic.css">
+    <!-- Links -->
+    <link rel="stylesheet" type="text/css" href="../../css/main.css">
+    <link rel="stylesheet" type="text/css" href="../../css/page-admin.css">
+    <link rel="stylesheet" type="text/css" href="../../css/page-admin-header.css">
+    <link rel="stylesheet" type="text/css" href="../../css/page-admin-index.css">
+    <link rel="stylesheet" type="text/css" href="../../css/page-admin-footer.css">
+</head>
+<body>
+  <div id="page-admin">
+    
+    <header id="page-admin-header">
+      <div class="menu">
+        <div class="left">
+          <a class="item active" href="/admin">Home</a>
+        <a class="item" href="/admin">Loja</a>
+        <a class="item" href="/admin/services">Serviços</a>
+        <a class="item" href="/admin/products">Produtos</a>
+        <a class="item" href="/admin/requests">Requisições</a>
+        <a class="item" href="/admin/orders">Ordens</a>
+        <a class="item" href="/admin/users">Usuários</a>
+        </div>
+        <div class="right">
+          <a class="item" href="/logout">Logout</a>
+        </div>
+      </div>
+    </header>
+
+
+
+     <!-- <link rel="stylesheet" type="text/css" href="../../../../res/semantic/dist/semantic.css">
     <link rel="stylesheet" type="text/css" href="../../../../res/semantic/dist/semantic.min.css">
     <link rel="stylesheet" type="text/css" src="../../../../res/semantic/dist/semantic.js">
-    <link rel="stylesheet" type="text/css" src="../../../../res/semantic/dist/semantic.min.js">
+    <link rel="stylesheet" type="text/css" src="../../../../res/semantic/dist/semantic.min.js"> -->
 
     <!-- Scripts -->
-    <script type="text/javascript" src="../../../../res/semantic/examples/assets/library/jquery.min.js"></script>
+   <!--  <script type="text/javascript" src="../../../../res/semantic/examples/assets/library/jquery.min.js"></script>
     <script type="text/javascript" src="../../../../res/semantic/examples/assets/library/iframe.js"></script>
     <script type="text/javascript" src="../../../../res/semantic/dist/components/visibility.js"></script>
     <script type="text/javascript" src="../../../../res/semantic/dist/components/sidebar.js"></script>
@@ -62,10 +91,10 @@
         margin-left: 80px;
         margin-right: 80px;
       }
-    </style>
+    </style> -->
 
     <!-- Site Properties -->
-    <link type="text/css" rel="stylesheet" charset="UTF-8" href="https://translate.googleapis.com/translate_static/css/translateelement.css">
+    <!-- <link type="text/css" rel="stylesheet" charset="UTF-8" href="https://translate.googleapis.com/translate_static/css/translateelement.css">
     <link rel="stylesheet" type="text/css" href="../../../../res/semantic/dist/components/reset.css">
     <link rel="stylesheet" type="text/css" href="../../../../res/semantic/dist/components/site.css">
     <link rel="stylesheet" type="text/css" href="../../../../res/semantic/dist/components/container.css">
@@ -384,4 +413,4 @@
       </div>
     </div>
 
-    <div class="ui segments" id="component" align="center"> 
+    <div class="ui segments" id="component" align="center">  -->
