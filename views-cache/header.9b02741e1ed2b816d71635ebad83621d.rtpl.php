@@ -12,6 +12,8 @@
     <link rel="stylesheet" type="text/css" href="../../css/page-admin-header.css">
     <link rel="stylesheet" type="text/css" href="../../css/page-admin-index.css">
     <link rel="stylesheet" type="text/css" href="../../css/page-admin-footer.css">
+    <link rel="stylesheet" type="text/css" href="../../css/page-admin-services.css">
+    <link rel="stylesheet" type="text/css" href="../../css/page-admin-users.css">
 </head>
 <body>
   <div id="page-admin">

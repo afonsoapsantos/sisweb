@@ -153,9 +153,9 @@
 		public static function listAllUser(){
 			$database = new Database();
 			return $database->select(
-				"SELECT * FROM tb_users us 
+				"SELECT * FROM tb_users us
 					INNER JOIN tb_userstype ut ON us.fkusertype = ut.idusertype 
-					INNER JOIN tb_statususer su ON us.fkstatususer = su.pkstatus 
+					INNER JOIN tb_status su ON us.fkstatususer = su.idstatus 
 					ORDER BY us.iduser;");
 		}
 
