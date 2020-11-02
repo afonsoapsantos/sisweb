@@ -1,15 +1,16 @@
-<?php if(!class_exists('Rain\Tpl')){exit;}?><div class="ui segment">
-	<div class="field">
-		<div class="ui horizontal divider">Menu</div>
-		<div class="ui buttons">
-			<a class="ui green button" href="/admin/services/create">
-				<i class="plus icon"></i>Novo Serviço
-			</a>
-			<a class="ui green button" href="">
-				<i class="list icon"></i>Serviços
-			</a>
-		</div>
-		
+<?php if(!class_exists('Rain\Tpl')){exit;}?><div id="page-admin-services">
+	
+	<div class="container-services">
+		<aside>
+			<header class="vertical-menu">
+				<a href="/admin/services" class="item">Serviços</a>
+				<a href="/admin/services/create" class="item">Novo</a>
+				<a href="#" class="item">Gráficos</a>
+				<a href="#" class="item">Analises</a>
+				<a href="#" class="item">Quadros</a>
+				<a href="#" class="item">Agendas</a>
+			</header>
+		</aside>
 	</div>
 	<div class="field" id="margins">
 		<div class="ui horizontal divider">Serviços</div>
@@ -45,4 +46,4 @@
 			</tbody>
 		</table>
 	</div>
-</div><br>
+</div>

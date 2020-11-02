@@ -1,12 +1,10 @@
+/*Page Header*/
 #page-admin-header {
-	margin: 0;
+    margin: 0;
     width: 100%;
     height: 5rem;
     padding: 1.5rem;
-    background: #384279;
-    /* display: flex;
-    justify-content:center;
-    align-items:center; */
+    background: linear-gradient(329.54deg, #29b6d1 0%, #00c7c7 100%) no-repeat;
 }
 
 .menu {
@@ -19,6 +17,10 @@
 	height: 100%;
     padding: 1rem;
     color: white;
+}
+
+.menu .item:focus {
+    border-bottom: 2px solid #FFF;
 }
 
 .active {

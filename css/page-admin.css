@@ -1,6 +1,35 @@
-#page-admin {
-	min-height: 100vh;
-	text-align: center;
-	color: initial;
-	font-size:1.6rem;
+/*general items*/
+.vertical-menu {
+	position: absolute;
+	left: 0;
+	top: 11rem;
+	background: linear-gradient(329.54deg, #29b6d1 0%, #00c7c7 100%) no-repeat;
+	width: 20%;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+
+	border-radius: 0 2rem 2rem 0;
+}
+
+.vertical-menu .item {
+	font-size: 1.8rem;
+	text-decoration: none;
+	color: white;
+
+	margin: 1rem 1.5rem;
+	padding: 1rem 1.5rem;
+
+	width: 100%;
+	height: 100%;
+}
+
+.vertical-menu .item:focus {
+	border-bottom: 2px solid #FFF;
+}
+
+.vertical-menu .item:hover {
+	background: rgba(255,255,255, 0.5);
 }

@@ -13,7 +13,7 @@
 
 body {
 	color: white;
-    background: #EBF2F5;
+    background: #FFF;
 	height: 100vh;
 }
 
@@ -30,4 +30,12 @@ body, input, button, textarea {
 
 .icon a {
 	font-size: 1rem;
+}
+
+#page-admin {
+	min-height: 100vh;
+	width: 100%;
+	text-align: center;
+	color: initial;
+	font-size:1.6rem;
 }
