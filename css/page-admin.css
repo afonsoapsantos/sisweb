@@ -32,4 +32,5 @@
 
 .vertical-menu .item:hover {
 	background: rgba(255,255,255, 0.5);
+	border-bottom: 2px solid #FFF;
 }
