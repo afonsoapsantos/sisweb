@@ -1,9 +1,9 @@
 <div id="page-admin-services">
 	
-	<div class="container-services">
+	<div class="container">
 		<aside>
 			<header class="vertical-menu">
-				<a href="/admin/services" class="item">Serviços</a>
+				<a href="/admin/services" class="item active">Serviços</a>
 				<a href="/admin/services/create" class="item">Novo</a>
 				<a href="#" class="item">Gráficos</a>
 				<a href="#" class="item">Analises</a>
@@ -11,9 +11,7 @@
 				<a href="#" class="item">Agendas</a>
 			</header>
 		</aside>
-	</div>
-	<div class="field" id="margins">
-		<div class="ui horizontal divider">Serviços</div>
+	
 		<table class="ui very basic table">
 			<thead align="center">
 				<tr>
@@ -32,11 +30,9 @@
 					<td>{$value.txdescriptionservice}</td>
 					<td>R${function="formPrice($value.vlprice)"}</td>
 					<td>
-						<a href="/admin/services/update/{$value.servicepk}" class="circular ui green icon button">
-			                <i class="edit icon"></i>
-			              </a>
-			              <a href="/admin/services/delete/{$value.servicepk}" onclick="return confirm('Deseja realmente excluir?')" class="circular ui red icon button">
-			                <i class="delete icon"></i>
+						<a href="/admin/services/update/{$value.servicepk}">Atualizar</a>
+			              <a href="/admin/services/delete/{$value.servicepk}" onclick="return confirm('Deseja realmente excluir?')">
+			                Excluir
 			              </a>
 					</td>
 				</tr>
