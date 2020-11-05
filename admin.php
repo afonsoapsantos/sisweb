@@ -379,6 +379,12 @@
 		$page->setTpl("products-create");
 	});
 
+	$app->get("/admin/financial", function(){
+		User::validateAdmin();
+		$page = new PageAdmin();
+		$page->setTpl("financial");
+	});
+
 	## Fim das rotas do ADMIN
 
 

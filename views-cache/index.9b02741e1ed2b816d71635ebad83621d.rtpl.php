@@ -17,10 +17,10 @@
 
 
 		<main>
-
+			<h2>Seção para informações</h2>
 			<section>
 				
-				<h2>Seção para informações</h2>
+				
 
 			</section>
 

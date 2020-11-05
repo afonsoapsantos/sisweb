@@ -1,13 +1,7 @@
 /*Page Index*/
 #page-admin-index {
 	width: 100%;
-	min-height: 80vh;
-	display: flex;
-	margin-top: 1rem;
+	height: 100%;
+	margin: 2rem auto;
 }
 
-.container h1 {
-	color: #0b10a7;
-	margin: 1rem auto;
-	font-size: 2.4rem;
-}

@@ -28,6 +28,7 @@
         <a class="item" href="/admin/products">Produtos</a>
         <a class="item" href="/admin/requests">Requisições</a>
         <a class="item" href="/admin/orders">Ordens</a>
+        <a class="item" href="/admin/financial">Financeiro</a>
         <a class="item" href="/admin/users">Usuários</a>
         </div>
         <div class="right">

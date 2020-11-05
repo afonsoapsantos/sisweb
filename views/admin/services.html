@@ -12,32 +12,35 @@
 			</header>
 		</aside>
 	
-		<table class="ui very basic table">
-			<thead align="center">
-				<tr>
-					<th>Codigo</th>
-					<th>Serviço</th>
-					<th>Descrição</th>
-					<th>Preço</th>
-					<th>Opções</th>
-				</tr>
-			</thead>
-			<tbody align="center">
-				{loop="$services"}
-				<tr>
-					<td>{$value.servicepk}</td>
-					<td>{$value.txnameservice}</td>
-					<td>{$value.txdescriptionservice}</td>
-					<td>R${function="formPrice($value.vlprice)"}</td>
-					<td>
-						<a href="/admin/services/update/{$value.servicepk}">Atualizar</a>
-			              <a href="/admin/services/delete/{$value.servicepk}" onclick="return confirm('Deseja realmente excluir?')">
-			                Excluir
-			              </a>
-					</td>
-				</tr>
-				{/loop}
-			</tbody>
-		</table>
+		<main>
+			<h2>Serviços</h2>
+			<table>
+				<thead align="center">
+					<tr>
+						<!-- <th>Codigo</th> -->
+						<th>Serviço</th>
+						<th>Descrição</th>
+						<th>Preço</th>
+						<th>Opções</th>
+					</tr>
+				</thead>
+				<tbody align="center">
+					{loop="$services"}
+					<tr>
+						<!-- <td>{$value.servicepk}</td> -->
+						<td>{$value.txnameservice}</td>
+						<td>{$value.txdescriptionservice}</td>
+						<td>R${function="formPrice($value.vlprice)"}</td>
+						<td>
+							<a href="/admin/services/update/{$value.servicepk}">Atualizar</a>
+				              <a href="/admin/services/delete/{$value.servicepk}" onclick="return confirm('Deseja realmente excluir?')">
+				                Excluir
+				              </a>
+						</td>
+					</tr>
+					{/loop}
+				</tbody>
+			</table>
+		</main>
 	</div>
 </div>
