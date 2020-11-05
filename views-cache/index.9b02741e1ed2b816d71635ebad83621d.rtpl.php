@@ -1,11 +1,10 @@
 <?php if(!class_exists('Rain\Tpl')){exit;}?><div id="page-admin-index">
-
-	<h1>Seja Bem Vindo(a) <?php echo htmlspecialchars( $user["txlogin"], ENT_COMPAT, 'UTF-8', FALSE ); ?>!</h1>
 	
 	<div class="container">
 		
 		<aside>
 			<header class="vertical-menu">
+				<h1>Seja Bem Vindo(a) <?php echo htmlspecialchars( $user["txlogin"], ENT_COMPAT, 'UTF-8', FALSE ); ?>!</h1>
 				<a href="#" class="item">Inicio</a>
 				<a href="#" class="item">Relatórios</a>
 				<a href="#" class="item">Gráficos</a>

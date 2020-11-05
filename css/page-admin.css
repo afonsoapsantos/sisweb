@@ -10,16 +10,18 @@
 	text-align: center;
 	color: initial;
 	font-size:1.6rem;
+
+	background: rgba(0,199,199, 0.2);
 }
 
 /* Container geral */
 .container {
-	margin: 5rem auto;
+	width: 100%;
 
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	align-items: center;
+	align-items: start;
 }
 
 .container main {
@@ -27,33 +29,34 @@
 	border-radius: 2rem;
 	padding: 2rem;
 	color: #FFF;
-	margin-right: 6rem;
 
-	background: linear-gradient(329.54deg, #29b6d1 0%, #00c7c7 100%) no-repeat;
+	background: linear-gradient(329.54deg, #4a489e 0%, #050374 100%) no-repeat;
 }
 
 .container main h2 {
 	font-size: 2.4rem;
 	line-height: 3rem;
+}
 
-	border-bottom: 2px solid #FFF;
+aside {
+	background: linear-gradient(329.54deg, #4a489e 0%, #050374 100%) no-repeat;
+	padding: 1rem;
+	border-radius: 0 2rem 2rem 0;
 }
 
 
 /* Menu vertical geral */
-.vertical-menu {
-	position: absolute;
-	left: 0;
-	top: 11rem;
-	background: linear-gradient(329.54deg, #29b6d1 0%, #00c7c7 100%) no-repeat;
-	width: 20%;
-
+aside .vertical-menu {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: center;
+}
 
-	border-radius: 0 2rem 2rem 0;
+.vertical-menu h1 {
+	padding: 1rem;
+	margin: 1rem;
+	color: #FFF;
 }
 
 .vertical-menu .item {
@@ -71,6 +74,9 @@
 .vertical-menu .item:focus {
 	border-bottom: 2px solid #FFF;
 }
+.vertical-menu .item:active {
+	border-bottom: 2px solid #FFF;
+}
 
 .vertical-menu .item:hover {
 	background: rgba(255,255,255, 0.5);
@@ -78,13 +84,12 @@
 }
 
 table {
-	margin: 0 auto;
+	margin: 1rem auto;
 	padding: 1rem;
 }
 
-table thead {
-	width: 100%;
-	border-bottom: 2px solid #DA552f;
+table thead th {
+	border-bottom: 2px solid white;
 }
 
 table thead tr {
@@ -97,10 +102,12 @@ table thead tr th {
 	padding: 1rem;
 }
 
-table tbody tr {
-	border: 0;
+table tbody tr td{
 	height: 2.4rem;
 	margin: 2rem;
+	padding: 1rem;
+
+	border-bottom: 2px solid white;
 }
 
 table tbody tr td {
@@ -115,13 +122,13 @@ table tbody tr td a {
 	margin: 0.3rem;
 	background: #FFF;
 	padding: 0.7rem;
-	border: 2px solid #DA552f;
+	border: 2px solid green;
 	border-radius: 2rem;
 	text-align: center;
-	color: #DA552f;
+	color: green;
 }
 
 table tbody tr td a:hover {
-	background: #DA552f;
+	background: green;
 	color: #FFF;
 }

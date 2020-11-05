@@ -8,6 +8,10 @@
 				<a class="item" href="#">NF-e</a>
 				<a class="item" href="#">Compras</a>
 				<a class="item" href="#">Vendas</a>
+				<a class="item" href="#">Relatórios</a>
+				<a class="item" href="#">Relatórios</a>
+				<a class="item" href="#">Relatórios</a>
+				<a class="item" href="#">Relatórios</a>
 			</header>
 		</aside>	
 

@@ -33,8 +33,8 @@
 					</div>
 					<div class="field" align="center">
 						<div>
-							<button class="ui green button" type="submit">Inserir</button>
-							<a class="ui red button" href="/admin/services/create">Cancelar</a>
+							<button type="submit">Salvar</button>
+							<a href="/admin/services/create">Cancelar</a>
 						</div>
 					</div>
 				</form>
