@@ -1,4 +1,4 @@
-<title>Sisweb - Novo Serviço</title>
+<?php if(!class_exists('Rain\Tpl')){exit;}?><title>Sisweb - Novo Serviço</title>
 
 <div id="page-admin-services-new">
 	

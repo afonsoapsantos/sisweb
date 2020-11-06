@@ -31,6 +31,17 @@
 
 	});
 
+	$app->get("/admin/registrations", function() {
+	    
+	    User::validateAdmin();
+
+		$page = new PageAdmin();
+		$page->setTpl("registrations", [
+			"user"=>$_SESSION[User::SESSION]
+		]);
+
+	});
+
 	//Users
 	$app->get('/admin/users', function() {
 	    User::validateAdmin();
@@ -294,11 +305,11 @@
 		exit;
 	});
 
-	$app->get("/admin/services/update/:servicepk", function($servicepk){
+	$app->get("/admin/services/update/:idservice", function($idservice){
 		User::validateAdmin();
 
 		$service = new Service();
-		$service->setservicepk($servicepk);
+		$service->setidservice($idservice);
 		$service->get();
 		$page = new PageAdmin();
 		$page->setTpl("services-update",[
@@ -306,10 +317,10 @@
 		]);
 	});
 
-	$app->post("/admin/services/update/:servicepk", function($servicepk){
+	$app->post("/admin/services/update/:idservice", function($idservice){
 		User::validateAdmin();
 		$service = new Service();
-		$service->setservicepk($servicepk);
+		$service->setidservice($idservice);
 		$service->get();
 		$service->setData($_POST);
 		$service->update();
@@ -317,11 +328,11 @@
 		exit;
 	});
 
-	$app->get("/admin/services/delete/:servicepk", function($servicepk){
+	$app->get("/admin/services/delete/:idservice", function($idservice){
 		User::validateAdmin();
 
 		$service = new Service();
-		$service->setservicepk($servicepk);
+		$service->setidservice($idservice);
 		$service->get();
 		$service->delete();
 		header("Location: /admin/services");

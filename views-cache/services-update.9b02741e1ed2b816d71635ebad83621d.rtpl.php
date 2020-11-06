@@ -13,7 +13,7 @@
 	</div><br>
 	<div class="field" align="left" id="margins">
 		<div class="ui horizontal divider">Novo Serviço</div>
-		<form class="ui form" action="/admin/services/update/<?php echo htmlspecialchars( $service["pkservice"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" method="POST">
+		<form class="ui form" action="/admin/services/update/<?php echo htmlspecialchars( $service["idservice"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" method="POST">
 			<div class="field">
 				<label class="ui black label">Nome do Serviço:</label>
 				<input type="text" name="txnameservice" value="<?php echo htmlspecialchars( $service["txnameservice"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">

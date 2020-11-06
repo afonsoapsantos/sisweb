@@ -26,15 +26,15 @@
 			<tbody align="center">
 				<?php $counter1=-1;  if( isset($services) && ( is_array($services) || $services instanceof Traversable ) && sizeof($services) ) foreach( $services as $key1 => $value1 ){ $counter1++; ?>
 				<tr>
-					<td><?php echo htmlspecialchars( $value1["pkservice"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+					<td><?php echo htmlspecialchars( $value1["idservice"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
 					<td><?php echo htmlspecialchars( $value1["txnameservice"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
 					<td><?php echo htmlspecialchars( $value1["txdescriptionservice"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
 					<td>R$<?php echo formPrice($value1["vlprice"]); ?></td>
 					<td>
-						<a href="/admin/services/update/<?php echo htmlspecialchars( $value1["pkservice"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="circular ui green icon button">
+						<a href="/admin/services/update/<?php echo htmlspecialchars( $value1["idservice"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="circular ui green icon button">
 			                <i class="edit icon"></i>
 			              </a>
-			              <a href="/admin/services/delete/<?php echo htmlspecialchars( $value1["pkservice"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" onclick="return confirm('Deseja realmente excluir?')" class="circular ui red icon button">
+			              <a href="/admin/services/delete/<?php echo htmlspecialchars( $value1["idservice"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" onclick="return confirm('Deseja realmente excluir?')" class="circular ui red icon button">
 			                <i class="delete icon"></i>
 			              </a>
 					</td>

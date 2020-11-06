@@ -69,6 +69,10 @@
 	});
 
 	$app->post("/login", function() {
+		$user = new User();
+		$user = User::login($_POST["txlogin"],$_POST["txpassword"]);
+		$fkusertype = $user->getfkusertype();
+		
 		#$numTent = 0;
 		try {
 			$user = new User();

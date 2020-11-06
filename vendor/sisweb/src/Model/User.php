@@ -31,12 +31,16 @@
 					":LOGIN"=>$login
 				)
 			);
+
 			if (count($results) === 0)
 			{
 				throw new \Exception("Usuário inexistente ou senha inválida.");
 			}
 
 			$data = $results[0];
+
+			echo "login/data: ";
+			var_dump($data);
 
 			if ($password === $data["txpassword"])
 			{
