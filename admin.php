@@ -46,9 +46,24 @@
 	$app->get('/admin/users', function() {
 	    User::validateAdmin();
 	    $users = User::listAllUser();
+
+	    $page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
+	    $pagination = User::getUsersPage($page);
+
+	    $pages = [];
+
+	    for ($i=1; $i <= (int)$pagination['pages'] ; $i++) { 
+	    	array_push($pages, [
+	    		'link'=>'/admin/users?page='.$i,
+	    		'page'=>$i
+	    	]);
+	    }
+
 		$page = new PageAdmin();
 		$page->setTpl("users",array(
-			"users"=>$users
+			// "users"=>$users,
+			"data"=>$pagination['data'],
+			"pages"=>$pages
 		));
 	});
 
@@ -148,22 +163,22 @@
 		exit;
 	});
 
-	$app->get("/admin/users/:pkuser/delete", function ($pkuser){
+	$app->get("/admin/users/:iduser/delete", function ($iduser){
 		User::validateAdmin();
 		$user = new User();
-		$user->getUser((int)$pkuser);
+		$user->getUser((int)$iduser);
 		$user->deleteUser();
 
 		header("Location: /admin/users");
 		exit;
 	});
 
-	$app->get("/admin/users/:pkuser", function ($pkuser){
+	$app->get("/admin/users/:iduser", function ($iduser){
 		User::validateAdmin();
 		$user = new User();
 		$userstypes = User::listUsersTypes();
 		$status = User::listStatusUser();
-		$user->getUser((int)$pkuser);
+		$user->getUser((int)$iduser);
 		$page = new PageAdmin();
 		$page->setTpl("users-update", array(
 			"user"=>$user->getValues(),
@@ -173,10 +188,10 @@
 		exit;
 	});
 
-	$app->post("/admin/users/:pkuser", function ($pkuser){
+	$app->post("/admin/users/:iduser", function ($iduser){
 		User::validateAdmin();
 		$user = new User();
-		$user->getUser((int)$pkuser);
+		$user->getUser((int)$iduser);
 		$user->setData($_POST);
 		$user->updateUser();
 		header("Location: /admin/users");
@@ -285,7 +300,7 @@
 
 		$page = new PageAdmin();
 		$page->setTpl("services",[
-			"services"=>$services
+			#"services"=>$services
 		]);
 	});
 

@@ -1,4 +1,4 @@
-<div id="page-admin-registrations">
+<?php if(!class_exists('Rain\Tpl')){exit;}?><div id="page-admin-registrations">
     <div class="container">
         <aside>
             <header class="vertical-menu">

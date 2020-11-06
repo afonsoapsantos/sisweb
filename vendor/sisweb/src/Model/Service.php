@@ -25,12 +25,12 @@
 
 		public function update(){
 			$database = new Database();
-			$results = $database->select("UPDATE public.tb_services SET txnameservice = :txnameservice, txdescriptionservice = :txdescriptionservice, vlprice = :vlprice
+			$results = $database->select("UPDATE public.tb_services SET txnameservice = :txnameservice, txdescriptionservice = :txdescriptionservice, vlpriceservice = :vlpriceservice
 				WHERE idservice = :idservice;", array(
 						":idservice"=>$this->getidservice(),
 						":txnameservice"=>$this->gettxnameservice(),
 						":txdescriptionservice"=>$this->gettxdescriptionservice(),
-						":vlprice"=>$this->getvlprice()
+						":vlpriceservice"=>$this->getvlprice()
 					));
 
 		}//Fim método update

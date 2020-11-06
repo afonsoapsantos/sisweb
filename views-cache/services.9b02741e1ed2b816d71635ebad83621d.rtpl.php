@@ -31,7 +31,7 @@
 						<!-- <td><?php echo htmlspecialchars( $value1["idservice"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td> -->
 						<td><?php echo htmlspecialchars( $value1["txnameservice"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
 						<td><?php echo htmlspecialchars( $value1["txdescriptionservice"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-						<td>R$<?php echo formPrice($value1["vlprice"]); ?></td>
+						<td>R$<?php echo formPrice($value1["vlpriceservice"]); ?></td>
 						<td>
 							<a href="/admin/services/update/<?php echo htmlspecialchars( $value1["idservice"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">Atualizar</a>
 				              <a href="/admin/services/delete/<?php echo htmlspecialchars( $value1["idservice"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" onclick="return confirm('Deseja realmente excluir?')">

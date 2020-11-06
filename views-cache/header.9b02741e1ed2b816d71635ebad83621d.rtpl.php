@@ -16,6 +16,7 @@
     <link rel="stylesheet" type="text/css" href="../../css/page-admin-users.css">
     <link rel="stylesheet" type="text/css" href="../../css/page-admin-services-new.css">
     <link rel="stylesheet" type="text/css" href="../../css/page-admin-financial.css">
+    <link rel="stylesheet" type="text/css" href="../../css/page-admin-registrations.css">
 </head>
 <body>
   <div id="page-admin">
@@ -25,12 +26,8 @@
         <div class="left">
           <a class="item active" href="/admin">Home</a>
         <a class="item" href="#">Loja</a>
-        <a class="item" href="#">Cadastros</a>
+        <a class="item" href="/admin/registrations">Cadastros</a>
         <a class="item" href="#">PDV</a>
-        <a class="item" href="/admin/services">Serviços</a>
-        <a class="item" href="/admin/products">Produtos</a>
-        <a class="item" href="/admin/requests">Requisições</a>
-        <a class="item" href="/admin/orders">Ordens</a>
         <a class="item" href="/admin/financial">Financeiro</a>
         <a class="item" href="/admin/users">Usuários</a>
         </div>

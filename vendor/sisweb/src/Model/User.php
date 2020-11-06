@@ -305,6 +305,31 @@
 			));
 		}
 
+		public static function getUsersPage($page = 1, $itemsPerPage = 6)
+		{
+			$start = ($page - 1) * $itemsPerPage;
+			
+			$database = new Database();
+			$results = $database->select("
+				SELECT * FROM tb_users us
+					INNER JOIN tb_userstype ut ON us.fkusertype = ut.idusertype 
+					INNER JOIN tb_status su ON us.fkstatususer = su.idstatus 
+					ORDER BY us.iduser 
+					OFFSET $start 
+					LIMIT $itemsPerPage
+			");
+
+			$resultTotal = $database->select("
+				SELECT COUNT(*) AS nrtotal FROM tb_users;
+			");
+
+			return [
+				'data'=>$results,
+				'total'=>$resultTotal[0]['nrtotal'],
+				'pages'=>ceil($resultTotal[0]['nrtotal'] / $itemsPerPage)
+			];
+		}
+
 		/*
 		public static function getForgot($email, $inadmin = true){
 		    $database = new Database();

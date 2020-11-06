@@ -24,7 +24,7 @@
 			</div>
 			<div class="field">
 				<label class="ui black label">Preço:</label>
-				<input type="text" name="vlprice">
+				<input type="text" name="vlpriceservice">
 			</div>
 			<div class="field" align="center">
 				<div class="ui buttons">

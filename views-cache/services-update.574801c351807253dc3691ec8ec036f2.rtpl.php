@@ -24,7 +24,7 @@
 			</div>
 			<div class="field">
 				<label class="ui black label">Preço:</label>
-				<input type="text" name="vlprice" value="<?php echo htmlspecialchars( $service["vlprice"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+				<input type="text" name="vlpriceservice" value="<?php echo htmlspecialchars( $service["vlpriceservice"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 			</div>
 			<div class="field" align="center">
 				<div class="ui buttons">
