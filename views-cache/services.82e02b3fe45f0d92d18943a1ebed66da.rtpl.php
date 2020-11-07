@@ -15,7 +15,7 @@
 		<main>
 			<h2>Serviços</h2>
 			<table>
-				<thead align="center">
+				<thead>
 					<tr>
 						<!-- <th>Codigo</th> -->
 						<th>Serviço</th>
@@ -24,7 +24,7 @@
 						<th>Opções</th>
 					</tr>
 				</thead>
-				<tbody align="center">
+				<tbody>
 					<?php $counter1=-1;  if( isset($services) && ( is_array($services) || $services instanceof Traversable ) && sizeof($services) ) foreach( $services as $key1 => $value1 ){ $counter1++; ?>
 					<tr>
 						<!-- <td><?php echo htmlspecialchars( $value1["idservice"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td> -->

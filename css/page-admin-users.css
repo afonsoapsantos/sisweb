@@ -1,6 +1,6 @@
 #page-admin-users {
 	width: 100%;
-	min-height: 80vh;
+	max-height: 80vh;
 	display: flex;
 	margin: 5rem auto;
 }

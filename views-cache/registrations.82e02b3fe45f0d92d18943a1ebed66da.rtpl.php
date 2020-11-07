@@ -11,6 +11,10 @@
                 <a class="item" href="/admin/orders">Ordens</a>
             </header>
         </aside>
-        <main></main>
+        <main>
+            <section>
+                <h2>Cadastros Gerais</h2>
+            </section>
+        </main>
     </div>
 </div>

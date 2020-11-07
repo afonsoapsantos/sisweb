@@ -1,4 +1,4 @@
-<div id="page-admin-users-create">
+<?php if(!class_exists('Rain\Tpl')){exit;}?><div id="page-admin-users-create">
 	<div class="container">
 		<aside>
 			<header class="vertical-menu">
@@ -50,9 +50,9 @@
 		            	<label>Status:</label>
 			            <select class="uis selection" name='fkstatususer'>
 			            	<option value="0">Selecione o status</option>
-			            	{loop="$status"}
-			            		<option value="{$value.idstatus}">{$value.txnamestatus}</option>
-			            	{/loop}
+			            	<?php $counter1=-1;  if( isset($status) && ( is_array($status) || $status instanceof Traversable ) && sizeof($status) ) foreach( $status as $key1 => $value1 ){ $counter1++; ?>
+			            		<option value="<?php echo htmlspecialchars( $value1["idstatus"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["txnamestatus"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
+			            	<?php } ?>
 			            </select>
 		            </div>
 
@@ -60,9 +60,9 @@
 		            	<label>Tipo de Usuario: </label>
 			            <select class="ui selection" name="fkusertype">
 			                <option value='0' selected="0">Selecione o tipo de usuário</option>
-			                {loop="$userstypes"}
-			                	<option value="{$value.idusertype}">{$value.txnameusertype}</option>
-			                {/loop}
+			                <?php $counter1=-1;  if( isset($userstypes) && ( is_array($userstypes) || $userstypes instanceof Traversable ) && sizeof($userstypes) ) foreach( $userstypes as $key1 => $value1 ){ $counter1++; ?>
+			                	<option value="<?php echo htmlspecialchars( $value1["idusertype"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["txnameusertype"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
+			                <?php } ?>
 			            </select>
 		            </div>
 					<div class="buttons">

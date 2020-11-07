@@ -1,5 +1,6 @@
 #page-admin-users-create {
 	width: 100%;
-	min-height: 100%;
-	margin: 6rem auto;
+	max-height: 80vh;
+	display: flex;
+	margin: 6rem;
 }

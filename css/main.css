@@ -14,7 +14,7 @@
 body {
 	color: white;
     background: #FFF;
-	height: 100vh;
+	max-height: 100vh;
 }
 
 body, input, button, textarea {

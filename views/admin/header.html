@@ -14,6 +14,7 @@
     <link rel="stylesheet" type="text/css" href="../../css/page-admin-footer.css">
     <link rel="stylesheet" type="text/css" href="../../css/page-admin-services.css">
     <link rel="stylesheet" type="text/css" href="../../css/page-admin-users.css">
+    <link rel="stylesheet" type="text/css" href="../../css/page-admin-users-create.css">
     <link rel="stylesheet" type="text/css" href="../../css/page-admin-services-new.css">
     <link rel="stylesheet" type="text/css" href="../../css/page-admin-financial.css">
     <link rel="stylesheet" type="text/css" href="../../css/page-admin-registrations.css">
