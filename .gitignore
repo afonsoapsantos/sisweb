@@ -1,1 +1,5 @@
+#arquivos para ignorar
+.dockerrc
+
+#pastas para ignorar
 .phpintel/
