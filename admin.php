@@ -22,7 +22,9 @@
 	##Usuário master
 	$app->get("/admin", function() {
 	    
-	    User::validateAdmin();
+	    // User::validateAdmin(User::validate());
+
+		User::validateAdmin();
 
 		$page = new PageAdmin();
 		$page->setTpl("index", [

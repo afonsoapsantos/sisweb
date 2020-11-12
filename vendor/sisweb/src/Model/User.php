@@ -94,7 +94,24 @@
 			$_SESSION[User::SESSION] = NULL;
 		}
 
+		public static function validate() {
+			$fkusertype = (int)$_SESSION[User::SESSION]["fkusertype"];
+			$fkstatususer = (int)$_SESSION[User::SESSION]["fkstatususer"];
+
+			if ($fkstatususer == 1 && $fkusertype < 5  && $fkusertype > 1) {
+				User::logout();
+			} else {
+				return $fkusertype;
+			}
+		}
+
 		public static function validateAdmin(){
+			
+			//$type - passar argumento na função
+			// if ($type != 1) {
+			// 	User::logout();
+			// }
+
 			$fkusertype = (int)$_SESSION[User::SESSION]["fkusertype"];
 			$fkstatususer = (int)$_SESSION[User::SESSION]["fkstatususer"];
 			if ($fkstatususer != 1) {
