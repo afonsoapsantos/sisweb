@@ -39,9 +39,6 @@
 
 			$data = $results[0];
 
-			echo "login/data: ";
-			var_dump($data);
-
 			if ($password === $data["txpassword"])
 			{
 				$user = new User();

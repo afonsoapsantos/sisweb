@@ -12,7 +12,7 @@
 }
 
 body {
-	color: white;
+	color: initial;
     background: #FFF;
 	max-height: 100vh;
 }

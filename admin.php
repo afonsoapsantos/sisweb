@@ -302,7 +302,7 @@
 
 		$page = new PageAdmin();
 		$page->setTpl("services",[
-			#"services"=>$services
+			"services"=>$services
 		]);
 	});
 

@@ -1,6 +1,6 @@
 #page-admin-footer {
 	width: 100%;
-	max-height: 10vh;
+	height: 6rem;
 	background: #FFF /*linear-gradient(329.54deg, #29b6d1 0%, #00c7c7 100%) no-repeat*/;
 	text-align: center;
 	color: #29b;
@@ -8,6 +8,6 @@
 
 
 footer {
-	margin: 3rem auto;
+	margin: 1rem auto;
 	padding: 1rem;
 }
