@@ -50,10 +50,11 @@
 		            	<label>Status:</label>
 			            <select class="uis selection" name='fkstatususer'>
 			            	<option value="0">Selecione o status</option>
-			            	<!-- <?php $counter1=-1;  if( isset($status) && ( is_array($status) || $status instanceof Traversable ) && sizeof($status) ) foreach( $status as $key1 => $value1 ){ $counter1++; ?>
+			            	<?php $counter1=-1;  if( isset($status) && ( is_array($status) || $status instanceof Traversable ) && sizeof($status) ) foreach( $status as $key1 => $value1 ){ $counter1++; ?>
 
 			            		<option value="<?php echo htmlspecialchars( $value1["idstatus"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["txnamestatus"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
-			            	<?php } ?> -->
+			            	<?php } ?>
+
 			            </select>
 		            </div>
 

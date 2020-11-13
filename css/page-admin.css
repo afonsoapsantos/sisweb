@@ -33,7 +33,7 @@
 	color: #29b;
 
 	width: 80%;
-	min-height: 50rem;
+	height: 100%;
 
 	background: #FFF/*linear-gradient(329.54deg, #29b6d1 0%, #00c7c7 100%) no-repeat*/;
 }
@@ -118,7 +118,15 @@ table tbody tr {
 	border-bottom: 2px solid #29b;
 }
 
-table tbody tr td a {
+table tbody tr td a:first-child {
+	color: green;
+}
+
+table tbody tr td a:last-child {
+	color: red;
+}
+
+/* table tbody tr td a {
 	text-decoration: none;
 	width: 100%;
 	height: 100%;
@@ -126,9 +134,9 @@ table tbody tr td a {
 	background: #FFF;
 	padding: 0.7rem;
 	border-radius: 2rem;
-}
+} */
 
-table tbody tr td:first-child {
+/* table tbody tr td:first-child {
 	text-align: left;
 }
 
@@ -150,7 +158,7 @@ table tbody tr td a:last-child {
 table tbody tr td a:last-child:hover {
 	background: red;
 	color: #FFF;
-}
+} */
 
 nav {
 	width: 100%;

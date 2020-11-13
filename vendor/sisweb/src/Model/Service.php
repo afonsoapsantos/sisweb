@@ -69,6 +69,28 @@
 			return $database->select("SELECT * FROM tb_services;");		
 		}//Fim método listAll
 		
+		public static function getServicesPage($page = 1, $itemsPerPage = 3 )
+		{
+			$start = ($page - 1) * $itemsPerPage;
+			
+			$database = new Database();
+			$results = $database->select("
+				SELECT * FROM tb_services
+					OFFSET $start 
+					LIMIT $itemsPerPage
+			");
+
+			$resultTotal = $database->select("
+				SELECT COUNT(*) AS nrtotal FROM tb_services;
+			");
+
+			return [
+				'data'=>$results,
+				'total'=>$resultTotal[0]['nrtotal'],
+				'pages'=>ceil($resultTotal[0]['nrtotal'] / $itemsPerPage)
+			];
+		}
+
 	}//Fim da Classe Service
 
 

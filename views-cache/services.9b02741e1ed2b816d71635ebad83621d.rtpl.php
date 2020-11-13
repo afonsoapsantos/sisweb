@@ -15,7 +15,7 @@
 		<main>
 			<h2>Serviços</h2>
 			<table>
-				<thead align="center">
+				<thead>
 					<tr>
 						<!-- <th>Codigo</th> -->
 						<th>Serviço</th>
@@ -24,8 +24,8 @@
 						<th>Opções</th>
 					</tr>
 				</thead>
-				<tbody align="center">
-					<?php $counter1=-1;  if( isset($services) && ( is_array($services) || $services instanceof Traversable ) && sizeof($services) ) foreach( $services as $key1 => $value1 ){ $counter1++; ?>
+				<tbody>
+					<?php $counter1=-1;  if( isset($data) && ( is_array($data) || $data instanceof Traversable ) && sizeof($data) ) foreach( $data as $key1 => $value1 ){ $counter1++; ?>
 
 					<tr>
 						<!-- <td><?php echo htmlspecialchars( $value1["idservice"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td> -->
@@ -33,9 +33,13 @@
 						<td><?php echo htmlspecialchars( $value1["txdescriptionservice"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
 						<td>R$<?php echo formPrice($value1["vlpriceservice"]); ?></td>
 						<td>
-							<a href="/admin/services/update/<?php echo htmlspecialchars( $value1["idservice"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">Atualizar</a>
+							<a href="/admin/services/update/<?php echo htmlspecialchars( $value1["idservice"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><span class="material-icons">
+								update
+								</span></a>
 				              <a href="/admin/services/delete/<?php echo htmlspecialchars( $value1["idservice"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" onclick="return confirm('Deseja realmente excluir?')">
-				                Excluir
+								<span class="material-icons">
+									delete
+									</span>
 				              </a>
 						</td>
 					</tr>
@@ -43,6 +47,15 @@
 
 				</tbody>
 			</table>
+			<nav>
+				<ul>
+				  <?php $counter1=-1;  if( isset($pages) && ( is_array($pages) || $pages instanceof Traversable ) && sizeof($pages) ) foreach( $pages as $key1 => $value1 ){ $counter1++; ?>
+
+				  <li><a href="<?php echo htmlspecialchars( $value1["link"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["page"], ENT_COMPAT, 'UTF-8', FALSE ); ?></a></li>
+				  <?php } ?>
+
+				</ul>
+			  </nav>
 		</main>
 	</div>
 </div>

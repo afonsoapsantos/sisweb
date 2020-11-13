@@ -33,10 +33,13 @@
               <td>{$value.txnameusertype}</td>
               <td>{function="formatDate($value.dtregisteruser)"}</td>
               <td>
-                <a href="/admin/users/{$value.iduser}">Editar
+                <a href="/admin/users/{$value.iduser}">
+                  <span class="material-icons">update</span>
+                </a>
                 <a href="/admin/users/{$value.iduser}/delete" 
                   onclick="return confirm('Deseja realmente excluir?')">
-                Excluir</a>
+                  <span class="material-icons">delete</span>
+                </a>
               </td>
             </tr>
             {/loop}

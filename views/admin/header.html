@@ -18,6 +18,9 @@
     <link rel="stylesheet" type="text/css" href="../../css/page-admin-services-new.css">
     <link rel="stylesheet" type="text/css" href="../../css/page-admin-financial.css">
     <link rel="stylesheet" type="text/css" href="../../css/page-admin-registrations.css">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
 </head>
 <body>
   <div id="page-admin">

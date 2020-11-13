@@ -319,7 +319,7 @@
 			));
 		}
 
-		public static function getUsersPage($page = 1, $itemsPerPage = 6)
+		public static function getUsersPage($page = 1, $itemsPerPage = 3)
 		{
 			$start = ($page - 1) * $itemsPerPage;
 			

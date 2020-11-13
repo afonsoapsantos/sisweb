@@ -34,10 +34,13 @@
               <td><?php echo htmlspecialchars( $value1["txnameusertype"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
               <td><?php echo formatDate($value1["dtregisteruser"]); ?></td>
               <td>
-                <a href="/admin/users/<?php echo htmlspecialchars( $value1["iduser"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">Editar
+                <a href="/admin/users/<?php echo htmlspecialchars( $value1["iduser"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                  <span class="material-icons">update</span>
+                </a>
                 <a href="/admin/users/<?php echo htmlspecialchars( $value1["iduser"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/delete" 
                   onclick="return confirm('Deseja realmente excluir?')">
-                Excluir</a>
+                  <span class="material-icons">delete</span>
+                </a>
               </td>
             </tr>
             <?php } ?>

@@ -25,22 +25,33 @@
 					</tr>
 				</thead>
 				<tbody>
-					{loop="$services"}
+					{loop="$data"}
 					<tr>
 						<!-- <td>{$value.idservice}</td> -->
 						<td>{$value.txnameservice}</td>
 						<td>{$value.txdescriptionservice}</td>
 						<td>R${function="formPrice($value.vlpriceservice)"}</td>
 						<td>
-							<a href="/admin/services/update/{$value.idservice}">Atualizar</a>
+							<a href="/admin/services/update/{$value.idservice}"><span class="material-icons">
+								update
+								</span></a>
 				              <a href="/admin/services/delete/{$value.idservice}" onclick="return confirm('Deseja realmente excluir?')">
-				                Excluir
+								<span class="material-icons">
+									delete
+									</span>
 				              </a>
 						</td>
 					</tr>
 					{/loop}
 				</tbody>
 			</table>
+			<nav>
+				<ul>
+				  {loop="$pages"}
+				  <li><a href="{$value.link}">{$value.page}</a></li>
+				  {/loop}
+				</ul>
+			  </nav>
 		</main>
 	</div>
 </div>

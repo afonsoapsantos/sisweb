@@ -298,12 +298,23 @@
 	$app->get("/admin/services", function(){
 		User::validateAdmin();
 
-		$services = Service::listAll();
+	    $page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
+	    $pagination = Service::getServicesPage($page);
+
+	    $pages = [];
+
+	    for ($i=1; $i <= (int)$pagination['pages'] ; $i++) { 
+	    	array_push($pages, [
+	    		'link'=>'/admin/services?page='.$i,
+	    		'page'=>$i
+	    	]);
+	    }
 
 		$page = new PageAdmin();
-		$page->setTpl("services",[
-			"services"=>$services
-		]);
+		$page->setTpl("services",array(
+			"data"=>$pagination['data'],
+			"pages"=>$pages
+		));
 	});
 
 	$app->get("/admin/services/create", function(){
