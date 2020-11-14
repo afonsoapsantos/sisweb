@@ -28,7 +28,7 @@
     <header id="page-admin-header">
       <div class="menu">
         <div class="left">
-          <a class="item active" href="/admin">Home</a>
+          <a class="item active" href="/admin">Inicio</a>
         <a class="item" href="#">Loja</a>
         <a class="item" href="/admin/registrations">Cadastros</a>
         <a class="item" href="#">PDV</a>

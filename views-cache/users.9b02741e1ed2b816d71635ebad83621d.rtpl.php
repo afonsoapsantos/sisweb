@@ -35,7 +35,7 @@
               <td><?php echo formatDate($value1["dtregisteruser"]); ?></td>
               <td>
                 <a href="/admin/users/<?php echo htmlspecialchars( $value1["iduser"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-                  <span class="material-icons">update</span>
+                  <span class="material-icons">cached</span>
                 </a>
                 <a href="/admin/users/<?php echo htmlspecialchars( $value1["iduser"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/delete" 
                   onclick="return confirm('Deseja realmente excluir?')">
