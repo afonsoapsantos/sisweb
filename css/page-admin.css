@@ -6,7 +6,7 @@
 	justify-content: space-between;
 	align-items: center;
 	
-	max-height: 100vh;
+	min	-height: 100vh;
 
 	text-align: center;
 	color: initial;
@@ -46,6 +46,7 @@
 aside {
 	background: #FFF/*linear-gradient(329.54deg, #29b6d1 0%, #00c7c7 100%) no-repeat*/;
 	padding: 1rem;
+	margin-bottom: 2rem;
 	max-width: 30rem;
 	border-radius: 0 2rem 2rem 0;
 }
@@ -125,40 +126,6 @@ table tbody tr td a:first-child {
 table tbody tr td a:last-child {
 	color: red;
 }
-
-/* table tbody tr td a {
-	text-decoration: none;
-	width: 100%;
-	height: 100%;
-	margin: 0.3rem;
-	background: #FFF;
-	padding: 0.7rem;
-	border-radius: 2rem;
-} */
-
-/* table tbody tr td:first-child {
-	text-align: left;
-}
-
-table tbody tr td a:first-child {
-	color: green;
-	border: 2px solid green;
-}
-
-table tbody tr td a:first-child:hover {
-	background: green;
-	color: #FFF;
-}
-
-table tbody tr td a:last-child {
-	border: 2px solid red;
-	color: red;
-}
-
-table tbody tr td a:last-child:hover {
-	background: red;
-	color: #FFF;
-} */
 
 nav {
 	width: 100%;
