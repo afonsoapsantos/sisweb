@@ -1,5 +1,6 @@
 #page-admin-registrations {
     width: 100%;
-    min-height: 80vh;
-    margin: 5rem auto;
+	max-height: 80vh;
+	display: flex;
+	margin: 5rem auto;
 }

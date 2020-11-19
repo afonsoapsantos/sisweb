@@ -9,7 +9,7 @@
 				<a class="item" href="#">Compras</a>
 				<a class="item" href="#">Lançamentos</a>
 				<a class="item" href="#">Vendas</a>
-				<a class="item" href="#">Fluxo de Caixa</a>
+				<a class="item" href="/admin/cashFlow">Fluxo de Caixa</a>
 				<a class="item" href="#">Recebiveis</a>
 				<a class="item" href="#">Débitos</a>
 			</header>

@@ -6,7 +6,7 @@
 
 	/**
 	 * Criada em 18/11/2020
-	 * Classe que instancia o objeto do tipo CashMovement - Fluxo de caixa
+	 * Classe que instancia o objeto do tipo CashMovement - Movimento de caixa
 	 */
 	class CashMovement extends Model{
 
