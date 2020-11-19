@@ -4,7 +4,8 @@
     width: 100%;
     max-height: 10vh;
     padding: 2rem;
-    background: #FFF /*linear-gradient(329.54deg, #29b6d1 0%, #00c7c7 100%) no-repeat*/;
+    background: #FFF;
+    /* background: #00022E; */
 }
 
 .menu {
@@ -16,15 +17,15 @@
 .menu .item {
 	height: 100%;
     padding: 1rem;
-    color: #29b6d1;
+    color: #29b;
 }
 
 .menu .item:focus {
-    border-bottom: 2px solid #29b;
+    border-bottom: 2px solid #FF073A;
 }
 
 .active {
-    border-bottom: 2px solid #29b;
+    border-bottom: 2px solid #FF073A;
 }
 
 .menu .item:hover {
