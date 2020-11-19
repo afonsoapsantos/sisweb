@@ -158,6 +158,7 @@
 	$app->post("/admin/users/create", function(){
 		User::validateAdmin();
 		$user = new User();
+		$user->getMaxId();
 		$user->setData($_POST);
 		$user->setdtregisteruser(date("Y-m-d"));
 		$user->saveUser();
@@ -391,8 +392,7 @@
 	$app->post("/admin/providers/create", function(){
 		User::validateAdmin();
 		$provider = new Provider();
-		$idprovider = Provider::maxId();
-		$provider->setidprovider($idprovider);
+		$provider->getMaxId();
 		$provider->settxcorporatename($_POST["txcorporatename"]);
 		$provider->settxfantasyname($_POST["txfantasyname"]);
 		$provider->setnucnpj((int)$_POST["nucnpj"]);
