@@ -391,8 +391,7 @@
 	$app->post("/admin/providers/create", function(){
 		User::validateAdmin();
 		$provider = new Provider();
-		$idprovider = Provider::maxId();
-		$provider->setidprovider($idprovider);
+		$provider->getMaxIdOrder();
 		$provider->settxcorporatename($_POST["txcorporatename"]);
 		$provider->settxfantasyname($_POST["txfantasyname"]);
 		$provider->setnucnpj((int)$_POST["nucnpj"]);

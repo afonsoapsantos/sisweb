@@ -48,7 +48,7 @@
 			$this->setData($results[0]);
 		}
 
-		public function listAll(){
+		public static function listAll(){
 			$database = new Database();
 			return $results = $database->select(
 				"SELECT * FROM public.tb_orders os
