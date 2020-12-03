@@ -16,7 +16,19 @@
 	use \Sisweb\Model\Farm;
 	use \Sisweb\Model\File;
 	use \Sisweb\Model\Media;
-	use \Sisweb\Model\Order; 
+	use \Sisweb\Model\Order;
+
+
+
+	## ROTA para o Fluxo de Caixa
+	$app->get("/admin/cashFlow", function() {
+		User::validateAdmin();
+
+		$page = new PageAdmin();
+		$page->setTpl("cashFlow", [
+			"user"=>$_SESSION[User::SESSION]
+		]);
+	});
 
 	## Rotas do Adminsitrador do sistema
 	##Usuário master

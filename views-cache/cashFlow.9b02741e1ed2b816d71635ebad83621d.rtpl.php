@@ -1,4 +1,4 @@
-<div id="page-admin-cashFlow">
+<?php if(!class_exists('Rain\Tpl')){exit;}?><div id="page-admin-cashFlow">
 
     <div class="container">
         <aside>
@@ -29,11 +29,13 @@
                     </thead>
 
                     <tbody>
-                        {loop="$data"}
+                        <?php $counter1=-1;  if( isset($data) && ( is_array($data) || $data instanceof Traversable ) && sizeof($data) ) foreach( $data as $key1 => $value1 ){ $counter1++; ?>
+
                             <tr>
                                 <td></td>
                             </tr>
-                        {/loop}
+                        <?php } ?>
+
                     </tbody>
                 </table>
 
