@@ -16,7 +16,7 @@
 
 		public static function getFromSession(){
 			$user = new User();
-			if (isset($_SESSION[User::SESSION]) && (int)$_SESSION[User::SESSION]['iduser'] > 0) {
+			if (isset($_SESSION[User::SESSION]) && (int)$_SESSION[User::SESSION]['id'] > 0) {
 				$user->setData($_SESSION[User::SESSION]);
 			}
 			return $user;
@@ -72,7 +72,7 @@
 				||
 				!$_SESSION[User::SESSION]
 				||
-				!(int)$_SESSION[User::SESSION]["iduser"] > 0
+				!(int)$_SESSION[User::SESSION]["id"] > 0
 			) {
 				//Não está logado
 				return false;
@@ -101,37 +101,7 @@
 				return $fkusertype;
 			}
 		}
-
-		public static function validateAdmin(){
-			
-			//$type - passar argumento na função
-			// if ($type != 1) {
-			// 	User::logout();
-			// }
-
-			$fkusertype = (int)$_SESSION[User::SESSION]["fkusertype"];
-			$fkstatususer = (int)$_SESSION[User::SESSION]["fkstatususer"];
-			if ($fkstatususer != 1) {
-				User::logout();
-			}
-			User::verifyLogin((int)$fkusertype);
-			if($fkusertype != 1){
-				User::logout();
-			}
-		}
-
-		public static function validateManager(){
-			$usertype = (int)$_SESSION[User::SESSION]["fkusertype"];
-			$fkstatususer = (int)$_SESSION[User::SESSION]["fkstatususer"];
-			User::verifyLogin((int)$usertype);
-			if ($fkstatususer != 1) {
-				User::logout();
-			}
-			if($usertype != 2){
-				User::logout();
-			}
-		}
-
+		
 		public static function validateTechnical(){
 			$fkusertype = (int)$_SESSION[User::SESSION]["fkusertype"];
 			$fkstatususer = (int)$_SESSION[User::SESSION]["fkstatususer"];
@@ -174,18 +144,7 @@
 				"SELECT * FROM tb_users us
 					INNER JOIN tb_userstype ut ON us.fkusertype = ut.idusertype 
 					INNER JOIN tb_status su ON us.fkstatususer = su.idstatus 
-					ORDER BY us.iduser;");
-		}
-
-		public static function listAllAdmins(){
-			$database = new Database();
-
-			return $database->select(
-				"SELECT * FROM tb_users us 
-					INNER JOIN tb_statususer su ON us.fkstatususer = su.pkstatus
-					INNER JOIN tb_userstype ut ON us.fkusertype = ut.idusertype
-					WHERE us.fkusertype = 1;"
-			);
+					ORDER BY us.id;");
 		}
 
 		public static function listAllManagers(){
@@ -230,17 +189,6 @@
 			);
 		}
 
-		public static function listAllFarmWorker(){
-			$database = new Database();
-
-			return $database->select(
-				"SELECT * FROM tb_users us 
-					INNER JOIN tb_statususer su ON us.fkstatususer = su.pkstatus
-					INNER JOIN tb_userstype ut ON us.fkusertype = ut.idusertype
-					WHERE us.fkusertype = 5;"
-			);
-		}
-
 		public static function listUsersTypes(){
 			$database = new Database();
 			$userstypes = $database->select("SELECT * FROM tb_userstype;");
@@ -255,23 +203,21 @@
 
 		public function getMaxId(){
 			$database = new Database();
-			$idmax = $database->select("SELECT MAX(iduser) FROM tb_users;");
+			$idmax = $database->select("SELECT MAX(id) FROM tb_users;");
 			foreach ($idmax as $key => $value) {
-				$iduser = $value['max'];
+				$id = $value['max'];
 			}
-			$idm = $iduser + 1;
+			$idm = $id + 1;
 			$this->setiduser($idm);
 		}
 
-		public function saveUser(){
+		public function save(){
 			$database = new Database();
-			
-			$this->getMaxId();
 
 			$results = $database->select(
-				"INSERT INTO tb_users(iduser, txlogin, txpassword, fkusertype, fkstatususer, dtregisteruser)
-				VALUES (:iduser, :login, :password, :fkusertype, :fkstatususer, :dtregisteruser);",array(
-					":iduser"=>$this->getiduser(),
+				"INSERT INTO tb_users(id, txlogin, txpassword, fkusertype, fkstatususer, dtregisteruser)
+				VALUES (:id, :login, :password, :fkusertype, :fkstatususer, :dtregisteruser);",array(
+					":id"=>$this->getiduser(),
 					":login"=>$this->gettxlogin(),
 					":password"=>$this->gettxpassword(),
 					":fkusertype"=>$this->getfkusertype(),
@@ -281,14 +227,14 @@
 			$this->setData($results[0]);	
 		}
 
-		public function getUser($iduser){
+		public function get($id){
 			$database = new Database();
-			$results = $database->select("SELECT * FROM tb_users WHERE iduser = :iduser", array(
-				":iduser"=>$iduser
+			$results = $database->select("SELECT * FROM tb_users WHERE id = :id", array(
+				":id"=>$id
 			));
 
 			if(count($results) === 0){
-				throw new \Exception("Sem dados");
+				throw new \Exception("Usuário não ecnocontrado");
 			}
 
 			$this->setData($results[0]);
@@ -300,9 +246,9 @@
 				"UPDATE tb_users 
 					SET txlogin=:login, txpassword=:password, fkusertype=:fkusertype, 
 						fkstatususer=:fkstatususer, dtregisteruser=:dtregisteruser
-					WHERE iduser = :iduser;",
+					WHERE id = :id;",
 				array(
-					":iduser"=>$this->getiduser(),
+					":id"=>$this->getiduser(),
 					":login"=>$this->gettxlogin(),
 					":password"=>$this->gettxpassword(),
 					":fkusertype"=>$this->getfkusertype(),
@@ -314,8 +260,8 @@
 
 		public function deleteUser(){
 			$database = new Database();
-			$database->query("DELETE FROM tb_users WHERE iduser = :iduser", array(
-				":iduser"=>$this->getiduser()
+			$database->query("DELETE FROM tb_users WHERE id = :id", array(
+				":id"=>$this->getiduser()
 			));
 		}
 
@@ -328,7 +274,7 @@
 				SELECT * FROM tb_users us
 					INNER JOIN tb_userstype ut ON us.fkusertype = ut.idusertype 
 					INNER JOIN tb_status su ON us.fkstatususer = su.idstatus 
-					ORDER BY us.iduser 
+					ORDER BY us.id 
 					OFFSET $start 
 					LIMIT $itemsPerPage
 			");
@@ -359,8 +305,8 @@
 		        throw new \Exception("Não foi possível recuperar a senha.");
 		    } else {
 		         $data = $results[0];
-		         $results2 = $database->select("CALL sp_userspasswordsrecoveries_create(:iduser, :desip)", array(
-		             ":iduser"=>$data['iduser'],
+		         $results2 = $database->select("CALL sp_userspasswordsrecoveries_create(:id, :desip)", array(
+		             ":id"=>$data['id'],
 		             ":desip"=>$_SERVER['REMOTE_ADDR']
 		        ));
 		        if (count($results2) === 0){
@@ -394,7 +340,7 @@
 		     $results = $database->select("
 		         SELECT *
 		         FROM tb_userspasswordsrecoveries a
-		         INNER JOIN tb_users b USING(iduser)
+		         INNER JOIN tb_users b USING(id)
 		         INNER JOIN tb_persons c USING(idperson)
 		         WHERE
 		         a.idrecovery = :idrecovery
@@ -416,7 +362,7 @@
 			$database = new Database();
 
 			$results = $database->select(
-				"SELECT * FROM tb_users u, tb_person pe WHERE u.iduser = pe.userfk AND pe.email = :email", array(
+				"SELECT * FROM tb_users u, tb_person pe WHERE u.id = pe.userfk AND pe.email = :email", array(
 					":email"=>$email
 				)
 			);
@@ -436,7 +382,7 @@
 				$resultrecovery = $database->select("INSERT INTO tb_passwordsrecoveries (idrecovery, userfk, nuip, dtrecovery, dtregister) 
 					VALUES (:idrecovery, :userfk, :nuip, :dtrecovery, :dtregister)", array(
 						":idrecovery"=>$idrec, 
-						":userfk"=>$data['iduser'], 
+						":userfk"=>$data['id'], 
 						":nuip"=>$_SERVER["REMOTE_ADDR"], 
 						":dtrecovery"=>date("d/m/Y"), 
 						":dtregister"=>date("d/m/Y")

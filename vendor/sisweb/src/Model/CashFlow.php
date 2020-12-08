@@ -1,7 +1,8 @@
 <?php 
 
     namespace Sisweb\Model;
-	use \Sisweb\Model;
+    use \Sisweb\Model;
+    use \Sisweb\Model\CashMovement;
 	use \Sisweb\DB\Database;
 
     /**
@@ -12,8 +13,14 @@
 
         public function __construct()
         {
-         // Função que ira fazer toda vez para verificar se o mês foi fechado 
-         // para registrar ou verifica se há novo lançamento de movimento de caixa
+            // Função que ira fazer toda vez para verificar se o mês foi fechado 
+            // para registrar ou verifica se há novo lançamento de movimento de caixa
+
+            //Pegando o ultimo registro
+            $cashmovement = new CashMovement();
+            $cashmovement->get($cashmovement->getMaxId());
+
+
         }
 
         public function getMaxId()
@@ -27,14 +34,14 @@
 			$this->setid($id);
         }
 
-        public function insert()
+        public function save()
         {
             //Insere o registro se o mês for fechado
             $database = new Database();
             $cashFlow = $database->select("INSERT INTO public.tb_cashflows 
-                (id, numonth, txtype, vlprice) 
-            VALUES 
-                (id, numonth, txtype, vlprice)");
+                    (id, numonth, txtype, vlprice)
+                VALUES 
+                    (id, numonth, txtype, vlprice)");
 
             $this->setData($cashFlow);
 
@@ -44,6 +51,15 @@
         public function get()
         {
             # Busca apenas um registro de um mês especifico
+            $database = new Database();
+            $data = $database->select("SELECT * FROM tb_cashflows AS cf WHERE cf.id =", [
+                ":id"=>$this->getid()
+            ]);
+            if(count($data) === 0){
+				throw new \Exception("Sem dados");
+			}
+
+			$this->setData($data[0]);
         }
 
         public function read()

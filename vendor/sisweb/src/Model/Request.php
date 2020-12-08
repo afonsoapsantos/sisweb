@@ -101,7 +101,7 @@
 			$database = new Database();
 			return $database->select(
 				"SELECT * FROM tb_users us, tb_implements is, tb_customers cs 
-					WHERE us.iduser = cs.userfk 
+					WHERE us.id = cs.userfk 
 						AND cs.idcustomer = is.customerfk;"
 			);
 		}

@@ -24,7 +24,7 @@
 			$this->setid($id);
 		}
 		
-		public function insert()
+		public function save()
 		{
 			$database = new Database();
 
@@ -74,6 +74,23 @@
 			$data = $database->select(
 				""
 			);
+		}
+
+		public function get()
+		{
+			$database = new Database();
+
+			$data = $database->select(
+				"SELECT * FROM tb_cashmovement AS cm WHERE cm.id = :id", [
+					":id"=>$this->setid()
+				]
+			);
+
+			if(count($data) === 0){
+				throw new \Exception("Movimento não encontrado!");
+			}
+
+			$this->setData($data[0]);
 		}
 
 		public static function setError($msg){

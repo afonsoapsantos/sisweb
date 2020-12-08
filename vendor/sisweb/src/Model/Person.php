@@ -9,8 +9,15 @@
 	 */
 	class Person extends Model{
 		
-		public function insert(){
+		public function save(){
 			$database = new Database();
+			$database->select("INSERT INTO tb_persons
+					(id, txname, txlastname, txmiddlename, nucpf, nurg, nuphone)
+				VALUES
+					(id, txname, txlastname, txmiddlename, nucpf, nurg, nuphone)",
+				[
+					"id"=>$this->setid()
+				]);
 		}
 
 		public function update(){
@@ -21,7 +28,12 @@
 			$database = new Database();
 		}
 
-		public function listAll(){
+		public function read()
+		{
+			# code...
+		}
+
+		public function get(){
 			$database = new Database();
 		}
 		

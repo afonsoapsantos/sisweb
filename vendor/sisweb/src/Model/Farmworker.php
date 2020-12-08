@@ -28,20 +28,27 @@
 			return $results;
 		}
 
-		public function get($pkfarmworker){
+		public static function listAll(){
+			$database = new Database();
+
+			return $database->select(
+				"SELECT * FROM tb_users us 
+					INNER JOIN tb_statususer su ON us.fkstatususer = su.pkstatus
+					INNER JOIN tb_userstype ut ON us.fkusertype = ut.idusertype
+					WHERE us.fkusertype = 5;"
+			);
+		}
+
+		public function get($id){
 			$database = new Database();
 			$results = $database->select(
 				"SELECT * FROM public.tb_farmsemployees fe 
-					WHERE fe.pkfarmworker = :pkfarmworker", array(
-						":pkfarmworker"=>$pkfarmworker
+					WHERE fe.id = :id", array(
+						":id"=>$id
 					)
 			);
 
 			$this->setData($results[0]);
-		}
-
-		public function FunctionName(){
-			# code...
 		}
 
 		public function getMaxId(){
@@ -56,7 +63,7 @@
 			$this->setpkfarmworker($pkfarmworker);
 		}
 
-		public function insert(){
+		public function save(){
 			$database = new Database();
 			$this->getMaxId();
 			$results = $database->query(

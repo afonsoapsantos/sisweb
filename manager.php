@@ -16,7 +16,7 @@
 	use \Sisweb\Model\Order;
 
 	$app->get("/manager", function(){
-		User::validateManager();
+		Manager::validateAdmin()();
 
 		$page = new PageManager();
 		$page->setTpl("index");
@@ -24,7 +24,7 @@
 
 	##Rotas das Solicitações
 	$app->get("/manager/requests", function(){
-		User::validateManager();
+		Manager::validateAdmin()();
 		$requests = Request::listRequestsAdmin();
 		$page = new PageManager();
 		$page->setTpl("requests",[
@@ -33,7 +33,7 @@
 	});
 
 	$app->get("/manager/requests/generate/order/:idrequest", function($idrequest){
-		User::validateManager();
+		Manager::validateAdmin()();
 		$request = new Request();
 		$request->setidrequest($idrequest);
 		$request->get();
@@ -46,7 +46,7 @@
 	});
 
 	$app->get("/manager/orders", function(){
-		User::validateManager();
+		Manager::validateAdmin()();
 		$orders = Order::listAll();
 		$page = new PageManager();
 		$page->setTpl("requests",[
@@ -57,7 +57,7 @@
 	});
 
 	$app->post("/manager/orders/create", function(){
-		User::validateManager();
+		Manager::validateAdmin()();
 		try {
 			$idrequest = (int)$_POST["requestfk"];
 			$request = new Request();
@@ -89,7 +89,7 @@
 	});
 
 	$app->get("/manager/users", function(){
-		User::validateManager();
+		Manager::validateAdmin()();
 		$users = User::listAllManagers();
 		$page = new PageManager();
 		$page->setTpl("users",[
@@ -98,13 +98,13 @@
 	});
 
 	$app->get("/manager/users/managers/create", function(){
-		User::validateManager();
+		Manager::validateAdmin()();
 		$page = new PageManager();
 		$page->setTpl("users-managers-create");
 	});
 
 	$app->get("/manager/users/technical", function(){
-		User::validateManager();
+		Manager::validateAdmin()();
 		$users = User::listAllTechnical();
 		$page = new PageManager();
 		$page->setTpl("users-technical",[
@@ -113,13 +113,13 @@
 	});
 
 	$app->get("/manager/users/technical/create", function(){
-		User::validateManager();
+		Manager::validateAdmin()();
 		$page = new PageManager();
 		$page->setTpl("users-technical-create");
 	});
 
 	$app->get("/manager/users/customers", function(){
-		User::validateManager();
+		Manager::validateAdmin()();
 		$users = User::listAllCustomers();
 		$page = new PageManager();
 		$page->setTpl("users-customers",[
@@ -128,7 +128,7 @@
 	});
 
 	$app->get("/manager/users/farmworker", function(){
-		User::validateManager();
+		Manager::validateAdmin()();
 		$users = User::listAllFarmWorker();
 		$page = new PageManager();
 		$page->setTpl("users-farmworker",[
@@ -138,7 +138,7 @@
 
 	//Rotas para Fornecedores
 	$app->get("/manager/providers", function(){
-		User::validateManager();
+		Manager::validateAdmin()();
 		$providers = Provider::listAll();
 		$page = new PageManager();
 		$page->setTpl("providers", array(
@@ -149,13 +149,13 @@
 	});
 
 	$app->get("/manager/providers/create", function(){
-		User::validateManager();
+		Manager::validateAdmin()();
 		$page = new PageManager();
 		$page->setTpl("providers-create");
 	});
 
 	$app->post("/manager/providers/create", function(){
-		User::validateManager();
+		Manager::validateAdmin()();
 		$provider = new Provider();
 		$provider->getMaxId();
 		$provider->setData($_POST);
@@ -165,7 +165,7 @@
 	});
 
 	$app->get("/manager/providers/delete/:idprovider", function($idprovider){
-		User::validateManager();
+		Manager::validateAdmin()();
 
 		try {
 			$provider = new Provider();
@@ -181,7 +181,7 @@
 	});
 
 	$app->get("/manager/providers/update/:idprovider", function($idprovider){
-		User::validateManager();
+		Manager::validateAdmin()();
 
 		$provider = new Provider();
 		$provider->setidprovider($idprovider);
@@ -196,7 +196,7 @@
 	});
 
 	$app->post("/manager/providers/update/:idprovider", function($idprovider){
-		User::validateManager();
+		Manager::validateAdmin()();
 		try {
 			$provider = new Provider();
 			$provider->setidprovider($idprovider);

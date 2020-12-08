@@ -27,16 +27,16 @@
         <tbody align='center'>
             {loop="$data"}
             <tr>
-              <!-- <td>{$value.iduser}</td> -->
+              <!-- <td>{$value.id}</td> -->
               <td>{$value.txlogin}</td>
               <td>{$value.txnamestatus}</td>
               <td>{$value.txnameusertype}</td>
               <td>{function="formatDate($value.dtregisteruser)"}</td>
               <td>
-                <a href="/admin/users/{$value.iduser}">
+                <a href="/admin/users/{$value.id}">
                   <span class="material-icons">cached</span>
                 </a>
-                <a href="/admin/users/{$value.iduser}/delete" 
+                <a href="/admin/users/{$value.id}/delete" 
                   onclick="return confirm('Deseja realmente excluir?')">
                   <span class="material-icons">delete</span>
                 </a>
