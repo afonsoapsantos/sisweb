@@ -2,7 +2,7 @@
 
 namespace Sisweb\DB;
 	
-class Database {
+class Dsystem {
 
 	const HOSTNAME = "localhost";
 	const USERNAME = "postgres";
