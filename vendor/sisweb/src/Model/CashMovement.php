@@ -12,18 +12,31 @@
 
 		const SUCCESS = "cashMovementSucess";
 		const ERROR  = "cashMovementError";
+
+		public function getMaxID()
+		{
+			$database = new Database();
+			$idcm = $database->select("SELECT MAX(id) FROM tb_cashmovement");
+            foreach ($idcm as $key => $value) {
+				$idm = $value['max'];
+			}
+			$id = $idm + 1;
+			$this->setid($id);
+		}
 		
 		public function insert()
 		{
 			$database = new Database();
 
 			$results = $database->select(
-				"INSERT INTO public.tb_cashmovement(idmovement, day, monthid, year, price)
-				VALUES (:idmovement, :day, :monthid, :year, :price);", array(	
-					":idmovement"=>$this->getidmovement(),
-					":day"=>$this->getday(),
+				"INSERT INTO public.tb_cashmovement(id, txdescription, txtype, nuday, monthid, nuyear, price)
+				VALUES (:id, :txdescription, :txtype, :nuday, :monthid, :nuyear, :price);", array(	
+					":id"=>$this->getid(),
+					":txdescription"=>$this->gettxdescription(),
+					":txtype"=>$this->gettxtype(),
+					":nuday"=>$this->getnuday(),
 					":monthid"=>$this->getmonthid(),
-					":year"=>$this->getyear(),
+					":nuyear"=>$this->getnuyear(),
 					":price"=>$this->getprice()
 				)
 			);
@@ -36,8 +49,12 @@
 			$database = new Database();
 
 			$data = $database->select(
-				""
+				"DELETE FROM tb_cashmovement AS cm WHERE cm.id = :id", [
+					":id"=>$this->getid()
+				]
 			);
+
+			$this->setSuccess("Registro Deletado!");
 		}
 
 		public function update()

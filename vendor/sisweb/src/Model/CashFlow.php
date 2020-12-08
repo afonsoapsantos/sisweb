@@ -16,10 +16,29 @@
          // para registrar ou verifica se há novo lançamento de movimento de caixa
         }
 
+        public function getMaxId()
+        {
+            $database = new Database();
+            $idcf = $database->select("SELECT MAX(id) FROM tb_cashflows");
+            foreach ($idcf as $key => $value) {
+				$idm = $value['max'];
+			}
+			$id = $idm + 1;
+			$this->setid($id);
+        }
+
         public function insert()
         {
             //Insere o registro se o mês for fechado
             $database = new Database();
+            $cashFlow = $database->select("INSERT INTO public.tb_cashflows 
+                (id, numonth, txtype, vlprice) 
+            VALUES 
+                (id, numonth, txtype, vlprice)");
+
+            $this->setData($cashFlow);
+
+            $this->setSuccess("Cadastro efetuado com Sucesso!");
         }
 
         public function get()
@@ -31,6 +50,8 @@
         {
             #Retorna todos os meses de acordo com o ano
             $database = new Database();
+            $results = $database->select("SELECT * FROM tb_cashflows");
+            return $results;
         }
 
         public function update()
@@ -41,6 +62,14 @@
         public function delete()
         {
             $database = new Database();
+
+			$data = $database->select(
+				"DELETE FROM tb_cashflows AS cf WHERE cf.id = :id", [
+					":id"=>$this->getid()
+				]
+			);
+
+			$this->setSuccess("Registro Deletado!");
         }
 
         public static function setError($msg){
