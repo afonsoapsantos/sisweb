@@ -164,10 +164,10 @@ use \Sisweb\Model\UserType;
 	//fim das solicitações
 
 	//Rotas para Ordens de Serviços
-	$app->get("/admin/requests/generate/order/:idrequest", function($idrequest){
+	$app->get("/admin/generate/order/:id", function($id){
 		Administrator::validateAdmin();
 		$request = new Request();
-		$request->setidrequest($idrequest);
+		$request->setid($id);
 		$request->get();
 		$page = new PageAdmin();
 		$page->setTpl("generate-order", array(
@@ -180,7 +180,8 @@ use \Sisweb\Model\UserType;
 	$app->get("/admin/orders", function(){
 		Administrator::validateAdmin();
 
-		$orders = Order::listAll();
+		$order = new Order();
+		$orders = $order->read();
 		$page = new PageAdmin();
 		$page->setTpl("orders",[
 			"orders"=>$orders,
@@ -189,22 +190,21 @@ use \Sisweb\Model\UserType;
 		]);
 	});
 
-	$app->get("/admin/orders/create/:idcustomer", function($idcustomer){
+	$app->get("/admin/orders/create/:id", function($idr){
 		Administrator::validateAdmin();
 
 		$customer = new Customer();
-		$customer->getCustomer($idcustomer);
+		$customer->getCustomer($idr);
 		#$customer->setData($data);
 		var_dump($customer);
 	});
 
 	$app->post("/admin/orders/create", function(){
 		Administrator::validateAdmin();
+		$request = new Request();
 		try {
-			$idrequest = (int)$_POST["requestfk"];
-			$request = new Request();
-			$request->setidrequest($idrequest);
-			$request->read();
+			$request->setid((int)$_POST["requestfk"]);
+			$request->get();
 			$request->setstatusfk((int)3);
 			$order = new Order();
 			$order->getMaxIdOrder();
@@ -223,10 +223,9 @@ use \Sisweb\Model\UserType;
 				$media->insertMediaOrder();
 			}
 			header("Location: /admin/orders");
-			Order::setError("");
 		} catch (Exception $e) {
 			Order::setError($e->getMessage());
-			header("Location: /admin/requests/generate/order/$idrequest");
+			header("Location: /admin/requests/generate/order/".$request->getid());
 		}
 		exit;
 	});
@@ -269,11 +268,11 @@ use \Sisweb\Model\UserType;
 		exit;
 	});
 
-	$app->get("/admin/services/update/:idservice", function($idservice){
+	$app->get("/admin/services/update/:id", function($id){
 		Administrator::validateAdmin();
 
 		$service = new Service();
-		$service->setidservice($idservice);
+		$service->setid($id);
 		$service->get();
 		$page = new PageAdmin();
 		$page->setTpl("services-update",[
@@ -281,10 +280,10 @@ use \Sisweb\Model\UserType;
 		]);
 	});
 
-	$app->post("/admin/services/update/:idservice", function($idservice){
+	$app->post("/admin/services/update/:id", function($id){
 		Administrator::validateAdmin();
 		$service = new Service();
-		$service->setidservice($idservice);
+		$service->setid($id);
 		$service->get();
 		$service->setData($_POST);
 		$service->update();
@@ -292,11 +291,11 @@ use \Sisweb\Model\UserType;
 		exit;
 	});
 
-	$app->get("/admin/services/delete/:idservice", function($idservice){
+	$app->get("/admin/services/delete/:id", function($id){
 		Administrator::validateAdmin();
 
 		$service = new Service();
-		$service->setidservice($idservice);
+		$service->setid($id);
 		$service->get();
 		$service->delete();
 		header("Location: /admin/services");

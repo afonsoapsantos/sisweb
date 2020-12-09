@@ -14,14 +14,14 @@
 		
 		public function getMaxId(){
 			$database = new Database();
-			$idm = $database->select("SELECT MAX(idrequest) FROM tb_requests;");
+			$idm = $database->select("SELECT MAX(id) FROM tb_requests;");
 			foreach ($idm as $key => $value) {
 				$idmax = $value['max'];
 			}
 
 			$id = $idmax+1;
 
-			$this->setidrequest($id);
+			$this->setid($id);
 		}
 
 		public static function listRequests($idcustomer){
@@ -57,7 +57,7 @@
 					INNER JOIN tb_customers cs ON cs.idcustomer = rs.customerfk
 					INNER JOIN tb_farms fs ON fs.idfarm = rs.farmfk
 					INNER JOIN tb_statusrequest sr ON sr.pkstatus = rs.statusfk
-					WHERE rs.idrequest = :pkrequest;", array(
+					WHERE rs.id = :pkrequest;", array(
 				":pkrequest"=>$pkrequest
 			));
 
@@ -67,8 +67,8 @@
 		public function read(){
 			$database = new Database();
 			$results = $database->select(
-				"SELECT * FROM tb_requests rs WHERE idrequest = :idrequest", array(
-					":idrequest"=>$this->getidrequest()
+				"SELECT * FROM tb_requests rs WHERE id = :id", array(
+					":id"=>$this->getid()
 				)
 			);
 
@@ -82,8 +82,8 @@
 					INNER JOIN public.tb_customers cs ON cs.idcustomer = rs.customerfk
 					INNER JOIN tb_implements ips ON ips.idimplement = rs.implementfk
 					INNER JOIN tb_farms fs ON fs.idfarm = rs.farmfk
-					WHERE rs.idrequest = :idrequest", array(
-					":idrequest"=>$this->getidrequest()
+					WHERE rs.id = :id", array(
+					":id"=>$this->getid()
 				)
 			);
 
@@ -110,10 +110,10 @@
 			$database = new Database();
 			$this->getMaxId();
 			$results = $database->select(
-				"INSERT INTO public.tb_requests(idrequest, txsituation, txproblem, customerfk, farmfk, implementfk, statusfk)
-				VALUES (:idrequest, :txsituation, :txproblem, :customerfk, :farmfk, :implementfk, :statusfk);", 
+				"INSERT INTO public.tb_requests(id, txsituation, txproblem, customerfk, farmfk, implementfk, statusfk)
+				VALUES (:id, :txsituation, :txproblem, :customerfk, :farmfk, :implementfk, :statusfk);", 
 				array(
-					":idrequest"=>$this->getidrequest(),
+					":id"=>$this->getid(),
 					":txsituation"=>$this->gettxsituation(),
 					":txproblem"=>$this->gettxproblem(),
 					":customerfk"=>$this->getcustomerfk(),
@@ -128,8 +128,8 @@
 			$results = $database->select(
 				"UPDATE tb_requests 
 					SET txsituation = :txsituation, txproblem = :txproblem, customerfk = :customerfk, farmfk = :farmfk, implementfk = :implementfk, statusfk = :statusfk
-					WHERE idrequest = :idrequest", array(
-					":idrequest"=>$this->getidrequest(),
+					WHERE id = :id", array(
+					":id"=>$this->getid(),
 					":txsituation"=>$this->gettxsituation(),
 					":txproblem"=>$this->gettxproblem(),
 					":customerfk"=>$this->getcustomerfk(),
@@ -144,8 +144,8 @@
 			$database = new Database();
 			$this->verifyStatus();
 			$results = $database->select(
-				"DELETE FROM tb_requests rs WHERE rs.idrequest = :idrequest", array(
-					":idrequest"=>$this->getidrequest()
+				"DELETE FROM tb_requests rs WHERE rs.id = :id", array(
+					":id"=>$this->getid()
 			));
 			$this->setSuccess("Exclusão realizada com sucesso!");
 		}

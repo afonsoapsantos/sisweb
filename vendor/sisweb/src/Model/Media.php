@@ -11,8 +11,8 @@
 	 */
 	class Media extends Model{
 
-		const ERROR = "MediaError";
-		const SUCCESS = "MediaSuccess";
+		const ERROR = "Error";
+		const SUCCESS = "Success";
 		
 		public function getMaxId(){
 			$database = new Database();
@@ -47,13 +47,43 @@
 					":updatedat"=>$this->getrequestfk()
 				]
 			);
+			$this->setData($create[0]);
+			$this->setSuccess("Created");
 		}//END
 
 		public function delete(){
 			$database = new Database();
-			$results = $database->select("DELETE FROM tb_mediarequest mr WHERE mr.requestfk = :idrequest",array(
+			$database->select("DELETE FROM tb_mediarequest mr WHERE mr.requestfk = :idrequest",array(
 				":idrequest"=>$this->getid()
 			));
+			$this->setSuccess("Deleted");
+		}
+
+		public function update(){
+			$database = new Database();
+			$update = $database->query(
+				"UPDATE tb_media AS m
+					SET txname=:txname, txlocal=:txlocal, txdescription=:txdescription, 
+						createdat=:createdat, updatedat=:updatedat 
+					WHERE m.id = :id",
+				[
+					":id"=>$this->getid(),
+					":txname"=>$this->gettxname(),
+					":txlocal"=>$this->gettxlocal(),
+					":txdescription"=>$this->gettxdescription(),
+					":createdat"=>$this->getcreatedat(),
+					":updatedat"=>$this->getrequestfk()
+				]
+			);
+			$this->setData($update[0]);
+			$this->setSuccess("Updated");
+		}
+
+		public function read(){
+			$database = new Database();
+			return $database->select(
+				"SELECT * FROM tb_media;"
+			);
 		}
 
 		public function getStatus(){
@@ -111,11 +141,11 @@
 			return $results;
 		}
 
-		public static function setSuccess($msg){
+		public function setSuccess($msg){
 			$_SESSION[Media::SUCCESS] = $msg;
 		}
 
-		public static function getSuccess(){
+		public function getSuccess(){
 			$msg = (isset($_SESSION[Media::SUCCESS]) && $_SESSION[Media::SUCCESS]) ? $_SESSION[Media::SUCCESS] : '';
 			Media::clearSuccess();
 			return $msg;
