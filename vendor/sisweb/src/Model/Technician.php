@@ -42,7 +42,6 @@
 
 		public function read(){
 			$database = new Database();
-
 			return $database->select(
 				"SELECT * FROM tb_users us 
 					INNER JOIN tb_statususer su ON us.fkstatususer = su.pkstatus

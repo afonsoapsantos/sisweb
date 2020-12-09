@@ -122,7 +122,7 @@
 		public function create(){
 			$database = new Database();
 
-			$results = $database->select(
+			$data = $database->select(
 				"INSERT INTO tb_users(id, txlogin, txpassword, fkusertype, fkstatususer, dtregisteruser)
 				VALUES (:id, :login, :password, :fkusertype, :fkstatususer, :dtregisteruser);",array(
 					":id"=>$this->getiduser(),
@@ -132,7 +132,7 @@
 					":fkstatususer"=>$this->getfkstatususer(),
 					":dtregisteruser"=>$this->getdtregisteruser()
 				));
-			$this->setData($results[0]);
+			$this->setData($data[0]);
 			$this->setSuccess("created");
 		}
 

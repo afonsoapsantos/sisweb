@@ -5,46 +5,55 @@
 	use \Sisweb\DB\Database;
 
 	/**
-	 * 
+	 * Classe que instacia os objetos do tipo Media
+	 * Criada 09/12/20
+	 * Autor: Afonso Santos
 	 */
 	class Media extends Model{
 
 		const ERROR = "MediaError";
 		const SUCCESS = "MediaSuccess";
 		
-		public function getMaxIdRequest(){
-
+		public function getMaxId(){
 			$database = new Database();
-			$id = $database->select("SELECT MAX(idmedia) FROM tb_mediarequest;");
-			foreach ($id as $key => $value) {
-				$idmax = $value['max'];
+			$idm = $database->select("SELECT MAX(id) FROM tb_media;");
+			foreach ($idm as $key => $value) {
+				$max = $value['max'];
 			}
-
-			$idmedia = $idmax + 1;
-
-			$this->setidmedia($idmedia);
-		}
-
-		public function getMaxIdorder(){
-
-			$database = new Database();
-			$id = $database->select("SELECT MAX(idmedia) FROM tb_mediaorders;");
-			foreach ($id as $key => $value) {
-				$idme = (int)$value['max'];
-			}
-
-			$idmedia = $idme + 1;
-
-			$this->setidmedia($idmedia);
+			$id = $max + 1;
+			$this->setidmedia($id);
 		}
 
 		public function get(){
 			$database = new Database();
-			$results = $database->select(
-				"SELECT * FROM tb_mediaorders mo WHERE idmedia = :idmedia;",array(
-					":idmedia"=>$this->getidmedia()
+			$get = $database->select(
+				"SELECT * FROM tb_media AS m WHERE m.id = :id;",array(
+					":id"=>$this->getid()
 			));
-			$this->setData($results[0]);
+			$this->setData($get[0]);
+		}
+
+		public function create(){
+			$database = new Database();
+			$create = $database->query(
+				"INSERT INTO public.tb_media(id, txname, txlocal, txdescription, createdat, updatedat)
+				VALUES (:id, :txname, :txlocal, :txdescription, :createdat, :updatedat);",
+				[
+					":id"=>$this->getid(),
+					":txname"=>$this->gettxname(),
+					":txlocal"=>$this->gettxlocal(),
+					":txdescription"=>$this->gettxdescription(),
+					":createdat"=>$this->getcreatedat(),
+					":updatedat"=>$this->getrequestfk()
+				]
+			);
+		}//END
+
+		public function delete(){
+			$database = new Database();
+			$results = $database->select("DELETE FROM tb_mediarequest mr WHERE mr.requestfk = :idrequest",array(
+				":idrequest"=>$this->getid()
+			));
 		}
 
 		public function getStatus(){
@@ -100,63 +109,6 @@
 			);
 
 			return $results;
-		}
-
-		public function insertMediaRequest(){
-			$database = new Database();
-			$results = $database->query(
-				"INSERT INTO public.tb_mediarequest(idmedia, txnamemedia, txlocalmedia, txdescription, dtmedia, customerfk, requestfk)
-				VALUES (:idmedia, :txnamemedia, :txlocalmedia, :txdescription, :dtmedia, :customerfk, :requestfk);",
-				array(
-					":idmedia"=>$this->getidmedia(),
-					":txnamemedia"=>$this->gettxnamemedia(),
-					":txlocalmedia"=>$this->gettxlocalmedia(),
-					":txdescription"=>$this->gettxdescription(),
-					":dtmedia"=>$this->getdtmedia(),
-					":customerfk"=>$this->getcustomerfk(),
-					":requestfk"=>$this->getrequestfk()
-				));
-		}//fim insertMediaRequest
-
-		public function insertMediaOrder(){
-
-			$database = new Database();
-
-			$results = $database->query(
-				"INSERT INTO public.tb_mediaorders(idmedia, txnamemedia, txlocalmedia, txdescription, customerfk, orderfk, dtmedia)
-				VALUES (:idmedia, :txnamemedia, :txlocalmedia, :txdescription, :customerfk, :orderfk, :dtmedia);",
-				array(
-					":idmedia"=>$this->getidmedia(),
-					":txnamemedia"=>$this->gettxnamemedia(),
-					":txlocalmedia"=>$this->gettxlocalmedia(),
-					":txdescription"=>$this->gettxdescription(),
-					":customerfk"=>$this->getcustomerfk(),
-					":orderfk"=>$this->getorderfk(),
-					":dtmedia"=>$this->getdtmedia()
-				));
-		}//fim insertMediaOrder
-
-		public function updateMediaRequest(){
-			$database = new Database();
-			$results = $database->select();
-		}
-
-		public function updateMediaOrder($idorder){
-			
-		}
-
-		public function deleteMediaRequest($idrequest){
-			$database = new Database();
-			$results = $database->select("DELETE FROM tb_mediarequest mr WHERE mr.requestfk = :idrequest",array(
-				":idrequest"=>$idrequest
-			));
-		}
-
-		public function deleteMediaOrder($idorder){
-			$database = new Database();
-			$results = $database->select("DELETE FROM tb_mediarequest mr WHERE mr.orderfk = :idorder",array(
-				":idorder"=>$idorder
-			));
 		}
 
 		public static function setSuccess($msg){

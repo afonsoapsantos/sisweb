@@ -189,17 +189,6 @@ use \Sisweb\Model\UserType;
 		]);
 	});
 
-	$app->get("/admin/orders/customer/select", function(){
-		Administrator::validateAdmin();
-
-		$customers = Customer::listAllCustomers();
-
-		$page = new PageAdmin();
-		$page->setTpl("customer-select", [
-			'customers'=>$customers
-		]);
-	});
-
 	$app->get("/admin/orders/create/:idcustomer", function($idcustomer){
 		Administrator::validateAdmin();
 

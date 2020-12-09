@@ -17,7 +17,7 @@
 		 * Registra o usuário do tipo administrador da empresa
 		 * Função que insere na tabela
 		 */
-		public function save(){
+		public function create(){
 			#Registra o usuário do tipo administrador
 			$database = new Database();
 			$database->select("INSERT INTO tb_administrators 
@@ -30,7 +30,7 @@
 				"txlastname"=>$this->settxlastname()
 			]);
 
-			$this->setSuccess("Cadastro efetuado com Sucesso!");
+			$this->setSuccess("Created!");
 		}
 
 		public function read(){
