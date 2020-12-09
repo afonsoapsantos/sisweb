@@ -4,9 +4,9 @@
             <header class="vertical-menu">
                 <a class="item" href="/admin/products">Produtos</a>
                 <a class="item" href="/admin/services">Serviços</a>
-                <a href="" class="item">Clientes</a>
-                <a href="" class="item">Fornecedores</a>
-                <a href="" class="item">Transportadoras</a>
+                <a class="item" href="/admin/customers">Clientes</a>
+                <a class="item" href="/admin/providers">Fornecedores</a>
+                <a class="item" href="#">Transportadoras</a>
                 <a class="item" href="/admin/requests">Requisições</a>
                 <a class="item" href="/admin/orders">Ordens</a>
             </header>

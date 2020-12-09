@@ -26,7 +26,7 @@
 			</thead>
 			<tbody>
 				<?php $counter1=-1;  if( isset($poduct) && ( is_array($poduct) || $poduct instanceof Traversable ) && sizeof($poduct) ) foreach( $poduct as $key1 => $value1 ){ $counter1++; ?>
-					<tr>$value.pkproduct
+					<tr>
 						<td><?php echo htmlspecialchars( $value1["pkproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
 						<td><?php echo htmlspecialchars( $value1["txnameproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
 						<td><?php echo htmlspecialchars( $value1["txdescriptionproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>

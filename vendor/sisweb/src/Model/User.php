@@ -1,8 +1,6 @@
 <?php 
 
 	namespace Sisweb\Model;
-
-	use \Sisweb\Model;
 	use \Sisweb\DB\Database;
 
 	class User extends Person {
@@ -72,7 +70,7 @@
 				||
 				!$_SESSION[User::SESSION]
 				||
-				!(int)$_SESSION[User::SESSION]["id"] > 0
+				!(int)$_SESSION[User::SESSION]["iduser"] > 0
 			) {
 				//Não está logado
 				return false;
@@ -101,105 +99,6 @@
 				return $fkusertype;
 			}
 		}
-		
-		public static function validateTechnical(){
-			$fkusertype = (int)$_SESSION[User::SESSION]["fkusertype"];
-			$fkstatususer = (int)$_SESSION[User::SESSION]["fkstatususer"];
-			if ($fkstatususer != 1) {
-				User::logout();
-			}
-			User::verifyLogin((int)$fkusertype);
-			if($fkusertype != 3){
-				User::logout();
-			}
-		}
-
-		public static function validateCustomer(){
-			$fkusertype = (int)$_SESSION[User::SESSION]["fkusertype"];
-			$fkstatususer = (int)$_SESSION[User::SESSION]["fkstatususer"];
-			if ($fkstatususer != 1) {
-				User::logout();
-			}
-			User::verifyLogin((int)$fkusertype);
-			if($fkusertype != 4){
-				User::logout();
-			}
-		}
-
-		public static function validateFarmWorker(){
-			$fkusertype = (int)$_SESSION[User::SESSION]["fkusertype"];
-			$fkstatususer = (int)$_SESSION[User::SESSION]["fkstatususer"];
-			if ($fkstatususer != 1) {
-				User::logout();
-			}
-			User::verifyLogin((int)$fkusertype);
-			if($fkusertype != 5){
-				User::logout();
-			}
-		}
-
-		public static function listAllUser(){
-			$database = new Database();
-			return $database->select(
-				"SELECT * FROM tb_users us
-					INNER JOIN tb_userstype ut ON us.fkusertype = ut.idusertype 
-					INNER JOIN tb_status su ON us.fkstatususer = su.idstatus 
-					ORDER BY us.id;");
-		}
-
-		public static function listAllManagers(){
-			$database = new Database();
-
-			return $database->select(
-				"SELECT * FROM tb_users us 
-					INNER JOIN tb_statususer su ON us.fkstatususer = su.pkstatus
-					INNER JOIN tb_userstype ut ON us.fkusertype = ut.idusertype
-					WHERE us.fkusertype = 2;"
-			);
-		}
-
-		public static function listUsersByManager(){
-			$database = new Database();
-			return $results = $database->query(
-				"CREATE TEMPORARY TABLE IF NOT EXISTS a AS(SELECT * FROM tb_users us WHERE us.fkusertype = 1);CREATE TEMPORARY TABLE IF NOT EXISTS b AS(SELECT * FROM tb_users us WHERE us.fkusertype = 2);CREATE TEMPORARY TABLE IF NOT EXISTS c AS(SELECT * FROM tb_users us EXCEPT (SELECT * FROM a));CREATE TEMPORARY TABLE IF NOT EXISTS d AS(SELECT * FROM c EXCEPT (SELECT * FROM b));SELECT * FROM d
-					INNER JOIN tb_statususer su ON su.pkstatus = d.fkstatususer
-					INNER JOIN tb_userstype ut ON ut.idusertype = d.fkusertype;"
-			);
-		}
-
-		public static function listAllTechnical(){
-			$database = new Database();
-
-			return $database->select(
-				"SELECT * FROM tb_users us 
-					INNER JOIN tb_statususer su ON us.fkstatususer = su.pkstatus
-					INNER JOIN tb_userstype ut ON us.fkusertype = ut.idusertype
-					WHERE us.fkusertype = 3;"
-			);
-		}
-
-		public static function listAllCustomers(){
-			$database = new Database();
-
-			return $database->select(
-				"SELECT * FROM tb_users us 
-					INNER JOIN tb_statususer su ON us.fkstatususer = su.pkstatus
-					INNER JOIN tb_userstype ut ON us.fkusertype = ut.idusertype
-					WHERE us.fkusertype = 4;"
-			);
-		}
-
-		public static function listUsersTypes(){
-			$database = new Database();
-			$userstypes = $database->select("SELECT * FROM tb_userstype;");
-			return $userstypes;
-		}
-
-		public static function listStatusUser(){
-			$database = new Database();
-			$status = $database->select("SELECT * FROM tb_statususer;");
-			return $status;
-		}
 
 		public function getMaxId(){
 			$database = new Database();
@@ -209,6 +108,15 @@
 			}
 			$idm = $id + 1;
 			$this->setiduser($idm);
+		}
+
+		public function read(){
+			$database = new Database();
+			return $database->select(
+				"SELECT * FROM tb_users us
+					INNER JOIN tb_userstype ut ON us.fkusertype = ut.idusertype 
+					INNER JOIN tb_status su ON us.fkstatususer = su.idstatus 
+					ORDER BY us.id;");
 		}
 
 		public function save(){
@@ -227,10 +135,10 @@
 			$this->setData($results[0]);	
 		}
 
-		public function get($id){
+		public function get(){
 			$database = new Database();
-			$results = $database->select("SELECT * FROM tb_users WHERE id = :id", array(
-				":id"=>$id
+			$results = $database->select("SELECT * FROM tb_users AS u WHERE u.id = :id", array(
+				":id"=>$this->getid()
 			));
 
 			if(count($results) === 0){
@@ -240,7 +148,7 @@
 			$this->setData($results[0]);
 		}
 
-		public function updateUser(){
+		public function update(){
 			$database = new Database();
 			$results = $database->select(
 				"UPDATE tb_users 
@@ -258,15 +166,14 @@
 			$this->setData($results[0]);
 		}
 
-		public function deleteUser(){
+		public function delete(){
 			$database = new Database();
 			$database->query("DELETE FROM tb_users WHERE id = :id", array(
 				":id"=>$this->getiduser()
 			));
 		}
 
-		public static function getUsersPage($page = 1, $itemsPerPage = 3)
-		{
+		public static function getUsersPage($page = 1, $itemsPerPage = 5){
 			$start = ($page - 1) * $itemsPerPage;
 			
 			$database = new Database();
@@ -274,7 +181,7 @@
 				SELECT * FROM tb_users us
 					INNER JOIN tb_userstype ut ON us.fkusertype = ut.idusertype 
 					INNER JOIN tb_status su ON us.fkstatususer = su.idstatus 
-					ORDER BY us.id 
+					ORDER BY us.id
 					OFFSET $start 
 					LIMIT $itemsPerPage
 			");

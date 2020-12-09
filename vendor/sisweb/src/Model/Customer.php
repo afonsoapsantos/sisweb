@@ -10,11 +10,6 @@
 	 */
 	class Customer extends User {
 
-		public static function listAllCustomers(){
-			$database = new Database();
-			return $database->select("SELECT * FROM tb_customers;");
-		}
-
 		public function getCustomerUser($pkuser){
 			
 			$database = new Database();
@@ -36,6 +31,29 @@
 			));
 
 			$this->setData($results[0]);
+		}
+
+		public static function validateCustomer(){
+			$fkusertype = (int)$_SESSION[User::SESSION]["fkusertype"];
+			$fkstatususer = (int)$_SESSION[User::SESSION]["fkstatususer"];
+			if ($fkstatususer != 1) {
+				User::logout();
+			}
+			User::verifyLogin((int)$fkusertype);
+			if($fkusertype != 4){
+				User::logout();
+			}
+		}
+		
+		public static function read(){
+			$database = new Database();
+
+			return $database->select(
+				"SELECT * FROM tb_users us 
+					INNER JOIN tb_statususer su ON us.fkstatususer = su.pkstatus
+					INNER JOIN tb_userstype ut ON us.fkusertype = ut.idusertype
+					WHERE us.fkusertype = 4;"
+			);
 		}
 	
 	}

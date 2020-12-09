@@ -18,14 +18,18 @@
     <link rel="stylesheet" type="text/css" href="../../css/page-admin-services-new.css">
     <link rel="stylesheet" type="text/css" href="../../css/page-admin-financial.css">
     <link rel="stylesheet" type="text/css" href="../../css/page-admin-registrations.css">
+    <link rel="stylesheet" type="text/css" href="../../css/page-admin-cashFlow.css">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
 </head>
 <body>
   <div id="page-admin">
     
     <header id="page-admin-header">
-      <div class="menu">
+      <div class="menu"> 
         <div class="left">
-          <a class="item active" href="/admin">Home</a>
+          <a class="item active" href="/admin">Inicio</a>
         <a class="item" href="#">Loja</a>
         <a class="item" href="/admin/registrations">Cadastros</a>
         <a class="item" href="#">PDV</a>

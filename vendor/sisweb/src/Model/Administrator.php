@@ -29,15 +29,16 @@
 			$user->save();
 		}
 
-		public static function read(){
+		public function read(){
 			$database = new Database();
 
-			return $database->select(
+			$data = $database->select(
 				"SELECT * FROM tb_users us 
 					INNER JOIN tb_statususer su ON us.fkstatususer = su.pkstatus
 					INNER JOIN tb_userstype ut ON us.fkusertype = ut.idusertype
 					WHERE us.fkusertype = 1;"
 			);
+			return $data[0];
 		}
 
 		public static function validateAdmin(){

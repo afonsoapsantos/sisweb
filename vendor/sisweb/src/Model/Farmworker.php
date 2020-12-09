@@ -12,6 +12,18 @@
 
 		const ERROR = "FarmWorkerError";
 		const SUCCESS = "FarmWorkerSuccess";
+
+		public static function validateFarmWorker(){
+			$fkusertype = (int)$_SESSION[User::SESSION]["fkusertype"];
+			$fkstatususer = (int)$_SESSION[User::SESSION]["fkstatususer"];
+			if ($fkstatususer != 1) {
+				User::logout();
+			}
+			User::verifyLogin((int)$fkusertype);
+			if($fkusertype != 5){
+				User::logout();
+			}
+		}
 		
 		public static function listAllByCustomer($pkcustomer){
 			$database = new Database();

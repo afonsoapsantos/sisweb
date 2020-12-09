@@ -22,7 +22,7 @@
 
 	## ROTA para o Fluxo de Caixa
 	$app->get("/admin/cashFlow", function() {
-		Administrator::validateAdmin()();
+		Administrator::validateAdmin();
 
 		$page = new PageAdmin();
 		$page->setTpl("cashFlow", [
@@ -33,10 +33,7 @@
 	## Rotas do Adminsitrador do sistema
 	##Usuário master
 	$app->get("/admin", function() {
-	    
-	    // Administrator::validateAdmin()(User::validate());
-
-		Administrator::validateAdmin()();
+		Administrator::validateAdmin();
 
 		$page = new PageAdmin();
 		$page->setTpl("index", [
@@ -47,7 +44,7 @@
 
 	$app->get("/admin/registrations", function() {
 	    
-	    Administrator::validateAdmin()();
+	    Administrator::validateAdmin();
 
 		$page = new PageAdmin();
 		$page->setTpl("registrations", [
@@ -58,8 +55,7 @@
 
 	//Users
 	$app->get('/admin/users', function() {
-	    Administrator::validateAdmin()();
-	    $users = User::listAllUser();
+	    Administrator::validateAdmin();
 
 	    $page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
 	    $pagination = User::getUsersPage($page);
@@ -71,11 +67,12 @@
 	    		'link'=>'/admin/users?page='.$i,
 	    		'page'=>$i
 	    	]);
-	    }
+		}
+
+		// var_dump($pagination['data']);
 
 		$page = new PageAdmin();
 		$page->setTpl("users",array(
-			// "users"=>$users,
 			"data"=>$pagination['data'],
 			"pages"=>$pages
 		));
@@ -83,23 +80,24 @@
 
 	$app->get('/admin/users/admins', function() {
 	    
-	    Administrator::validateAdmin()();
-	    $admins = Administrator::read();
+		Administrator::validateAdmin();
+		$administrator = new Administrator();
+	    $users = $administrator->read();
 		$page = new PageAdmin();
 		$page->setTpl("users-admins",array(
-			"admins"=>$admins
+			"admins"=>$users
 		));
 	});
 
 	$app->get("/admin/users/managers", function (){
-		Administrator::validateAdmin()();
+		Administrator::validateAdmin();
 
 		$page = new PageAdmin();
 		$page->setTpl("users-managers");
 	});
 
 	$app->get("/admin/users/technical", function (){
-		Administrator::validateAdmin()();
+		Administrator::validateAdmin();
 
 		$technical = User::listAllTechnical();
 
@@ -110,7 +108,7 @@
 	});
 
 	$app->get("/admin/users/customers", function (){
-		Administrator::validateAdmin()();
+		Administrator::validateAdmin();
 
 		$userscustomers = User::listAllCustomers();
 
@@ -121,7 +119,7 @@
 	});
 
 	$app->get("/admin/users/customers/create", function(){
-		Administrator::validateAdmin()();
+		Administrator::validateAdmin();
 
 		$userstypes = User::listUsersTypes();
 
@@ -132,14 +130,14 @@
 	});
 
 	$app->get("/admin/users/farmworker", function (){
-		Administrator::validateAdmin()();
+		Administrator::validateAdmin();
 
 		$page = new PageAdmin();
 		$page->setTpl("users-farmworker");
 	});
 
 	$app->get("/admin/users/consult", function(){
-		Administrator::validateAdmin()();
+		Administrator::validateAdmin();
 		$users = User::listAllUser();
 		$page = new PageAdmin();
 		$page->setTpl("users-select",array(
@@ -148,7 +146,7 @@
 	});
 
 	$app->post("/admin/users/consult", function(){
-		Administrator::validateAdmin()();
+		Administrator::validateAdmin();
 		$users = User::listAllUser();
 		$page = new PageAdmin();
 		$page->setTpl("users-select",array(
@@ -157,7 +155,7 @@
 	});
 
 	$app->get("/admin/users/create", function (){
-		Administrator::validateAdmin()();
+		Administrator::validateAdmin();
 		$userstypes = User::listUsersTypes();
 		$status = User::listStatusUser();
 		$page = new PageAdmin();
@@ -168,7 +166,7 @@
 	});
 
 	$app->post("/admin/users/create", function(){
-		Administrator::validateAdmin()();
+		Administrator::validateAdmin();
 		$user = new User();
 		$user->getMaxId();
 		$user->setData($_POST);
@@ -179,7 +177,7 @@
 	});
 
 	$app->get("/admin/users/:id/delete", function ($id){
-		Administrator::validateAdmin()();
+		Administrator::validateAdmin();
 		$user = new User();
 		$user->getUser((int)$id);
 		$user->deleteUser();
@@ -189,7 +187,7 @@
 	});
 
 	$app->get("/admin/users/:id", function ($id){
-		Administrator::validateAdmin()();
+		Administrator::validateAdmin();
 		$user = new User();
 		$userstypes = User::listUsersTypes();
 		$status = User::listStatusUser();
@@ -204,7 +202,7 @@
 	});
 
 	$app->post("/admin/users/:id", function ($id){
-		Administrator::validateAdmin()();
+		Administrator::validateAdmin();
 		$user = new User();
 		$user->getUser((int)$id);
 		$user->setData($_POST);
@@ -218,7 +216,7 @@
 	//Solicitações
 
 	$app->get("/admin/requests", function(){
-		Administrator::validateAdmin()();
+		Administrator::validateAdmin();
 
 		$requests = Request::listRequestsAdmin();
 		$page = new PageAdmin();
@@ -231,7 +229,7 @@
 
 	//Rotas para Ordens de Serviços
 	$app->get("/admin/requests/generate/order/:idrequest", function($idrequest){
-		Administrator::validateAdmin()();
+		Administrator::validateAdmin();
 		$request = new Request();
 		$request->setidrequest($idrequest);
 		$request->get();
@@ -244,7 +242,7 @@
 	});
 
 	$app->get("/admin/orders", function(){
-		Administrator::validateAdmin()();
+		Administrator::validateAdmin();
 
 		$orders = Order::listAll();
 		$page = new PageAdmin();
@@ -256,7 +254,7 @@
 	});
 
 	$app->get("/admin/orders/customer/select", function(){
-		Administrator::validateAdmin()();
+		Administrator::validateAdmin();
 
 		$customers = Customer::listAllCustomers();
 
@@ -267,7 +265,7 @@
 	});
 
 	$app->get("/admin/orders/create/:idcustomer", function($idcustomer){
-		Administrator::validateAdmin()();
+		Administrator::validateAdmin();
 
 		$customer = new Customer();
 		$customer->getCustomer($idcustomer);
@@ -276,7 +274,7 @@
 	});
 
 	$app->post("/admin/orders/create", function(){
-		Administrator::validateAdmin()();
+		Administrator::validateAdmin();
 		try {
 			$idrequest = (int)$_POST["requestfk"];
 			$request = new Request();
@@ -309,7 +307,7 @@
 	});
 
 	$app->get("/admin/services", function(){
-		Administrator::validateAdmin()();
+		Administrator::validateAdmin();
 
 	    $page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
 	    $pagination = Service::getServicesPage($page);
@@ -331,13 +329,13 @@
 	});
 
 	$app->get("/admin/services/create", function(){
-		Administrator::validateAdmin()();
+		Administrator::validateAdmin();
 		$page = new PageAdmin();
 		$page->setTpl("services-create");
 	});
 
 	$app->post("/admin/services/create", function(){
-		Administrator::validateAdmin()();
+		Administrator::validateAdmin();
 		$service = new Service();
 		$service->getMaxId();
 		$service->setData($_POST);
@@ -347,7 +345,7 @@
 	});
 
 	$app->get("/admin/services/update/:idservice", function($idservice){
-		Administrator::validateAdmin()();
+		Administrator::validateAdmin();
 
 		$service = new Service();
 		$service->setidservice($idservice);
@@ -359,7 +357,7 @@
 	});
 
 	$app->post("/admin/services/update/:idservice", function($idservice){
-		Administrator::validateAdmin()();
+		Administrator::validateAdmin();
 		$service = new Service();
 		$service->setidservice($idservice);
 		$service->get();
@@ -370,7 +368,7 @@
 	});
 
 	$app->get("/admin/services/delete/:idservice", function($idservice){
-		Administrator::validateAdmin()();
+		Administrator::validateAdmin();
 
 		$service = new Service();
 		$service->setidservice($idservice);
@@ -381,13 +379,13 @@
 	});
 
 	$app->get("/admin/technical", function(){
-		Administrator::validateAdmin()();
+		Administrator::validateAdmin();
 		$page = new PageAdmin();
 		$page->setTpl("technical");
 	});
 
 	$app->get("/admin/providers", function(){
-		Administrator::validateAdmin()();
+		Administrator::validateAdmin();
 		$providers = Provider::listAll();
 		$page = new PageAdmin();
 		$page->setTpl("providers", array(
@@ -396,13 +394,13 @@
 	});
 
 	$app->get("/admin/providers/create", function(){
-		Administrator::validateAdmin()();
+		Administrator::validateAdmin();
 		$page = new PageAdmin();
 		$page->setTpl("providers-create");
 	});
 
 	$app->post("/admin/providers/create", function(){
-		Administrator::validateAdmin()();
+		Administrator::validateAdmin();
 		$provider = new Provider();
 		$provider->getMaxId();
 		$provider->getMaxIdOrder();
@@ -417,7 +415,7 @@
 	});
 
 	$app->get("/admin/products", function(){
-		Administrator::validateAdmin()();
+		Administrator::validateAdmin();
 		$product = Product::listAll();
 		$page = new PageAdmin();
 		$page->setTpl("products", array(
@@ -426,13 +424,13 @@
 	});
 
 	$app->get("/admin/products/create", function(){
-		Administrator::validateAdmin()();
+		Administrator::validateAdmin();
 		$page = new PageAdmin();
 		$page->setTpl("products-create");
 	});
 
 	$app->get("/admin/financial", function(){
-		Administrator::validateAdmin()();
+		Administrator::validateAdmin();
 		$page = new PageAdmin();
 		$page->setTpl("financial");
 	});
