@@ -6,7 +6,7 @@
 	class User extends Person {
 
 		const SESSION = "User";
-		const SECRET = "Sisweb_recvery_6";
+		const SECRET = "Sisweb_recovery_6";
 		const ERROR = "UserError";
 		const ERROR_REGISTER = "UserErrorRegister";
 		const SUCCESS = "UserSucesss";
@@ -119,7 +119,7 @@
 					ORDER BY us.id;");
 		}
 
-		public function save(){
+		public function create(){
 			$database = new Database();
 
 			$results = $database->select(
@@ -132,7 +132,8 @@
 					":fkstatususer"=>$this->getfkstatususer(),
 					":dtregisteruser"=>$this->getdtregisteruser()
 				));
-			$this->setData($results[0]);	
+			$this->setData($results[0]);
+			$this->setSuccess("created");
 		}
 
 		public function get(){
@@ -150,7 +151,7 @@
 
 		public function update(){
 			$database = new Database();
-			$results = $database->select(
+			$data = $database->select(
 				"UPDATE tb_users 
 					SET txlogin=:login, txpassword=:password, fkusertype=:fkusertype, 
 						fkstatususer=:fkstatususer, dtregisteruser=:dtregisteruser
@@ -163,7 +164,8 @@
 					":fkstatususer"=>$this->getfkstatususer(),
 					":dtregisteruser"=>$this->getdtregisteruser()
 				));
-			$this->setData($results[0]);
+			$this->setData($data[0]);
+			$this->setSuccess("Updated");
 		}
 
 		public function delete(){
@@ -171,6 +173,7 @@
 			$database->query("DELETE FROM tb_users WHERE id = :id", array(
 				":id"=>$this->getiduser()
 			));
+			$this->setSuccess("Usuário deletado");
 		}
 
 		public static function getUsersPage($page = 1, $itemsPerPage = 5){

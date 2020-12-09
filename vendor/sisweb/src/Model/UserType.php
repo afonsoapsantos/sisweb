@@ -9,8 +9,9 @@
 
         public function read(){
             $database = new Database();
-			$userstypes = $database->select("SELECT * FROM tb_userstype;");
-			return $userstypes;
+			return $database->select(
+                "SELECT * FROM tb_userstype;"
+            );
         }
         
         public function update(){

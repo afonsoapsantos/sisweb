@@ -13,8 +13,7 @@
 		const SUCCESS = "cashMovementSucess";
 		const ERROR  = "cashMovementError";
 
-		public function getMaxID()
-		{
+		public function getMaxID(){
 			$database = new Database();
 			$idcm = $database->select("SELECT MAX(id) FROM tb_cashmovement");
             foreach ($idcm as $key => $value) {
@@ -24,16 +23,15 @@
 			$this->setid($id);
 		}
 		
-		public function save()
-		{
+		public function save(){
 			$database = new Database();
 
 			$results = $database->select(
-				"INSERT INTO public.tb_cashmovement(id, txdescription, txtype, nuday, monthid, nuyear, price)
-				VALUES (:id, :txdescription, :txtype, :nuday, :monthid, :nuyear, :price);", array(	
+				"INSERT INTO public.tb_cashmovement(id, txdescription, typepayid, nuday, monthid, nuyear, price)
+				VALUES (:id, :txdescription, :typepayid, :nuday, :monthid, :nuyear, :price);", array(	
 					":id"=>$this->getid(),
 					":txdescription"=>$this->gettxdescription(),
-					":txtype"=>$this->gettxtype(),
+					":typepayid"=>$this->gettypepayid(),
 					":nuday"=>$this->getnuday(),
 					":monthid"=>$this->getmonthid(),
 					":nuyear"=>$this->getnuyear(),
@@ -44,8 +42,7 @@
 			$this->setSuccess("Cadastro efetuado com Sucesso!");
 		}
 
-		public function delete()
-		{
+		public function delete(){
 			$database = new Database();
 
 			$data = $database->select(
@@ -57,27 +54,44 @@
 			$this->setSuccess("Registro Deletado!");
 		}
 
-		public function update()
-		{
+		/*
+		* Altera o registro
+		*/
+		public function update(){
 			$database = new Database();
-
 			$data = $database->select(
-				""
+				"UPDATE tb_cashmovement
+					SET id=:id, txdescription=:txdescription,typepayid=:typepayid, 
+						nuday=:nuday, monthid=:monthid, nuyear=:nuyear, price=:price",
+				[
+					":id"=>$this->getid(),
+					":txdescription"=>$this->gettxdescription(),
+					":typepayid"=>$this->gettypepayid(),
+					":nuday"=>$this->getnuday(),
+					":monthid"=>$this->getmonthid(),
+					":nuyear"=>$this->getnuyear(),
+					":price"=>$this->getprice()
+				]
 			);
+
+			$this->setData($data);
+			$this->setSuccess("Alterado com Sucesso!");
 		}
 		
-
-		public function read()
-		{
+		/*
+		* Lê os registros da tabela
+		*/
+		public function read(){
 			$database = new Database();
-
-			$data = $database->select(
-				""
+			return $database->select(
+				"SELECT * FROM tb_cashmovement"
 			);
 		}
 
-		public function get()
-		{
+		/*
+		* Busca um registro da tabela
+		*/
+		public function get(){
 			$database = new Database();
 
 			$data = $database->select(

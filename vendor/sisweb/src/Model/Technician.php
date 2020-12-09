@@ -40,7 +40,7 @@
 			$this->setData($results[0]);
 		}
 
-		public function listAllTechnical(){
+		public function read(){
 			$database = new Database();
 
 			return $database->select(

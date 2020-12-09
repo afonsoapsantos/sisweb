@@ -1,22 +1,18 @@
 <?php
 
 	use \Sisweb\PageAdmin;
-	use \Sisweb\Model\Person;
 	use \Sisweb\Model\User;
 	use \Sisweb\Model\Administrator;
 	use \Sisweb\Model\Customer;
-	use \Sisweb\Model\Manager;
-	use \Sisweb\Model\Technician;
-	use \Sisweb\Model\Farmworker;
 	use \Sisweb\Model\Request;
 	use \Sisweb\Model\Provider;
 	use \Sisweb\Model\Product;
 	use \Sisweb\Model\Service;
-	use \Sisweb\Model\Implement;
-	use \Sisweb\Model\Farm;
-	use \Sisweb\Model\File;
 	use \Sisweb\Model\Media;
 	use \Sisweb\Model\Order;
+	use \Sisweb\Model\Status;
+use Sisweb\Model\Technician;
+use \Sisweb\Model\UserType;
 
 
 
@@ -78,125 +74,65 @@
 		));
 	});
 
-	$app->get('/admin/users/admins', function() {
-	    
-		Administrator::validateAdmin();
-		$administrator = new Administrator();
-	    $users = $administrator->read();
-		$page = new PageAdmin();
-		$page->setTpl("users-admins",array(
-			"admins"=>$users
-		));
-	});
-
-	$app->get("/admin/users/managers", function (){
-		Administrator::validateAdmin();
-
-		$page = new PageAdmin();
-		$page->setTpl("users-managers");
-	});
-
-	$app->get("/admin/users/technical", function (){
-		Administrator::validateAdmin();
-
-		$technical = User::listAllTechnical();
-
-		$page = new PageAdmin();
-		$page->setTpl("users-technical", [
-			"technical"=>$technical
-		]);
-	});
-
-	$app->get("/admin/users/customers", function (){
-		Administrator::validateAdmin();
-
-		$userscustomers = User::listAllCustomers();
-
-		$page = new PageAdmin();
-		$page->setTpl("users-customers",[
-			"userscustomers"=>$userscustomers
-		]);
-	});
-
-	$app->get("/admin/users/customers/create", function(){
-		Administrator::validateAdmin();
-
-		$userstypes = User::listUsersTypes();
-
-		$page = new PageAdmin();
-		$page->setTpl("users-customers-create",[
-			"userstypes"=>$userstypes
-		]);		
-	});
-
-	$app->get("/admin/users/farmworker", function (){
-		Administrator::validateAdmin();
-
-		$page = new PageAdmin();
-		$page->setTpl("users-farmworker");
-	});
-
-	$app->get("/admin/users/consult", function(){
-		Administrator::validateAdmin();
-		$users = User::listAllUser();
-		$page = new PageAdmin();
-		$page->setTpl("users-select",array(
-			"users"=>$users
-		));
-	});
-
-	$app->post("/admin/users/consult", function(){
-		Administrator::validateAdmin();
-		$users = User::listAllUser();
-		$page = new PageAdmin();
-		$page->setTpl("users-select",array(
-			"users"=>$users
-		));
-	});
-
 	$app->get("/admin/users/create", function (){
 		Administrator::validateAdmin();
-		$userstypes = User::listUsersTypes();
-		$status = User::listStatusUser();
+
+		$status = new Status();
+		$usertype = new UserType();
+		$listStatus = $status->read();
+		$userstypes = $usertype->read();
 		$page = new PageAdmin();
 		$page->setTpl("users-create", array(
 			"userstypes"=>$userstypes,
-			"status"=>$status
+			"status"=>$listStatus
 		));
 	});
 
 	$app->post("/admin/users/create", function(){
 		Administrator::validateAdmin();
-		$user = new User();
-		$user->getMaxId();
-		$user->setData($_POST);
-		$user->setdtregisteruser(date("Y-m-d"));
-		$user->save();
-		header("Location: /admin/users");
-		exit;
+		
+		try{
+			$user = new User();
+			$user->getMaxId();
+			$user->setData($_POST);
+			$user->setdtregisteruser(date("Y-m-d"));
+			$user->create();
+			header("Location: /admin/users");
+			exit;
+		}catch(Exception $e){
+			User::setError($e->getMessage());
+			header("Location: /admin/users/create");
+		}
 	});
 
 	$app->get("/admin/users/:id/delete", function ($id){
 		Administrator::validateAdmin();
-		$user = new User();
-		$user->getUser((int)$id);
-		$user->deleteUser();
-
-		header("Location: /admin/users");
-		exit;
+		try {
+			$user = new User();
+			$user->setData((int)$id);
+			$user->get();
+			$user->delete();
+			header("Location: /admin/users");
+			exit;
+		} catch(Exception $e) {
+			User::setError($e->getMessage());
+			header("Location: /admin/users");
+		}
 	});
 
 	$app->get("/admin/users/:id", function ($id){
 		Administrator::validateAdmin();
 		$user = new User();
-		$userstypes = User::listUsersTypes();
-		$status = User::listStatusUser();
+		$status = new Status();
+		$usertype = new UserType();
+		$userstypes = $usertype->read();
+		$listStatus = $status->read();
 		$user->getUser((int)$id);
 		$page = new PageAdmin();
 		$page->setTpl("users-update", array(
 			"user"=>$user->getValues(),
 			"userstypes"=>$userstypes,
-			"status"=>$status
+			"status"=>$listStatus
 		));
 		exit;
 	});

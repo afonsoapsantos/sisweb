@@ -47,11 +47,11 @@
 			$this->setData($results[0]);
 		}
 
-		public static function gettStatus(){
+		public function getStatus(){
 			$database = new Database();
 			return $database->select("SELECT * FROM tb_status s WHERE s.idstatus = :idstatus;",
 				array(
-					":idstatus"=>$idstatus
+					":idstatus"=>$this->getidstatus()
 				));
 		}
 

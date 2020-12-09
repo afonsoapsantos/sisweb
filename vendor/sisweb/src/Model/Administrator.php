@@ -9,45 +9,41 @@
 	 * Classe que instancia o objeto do tipo adminisitrador e suas funções
 	 */
 	class Administrator extends User {
-		
 
-		public function save()
-		{
+		const ERROR = "error";
+		const Success = "success";
+
+		/**
+		 * Registra o usuário do tipo administrador da empresa
+		 * Função que insere na tabela
+		 */
+		public function save(){
 			#Registra o usuário do tipo administrador
-
 			$database = new Database();
-
 			$database->select("INSERT INTO tb_administrators 
 					(id, txname, txlastname, )
 				VALUES 
-					(id, txname, txlastname, )", [
-
+					(id, txname, txlastname, )", 
+			[
+				"id"=>$this->setid(),
+				"txname"=>$this->settxname(),
+				"txlastname"=>$this->settxlastname()
 			]);
 
-
-			$user = new User();
-			$user->save();
+			$this->setSuccess("Cadastro efetuado com Sucesso!");
 		}
 
 		public function read(){
 			$database = new Database();
-
-			$data = $database->select(
+			return $database->select(
 				"SELECT * FROM tb_users us 
 					INNER JOIN tb_statususer su ON us.fkstatususer = su.pkstatus
 					INNER JOIN tb_userstype ut ON us.fkusertype = ut.idusertype
 					WHERE us.fkusertype = 1;"
 			);
-			return $data[0];
 		}
 
 		public static function validateAdmin(){
-			
-			//$type - passar argumento na função
-			// if ($type != 1) {
-			// 	User::logout();
-			// }
-
 			$fkusertype = (int)$_SESSION[User::SESSION]["fkusertype"];
 			$fkstatususer = (int)$_SESSION[User::SESSION]["fkstatususer"];
 			if ($fkstatususer != 1) {
@@ -58,7 +54,6 @@
 				User::logout();
 			}
 		}
-		
 	}
 
 
