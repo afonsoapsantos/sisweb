@@ -12,15 +12,18 @@
 		public function save(){
 			$database = new Database();
 			$database->select("INSERT INTO tb_persons
-					(id, txname, txlastname, nurg, nuphone)
+					(id, txname, txlastname, nurg, nucpf, email, nucellphone dtregister)
 				VALUES
-					(id, txname, txlastname, nurg, nuphone)",
+					(:id, :txname, :txlastname, :nurg, :nucpf, :email, :nucellphone :dtregister)",
 				[
-					"id"=>$this->setid(),
-					"txname"=>$this->settxname(),
-					"txlastname"=>$this->settxlastname(),
-					"nurg"=>$this->setnurg(),
-					"nuphone"=>$this->setnuphone()
+					":id"=>$this->setid(),
+					":txname"=>$this->settxname(),
+					":txlastname"=>$this->settxlastname(),
+					":nurg"=>$this->setnurg(),
+					":nucpf"=>$this->setnucpf(),
+					":email"=>$this->setemail(),
+					":nucellphone"=>$this->setnucellphone(),
+					":dtregister"=>$this->setdtregister()
 				]);
 		}
 
