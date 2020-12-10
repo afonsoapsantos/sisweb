@@ -6,7 +6,7 @@
 	class User extends Person {
 
 		const SESSION = "User";
-		const SECRET = "Sisweb_recovery_6";
+		const SECRET = "Sisweb_recovery_32";
 		const ERROR = "UserError";
 		const ERROR_REGISTER = "UserErrorRegister";
 		const SUCCESS = "UserSucesss";
@@ -20,34 +20,26 @@
 			return $user;
 		}
 
-		public static function login($login, $password){
-			$database = new Database();
-			$results = $database->select(
-				"SELECT * FROM tb_users as us, tb_userstype as ut 
-					WHERE us.txlogin = :LOGIN AND us.fkusertype = ut.id",
-				array(
-					":LOGIN"=>$login
-				)
-			);
+		public function login($login, $password){
+			$db = new Database();
+			$this->settxlogin($login);
+			$results = $this->getByLogin();
 
-			if (count($results) === 0)
-			{
+			if (count($results) === 0){
 				throw new \Exception("Usuário inexistente ou senha inválida.");
 			}
 
 			$data = $results[0];
 
-			if ($password === $data["txpassword"])
-			{
-				$user = new User();
+			if ($password === $data["txpassword"]){
 				$data['txlogin'] = utf8_encode($data['txlogin']);
-				$user->setData($data);
-				$_SESSION[User::SESSION] = $user->getValues();
-				$fkstatususer = (int)$_SESSION[User::SESSION]["fkstatususer"];
-				if ($fkstatususer != 1) {
+				$this->setData($data);
+				$_SESSION[User::SESSION] = $this->getValues();
+				$fkstatus = (int)$_SESSION[User::SESSION]["fkstatus"];
+				if ($fkstatus != 1) {
 					throw new \Exception("Acesso não Autorizado");
 				}
-				return $user;
+				return $this;
 			} else {
 				throw new \Exception("Usuário inexistente ou senha inválida.");
 			}
@@ -91,9 +83,9 @@
 
 		public static function validate() {
 			$fkusertype = (int)$_SESSION[User::SESSION]["fkusertype"];
-			$fkstatususer = (int)$_SESSION[User::SESSION]["fkstatususer"];
+			$fkstatus = (int)$_SESSION[User::SESSION]["fkstatus"];
 
-			if ($fkstatususer == 1 && $fkusertype < 5  && $fkusertype > 1) {
+			if ($fkstatus == 1 && $fkusertype < 5  && $fkusertype > 1) {
 				User::logout();
 			} else {
 				return $fkusertype;
@@ -101,77 +93,100 @@
 		}
 
 		public function getMaxId(){
-			$database = new Database();
-			$idmax = $database->select("SELECT MAX(id) FROM tb_users;");
+			$db = new Database();
+			$idmax = $db->select("SELECT MAX(id) FROM tb_users;");
 			foreach ($idmax as $key => $value) {
-				$id = $value['max'];
+				$max = $value['max'];
 			}
-			$idm = $id + 1;
-			$this->setiduser($idm);
+			$idm = $max + 1;
+			$this->setid($idm);
 		}
 
 		public function read(){
-			$database = new Database();
-			return $database->select(
+			$db = new Database();
+			return $db->select(
 				"SELECT * FROM tb_users us
 					INNER JOIN tb_userstype ut ON us.fkusertype = ut.idusertype 
-					INNER JOIN tb_status su ON us.fkstatususer = su.idstatus 
+					INNER JOIN tb_status su ON us.fkstatus = su.idstatus 
 					ORDER BY us.id;");
 		}
 
 		public function create(){
-			$database = new Database();
+			$db = new Database();
 
-			$data = $database->select(
-				"INSERT INTO tb_users(id, txlogin, txpassword, fkusertype, fkstatususer, dtregisteruser)
-				VALUES (:id, :txlogin, :txpassword, :fkusertype, :fkstatususer, :dtregisteruser);",array(
-					":id"=>$this->getiduser(),
+			$data = $db->select(
+				"INSERT INTO tb_users(id, txlogin, txpassword, fkusertype,
+							fkstatus, createdat, updatedat)
+				VALUES (:id, :txlogin, :txpassword, :fkusertype, 
+						:fkstatus, :createdat, :updatedat);",
+				[
+					":id"=>$this->getid(),
 					":txlogin"=>$this->gettxlogin(),
 					":txpassword"=>$this->gettxpassword(),
 					":fkusertype"=>$this->getfkusertype(),
-					":fkstatususer"=>$this->getfkstatususer(),
-					":dtregisteruser"=>$this->getdtregisteruser()
-				));
+					":fkstatus"=>$this->getfkstatus(),
+					":createdat"=>$this->getcreatedat(),
+					":updatedat"=>$this->getupdatedat()
+				]
+			); 
 			$this->setData($data[0]);
-			$this->setSuccess("created");
+			$this->setSuccess("Created!");
 		}
 
 		public function get(){
-			$database = new Database();
-			$results = $database->select("SELECT * FROM tb_users AS u WHERE u.id = :id", array(
-				":id"=>$this->getid()
-			));
+			$db = new Database();
+			$results = $db->select("SELECT us.*, su.txname, ut.txname FROM tb_users AS us
+			INNER JOIN tb_userstype AS ut ON us.fkusertype = ut.id 
+			INNER JOIN tb_status AS su ON us.fkstatus = su.idstatus
+			WHERE us.id = :id", 
+				[
+					":id"=>$this->getid()
+				]
+			);
 
 			if(count($results) === 0){
 				throw new \Exception("Usuário não ecnocontrado");
+			} else {
+				$this->setData($results[0]);
+				$this->setSuccess("Geted");
 			}
+		}
 
-			$this->setData($results[0]);
+		public function getByLogin(){
+			$db = new Database();
+			return $db->select(
+				"SELECT * FROM tb_users AS us, tb_userstype AS ut 
+				WHERE us.fkusertype = ut.id AND us.txlogin = :TXLOGIN;",
+				[
+					":TXLOGIN"=>$this->gettxlogin()
+				]
+			);
 		}
 
 		public function update(){
-			$database = new Database();
-			$data = $database->select(
+			$db = new Database();
+			$data = $db->select(
 				"UPDATE tb_users 
 					SET txlogin=:login, txpassword=:password, fkusertype=:fkusertype, 
-						fkstatususer=:fkstatususer, dtregisteruser=:dtregisteruser
+						fkstatus=:fkstatus, createdat=:createdat
 					WHERE id = :id;",
-				array(
-					":id"=>$this->getiduser(),
+				[
+					":id"=>$this->getid(),
 					":login"=>$this->gettxlogin(),
 					":password"=>$this->gettxpassword(),
 					":fkusertype"=>$this->getfkusertype(),
-					":fkstatususer"=>$this->getfkstatususer(),
-					":dtregisteruser"=>$this->getdtregisteruser()
-				));
+					":fkstatus"=>$this->getfkstatus(),
+					":updatedat"=>$this->getupdatedat()
+				]
+			);
 			$this->setData($data[0]);
 			$this->setSuccess("Updated");
 		}
 
 		public function delete(){
-			$database = new Database();
-			$database->query("DELETE FROM tb_users WHERE id = :id", array(
-				":id"=>$this->getiduser()
+			$db = new Database();
+			$db->query("DELETE FROM tb_users WHERE id = :id", array(
+				":id"=>$this->getid()
 			));
 			$this->setSuccess("Usuário deletado");
 		}
@@ -179,17 +194,17 @@
 		public static function getUsersPage($page = 1, $itemsPerPage = 6){
 			$start = ($page - 1) * $itemsPerPage;
 			
-			$database = new Database();
-			$results = $database->select("
+			$db = new Database();
+			$results = $db->select("
 				SELECT * FROM tb_users us
-					INNER JOIN tb_userstype ut ON us.fkusertype = ut.idusertype 
-					INNER JOIN tb_status su ON us.fkstatususer = su.idstatus 
+					INNER JOIN tb_userstype ut ON us.fkusertype = ut.id 
+					INNER JOIN tb_status su ON us.fkstatus = su.idstatus 
 					ORDER BY us.id
 					OFFSET $start 
 					LIMIT $itemsPerPage
 			");
 
-			$resultTotal = $database->select("
+			$resultTotal = $db->select("
 				SELECT COUNT(*) AS nrtotal FROM tb_users;
 			");
 
@@ -202,8 +217,8 @@
 
 		/*
 		public static function getForgot($email, $inadmin = true){
-		    $database = new Database();
-		    $results = $database->select("
+		    $db = new Database();
+		    $results = $db->select("
 		         SELECT *
 		         FROM tb_persons a
 		         INNER JOIN tb_users b USING(idperson)
@@ -215,7 +230,7 @@
 		        throw new \Exception("Não foi possível recuperar a senha.");
 		    } else {
 		         $data = $results[0];
-		         $results2 = $database->select("CALL sp_userspasswordsrecoveries_create(:id, :desip)", array(
+		         $results2 = $db->select("CALL sp_userspasswordsrecoveries_create(:id, :desip)", array(
 		             ":id"=>$data['id'],
 		             ":desip"=>$_SERVER['REMOTE_ADDR']
 		        ));
@@ -246,8 +261,8 @@
 		     $code = mb_substr($result, openssl_cipher_iv_length('aes-256-cbc'), null, '8bit');
 		     $iv = mb_substr($result, 0, openssl_cipher_iv_length('aes-256-cbc'), '8bit');;
 		     $idrecovery = openssl_decrypt($code, 'aes-256-cbc', User::SECRET, 0, $iv);
-		     $database = new Database();
-		     $results = $database->select("
+		     $db = new Database();
+		     $results = $db->select("
 		         SELECT *
 		         FROM tb_userspasswordsrecoveries a
 		         INNER JOIN tb_users b USING(id)
@@ -269,9 +284,9 @@
 		}
 
 		public static function getForgot($email){
-			$database = new Database();
+			$db = new Database();
 
-			$results = $database->select(
+			$results = $db->select(
 				"SELECT * FROM tb_users u, tb_person pe WHERE u.id = pe.userfk AND pe.email = :email", array(
 					":email"=>$email
 				)
@@ -282,14 +297,14 @@
 			}else{
 				$data = $results[0];
 
-				$idr = $database->select("SELECT MAX(idrecovery) FROM tb_passwordsrecoveries;");
+				$idr = $db->select("SELECT MAX(idrecovery) FROM tb_passwordsrecoveries;");
 				foreach ($idr as $key => $value) {
 					$idre = $value['max'];
 				}
 
 				$idrec = $idre + 1;
 
-				$resultrecovery = $database->select("INSERT INTO tb_passwordsrecoveries (idrecovery, userfk, nuip, dtrecovery, dtregister) 
+				$resultrecovery = $db->select("INSERT INTO tb_passwordsrecoveries (idrecovery, userfk, nuip, dtrecovery, dtregister) 
 					VALUES (:idrecovery, :userfk, :nuip, :dtrecovery, :dtregister)", array(
 						":idrecovery"=>$idrec, 
 						":userfk"=>$data['id'], 
@@ -378,8 +393,8 @@
 		}
 
 		public static function checkLoginExist($login){
-			$database = new Database();
-			$results = $database->select("SELECT * FROM tb_users WHERE txlogin = :txlogin", [
+			$db = new Database();
+			$results = $db->select("SELECT * FROM tb_users WHERE txlogin = :txlogin", [
 				':txlogin'=>$login
 			]);
 			return (count($results) > 0);

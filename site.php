@@ -69,10 +69,9 @@
 	});
 
 	$app->post("/login", function() {
-		#$numTent = 0;
 		try {
 			$user = new User();
-			$user = User::login($_POST["txlogin"],$_POST["txpassword"]);
+			$user->login($_POST["txlogin"],$_POST["txpassword"]);
 			$fkusertype = $user->getfkusertype();
 			switch ($fkusertype) {
 				case 1:

@@ -21,9 +21,9 @@
 			#Registra o usuário do tipo administrador
 			$database = new Database();
 			$database->select("INSERT INTO tb_administrators 
-					(id, txname, txlastname, )
+					(id, txname, txlastname, createdat, updatedat)
 				VALUES 
-					(id, txname, txlastname, )", 
+					(:id, :txname, :txlastname, :createdat, :updatedat)", 
 			[
 				"id"=>$this->setid(),
 				"txname"=>$this->settxname(),
@@ -37,7 +37,7 @@
 			$database = new Database();
 			return $database->select(
 				"SELECT * FROM tb_users us 
-					INNER JOIN tb_statususer su ON us.fkstatususer = su.pkstatus
+					INNER JOIN tb_statususer su ON us.fkstatus = su.pkstatus
 					INNER JOIN tb_userstype ut ON us.fkusertype = ut.idusertype
 					WHERE us.fkusertype = 1;"
 			);
@@ -45,8 +45,8 @@
 
 		public static function validateAdmin(){
 			$fkusertype = (int)$_SESSION[User::SESSION]["fkusertype"];
-			$fkstatususer = (int)$_SESSION[User::SESSION]["fkstatususer"];
-			if ($fkstatususer != 1) {
+			$fkstatus = (int)$_SESSION[User::SESSION]["fkstatus"];
+			if ($fkstatus != 1) {
 				User::logout();
 			}
 			User::verifyLogin((int)$fkusertype);

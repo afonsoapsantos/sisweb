@@ -7,8 +7,8 @@
     class ManagerMedia extends Model {
 
         public function create(){
-            $database = new Database();
-            $data = $database->select(
+            $db = new Database();
+            $data = $db->select(
                 "INSERT INTO tb_managermedia
                 (id, customerfk, requestfk, orderfk, createdat, updatedat)
                 VALUES (:id, :customerfk, :requestfk, :orderfk, :createdat, :updatedat)",
@@ -26,15 +26,15 @@
         }
 
         public function read(){
-            $database = new Database();
-            return $database->select(
+            $db = new Database();
+            return $db->select(
                 "SELECT * FROM tb_managermedia;"
             );
         }
 
         public function update(){
-            $database = new Database();
-            $data = $database->query(
+            $db = new Database();
+            $data = $db->query(
                 "UPDATE tb_managermedia
                 SET id=:id, customerfk=:customerfk, requestfk=:requestfk, 
                     orderfk=:orderfk, createdat=:createdat, updatedat=:updatedat",
@@ -52,8 +52,8 @@
         }
 
         public function delete(){
-            $database = new Database();
-            $database->select(
+            $db = new Database();
+            $db->select(
                 "DELETE FROM tb_managermedia AS mm WHERE mm.id = :id",
                 [
                     ":id"=>$this->getid()
@@ -63,12 +63,19 @@
         }
 
         public function get(){
-            $database = new Database();
-            $database->select(
+            $db = new Database();
+            $db->select(
                 "SELECT * FROM tb_managermedia AS mm WHERE mm.id = :id",
                 [
                     ":id"=>$this->getid()
                 ]
+            );
+        }
+
+        public function getByFilter(){
+            $db = new Database();
+            $db->select(
+                ""
             );
         }
 

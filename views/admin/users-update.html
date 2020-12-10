@@ -1,46 +1,46 @@
-<title>Sisweb - Usuários</title>
-	<div class="ui segment">
-		<div class="ui horizontal divider">Menu</div>
-        <div class="ui buttons">
-          <a class="ui green button" href="/admin/users/create">
-            <i class="user plus icon"></i>Novo Usuário
-          </a>
-          <a class="ui green button" href="/admin/users">
-            <i class="users icon"></i>Listar Usuários
-          </a>
-          <a class="ui green button" href="/admin/users/consult">
-            <i class="id card icon"></i>Consultar Usuário
-          </a>
-        </div><br/><br/>
-
-	    <div class="ui horizontal divider">Alterar Usuário</div>
-		<form class="ui form" action="/admin/users/{$user.pkuser}" method="POST">
-			<div class="ui container">
-				<div class="field" align="left">
-				    <label>Usuário:</label>
-				    <input type="text" name="txlogin" value="{$user.txlogin}"><br><br>
-
-	                <label>Status:</label>
-	                <select class="uis selection" name='fkstatususer'>
-	                	<option class="item">Selecione o status</option>
-	                	{loop="$status"}
-	                		<option class="item" value="{$value.pkstatus}" 
-	                		{if="$user.fkstatususer == $value.pkstatus"}selected{/if}>{$value.txnamestatus}</option>
-	                	{/loop}
-	                </select></br>
-
-	                <label>Tipo de Usuario: </label>
-	                <select class="ui selection" name="fkusertype">
-	                    <option value='0' selected="0">Selecione o tipo de usuário</option>
-	                    {loop="$userstypes"}
-	                    <option value="{$value.idusertype}" {if="$user.fkusertype == $value.idusertype"}selected{/if}>{$value.txnameusertype}</option>
-	                    {/loop}
-	                </select></br>
-				</div>
-				<div class="ui buttons">
-					<button class="ui green button" type="submit"><i class="save icon"></i>Alterar</button>
-					<a class="ui red button" href="/admin/users/create"> <i class="delete icon"></i>Cancelar</a>
-				</div>
-			</div>
-		</form>
+<div id="page-admin-users-update">
+	<div class="container">
+		<aside>
+			<header class="vertical-menu">
+				<a href="/admin/users" class="item">Usuários</a>
+				<a href="/admin/users/create" class="item">Novo Usuário</a>
+				<a href="#" class="item">Permissões</a>
+				<a href="#" class="item">Analises</a>
+				<a href="#" class="item">Relatórios</a>
+				<a href="#" class="item">Agendas</a>
+			</header>
+		</aside>
+		<main>
+			<section>
+				<h2>Alterar Usuário</h2>
+				<form action="/admin/users/{$user.id}" method="POST">
+						<fieldset align="left">
+							<label>Usuário:</label>
+							<input type="text" name="txlogin" value="{$user.txlogin}">
+	
+							<label>Status:</label>
+							<select name='fkstatus'>
+								<option >Selecione o status</option>
+								{loop="$status"}
+									<option class="item" value="{$value.id}" 
+									{if="$user.fkstatus == $value.id"}selected{/if}>{$value.txnamestatus}</option>
+								{/loop}
+							</select>
+	
+							<label>Tipo de Usuario: </label>
+							<select class="ui selection" name="fkusertype">
+								<option value='0' selected="0">Selecione o tipo de usuário</option>
+								{loop="$userstypes"}
+								<option value="{$value.id}" {if="$user.fkusertype == $value.id"}selected{/if}>{$value.txnameusertype}</option>
+								{/loop}
+							</select>
+						<div class="buttons">
+							<button class="ui green button" type="submit"><i class="save icon"></i>Alterar</button>
+							<a class="ui red button" href="/admin/users/create"> <i class="delete icon"></i>Cancelar</a>
+						</div>
+					</fieldset>
+				</form>
+			</section>
+		</main>
 	</div>
+</div>
