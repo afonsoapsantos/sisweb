@@ -13,12 +13,12 @@
                 (id, customerfk, requestfk, orderfk, createdat, updatedat)
                 VALUES (:id, :customerfk, :requestfk, :orderfk, :createdat, :updatedat)",
                 [
-                    ":id"=>$this->setid(),
-                    ":customerfk"=>$this->setcustomerfk(),
-                    ":requestfk"=>$this->setrequestfk(),
-                    ":orderfk"=>$this->setorderfk(),
-                    ":createdat"=>$this->setcreatedat(),
-                    ":updatedat"=>$this->setupdatedat(),
+                    ":id"=>$this->getid(),
+                    ":customerfk"=>$this->getcustomerfk(),
+                    ":requestfk"=>$this->getrequestfk(),
+                    ":orderfk"=>$this->getorderfk(),
+                    ":createdat"=>$this->getcreatedat(),
+                    ":updatedat"=>$this->getupdatedat(),
                 ]
             );
             $this->setData($data[0]);
@@ -72,7 +72,7 @@
             );
         }
 
-        public function getByFilter(){
+        public function search(){
             $db = new Database();
             $db->select(
                 ""

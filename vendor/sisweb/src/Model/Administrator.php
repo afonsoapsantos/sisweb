@@ -19,23 +19,25 @@
 		 */
 		public function create(){
 			#Registra o usuário do tipo administrador
-			$database = new Database();
-			$database->select("INSERT INTO tb_administrators 
+			$db = new Database();
+			$db->select("INSERT INTO tb_administrators 
 					(id, txname, txlastname, createdat, updatedat)
 				VALUES 
 					(:id, :txname, :txlastname, :createdat, :updatedat)", 
 			[
-				"id"=>$this->setid(),
-				"txname"=>$this->settxname(),
-				"txlastname"=>$this->settxlastname()
+				":id"=>$this->setid(),
+				":txname"=>$this->settxname(),
+				":txlastname"=>$this->settxlastname(),
+				":createdat"=>$this->setcreatedat(),
+				":updatedat"=>$this->setupdatedat()
 			]);
 
 			$this->setSuccess("Created!");
 		}
 
 		public function read(){
-			$database = new Database();
-			return $database->select(
+			$db = new Database();
+			return $db->select(
 				"SELECT * FROM tb_users us 
 					INNER JOIN tb_statususer su ON us.fkstatus = su.pkstatus
 					INNER JOIN tb_userstype ut ON us.fkusertype = ut.idusertype

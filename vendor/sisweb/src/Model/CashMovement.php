@@ -14,8 +14,8 @@
 		const ERROR  = "cashMovementError";
 
 		public function getMaxId(){
-			$database = new Database();
-			$idm = $database->select("SELECT MAX(id) FROM tb_cashmovement");
+			$db = new Database();
+			$idm = $db->select("SELECT MAX(id) FROM tb_cashmovement");
             foreach ($idm as $key => $value) {
 				$max = $value['max'];
 			}
@@ -24,9 +24,9 @@
 		}
 		
 		public function create(){
-			$database = new Database();
+			$db = new Database();
 
-			$results = $database->select(
+			$results = $db->select(
 				"INSERT INTO public.tb_cashmovement(id, txdescription, typepayid, nuday, monthid, nuyear, balance, createdat, updatedat)
 				VALUES (:id, :txdescription, :typepayid, :nuday, :monthid, :nuyear, :balance, :createdat, :updatedat);",
 				[
@@ -46,8 +46,8 @@
 		}
 
 		public function delete(){
-			$database = new Database();
-			$data = $database->select(
+			$db = new Database();
+			$data = $db->select(
 				"DELETE FROM tb_cashmovement AS cm WHERE cm.id = :id", [
 					":id"=>$this->getid()
 				]
@@ -59,8 +59,8 @@
 		* Altera o registro
 		*/
 		public function update(){
-			$database = new Database();
-			$data = $database->select(
+			$db = new Database();
+			$data = $db->select(
 				"UPDATE tb_cashmovement
 					SET id=:id, txdescription=:txdescription,typepayid=:typepayid, nuday=:nuday, monthid=:monthid,
 						nuyear=:nuyear, price=:price, createdat=:createdat, updatedat=:updatedat",
@@ -85,8 +85,8 @@
 		* Lê os registros da tabela
 		*/
 		public function read(){
-			$database = new Database();
-			return $database->select(
+			$db = new Database();
+			return $db->select(
 				"SELECT * FROM tb_cashmovement"
 			);
 		}
@@ -95,9 +95,9 @@
 		* Busca um registro da tabela
 		*/
 		public function get(){
-			$database = new Database();
+			$db = new Database();
 
-			$data = $database->select(
+			$data = $db->select(
 				"SELECT * FROM tb_cashmovement AS cm WHERE cm.id = :id", [
 					":id"=>$this->getid()
 				]

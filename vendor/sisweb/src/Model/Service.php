@@ -10,77 +10,95 @@
 	 */
 	class Service extends Model{
 		
-		public function insert(){
-			$database = new Database();
-			$results = $database->select(
-				"INSERT INTO public.tb_services (idservice, txnameservice, txdescriptionservice, vlpriceservice)
-					VALUES (:idservice, :txnameservice, :txdescriptionservice, :vlpriceservice);", array(
-						":idservice"=>$this->getidservice(),
-						":txnameservice"=>$this->gettxnameservice(),
-						":txdescriptionservice"=>$this->gettxdescriptionservice(),
-						":vlpriceservice"=>$this->getvlpriceservice()
-					));
+		public function create(){
+			$db = new Database();
+			$data = $db->query(
+				"INSERT INTO tb_services (id, txname, txdescription, 
+							price, createdat, updatedat)
+					VALUES (:id, :txname, :txdescription, 
+							:price, :createdat, :updatedat);", 
+				[
+					":id"=>$this->getid(),
+					":txname"=>$this->gettxname(),
+					":txdescription"=>$this->gettxdescription(),
+					":price"=>$this->getprice(),
+					":createdat"=>$this->getcreatedat(),
+					":updatedat"=>$this->getupdatedat()
+				]
+			);
 
-		}//Fim método insert
+			$this->setData($data[0]);
+			$this->setSuccess("Created");
+
+		}//Fim método create
 
 		public function update(){
-			$database = new Database();
-			$results = $database->select("UPDATE public.tb_services SET txnameservice = :txnameservice, txdescriptionservice = :txdescriptionservice, vlpriceservice = :vlpriceservice
-				WHERE idservice = :idservice;", array(
-						":idservice"=>$this->getidservice(),
-						":txnameservice"=>$this->gettxnameservice(),
-						":txdescriptionservice"=>$this->gettxdescriptionservice(),
-						":vlpriceservice"=>$this->getvlprice()
-					));
+			$db = new Database();
+			$results = $db->select("UPDATE tb_services 
+				SET txname = :txname, txdescription = :txdescription, 
+					price = :price, createdat=:createdat, updatedat=:updatedat
+				WHERE id = :id;",
+				[
+					":id"=>$this->getid(),
+					":txname"=>$this->gettxname(),
+					":txdescription"=>$this->gettxdescription(),
+					":price"=>$this->getprice(),
+					":createdat"=>$this->getcreatedat(),
+					":updatedat"=>$this->getupdatedat()
+				]
+			);
 
 		}//Fim método update
 
 		public function delete(){
-			$database = new Database();
-			$results = $database->select("DELETE FROM tb_services ss WHERE ss.idservice = :idservice",array(
-				":idservice"=>$this->getidservice()
+			$db = new Database();
+			$results = $db->select("DELETE FROM tb_services ss WHERE ss.id = :id",array(
+				":id"=>$this->getid()
 			));
 		}//Fim método delete
 
 		public function get(){
-			$database = new Database();
-			$results = $database->select(
-				"SELECT * FROM tb_services WHERE idservice = :idservice", array(
-				":idservice"=>$this->getidservice()
+			$db = new Database();
+			$results = $db->select(
+				"SELECT * FROM tb_services WHERE id = :id", array(
+				":id"=>$this->getid()
 			));
 
-			$data = $results[0];
+			if($results[0] === 0 ){
+				throw new \Exception("Não ecnocontrado");
+			}
 
+			$data = $results[0];
 			$this->setData($data);
 		}//Fim método get
 
 		public function getMaxId(){
-			$database = new Database();
-			$idmax = $database->select("SELECT MAX(idservice) FROM tb_services;");
+			$db = new Database();
+			$idmax = $db->select("SELECT MAX(id) FROM tb_services;");
 			foreach ($idmax as $key => $value) {
 				$idm = $value['max'];
 			}
 			$id = $idm + 1;
-			$this->setidservice($id);
+			$this->setid($id);
 		}//Fim método getMaxId
 
 		public function listAll(){
-			$database = new Database();
-			return $database->select("SELECT * FROM tb_services;");		
+			$db = new Database();
+			return $db->select("SELECT * FROM tb_services;");		
 		}//Fim método listAll
 		
 		public static function getServicesPage($page = 1, $itemsPerPage = 3 )
 		{
 			$start = ($page - 1) * $itemsPerPage;
 			
-			$database = new Database();
-			$results = $database->select("
+			$db = new Database();
+			$results = $db->select("
 				SELECT * FROM tb_services
 					OFFSET $start 
 					LIMIT $itemsPerPage
 			");
 
-			$resultTotal = $database->select("
+			$resultTotal = $db->select("
 				SELECT COUNT(*) AS nrtotal FROM tb_services;
 			");
 

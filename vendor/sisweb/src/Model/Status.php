@@ -6,7 +6,7 @@
 
     class Status extends Model {
 
-        public function save()
+        public function create()
         {
             # code...
         }
@@ -17,8 +17,8 @@
         }
 
         public function read(){
-			$database = new Database();
-			$data = $database->select("SELECT * FROM tb_status;");
+			$db = new Database();
+			$data = $db->select("SELECT * FROM tb_status;");
 			return $data;
         }
         

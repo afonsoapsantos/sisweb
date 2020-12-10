@@ -17,20 +17,23 @@
 
 		}//Fim do método de listar
 
-		public function get($idimplement){
-			$database = new Database();
-			$data = $database->select("SELECT * FROM tb_implements ims WHERE ims.idimplement = :idimplement", array(
-				":idimplement"=>$idimplement
-			));
+		public function get(){
+			$db = new Database();
+			$data = $db->select(
+				"SELECT * FROM tb_implements AS ims 
+					WHERE ims.id = :id", 
+				[
+					":id"=>$this->getid()
+				]
+				
+			);
 
 			$this->setData($data[0]);
 		}
 
 		public static function getImplementByCustomer($idcustomer){
-
-			$database = new Database();
-
-			$data = $database->select("SELECT * FROM tb_implements ims WHERE ims.customerfk = :idcustomer", array(
+			$db = new Database();
+			$data = $db->select("SELECT * FROM tb_implements ims WHERE ims.customerfk = :idcustomer", array(
 				":idcustomer"=>$idcustomer
 			));
 
@@ -39,8 +42,8 @@
 		}
 
 		public function getMaxId(){
-			$database = new Database();
-			$idm = $database->select("SELECT MAX(idimplement) FROM tb_implements;");
+			$db = new Database();
+			$idm = $db->select("SELECT MAX(idimplement) FROM tb_implements;");
 			foreach ($idm as $key => $value) {
 				$idmax = $value['max'];
 			}
@@ -75,9 +78,9 @@
 		}
 
 		public function insert(){
-			$database = new Database();
+			$db = new Database();
 			$this->getMaxId();
-			$results = $database->query(
+			$results = $db->query(
 				"INSERT INTO public.tb_implements
 						(idimplement, txnameimplement, txmodelimplement, txtype, nuanofabricacaoimp, txdescricaoimp, customerfk)
 					VALUES (:idimplement, :txnameimplement, :txmodelimplement, :txtype, :nuanofabricacaoimp, :txdescricaoimp, :customerfk);", array(
@@ -93,8 +96,8 @@
 		}
 
 		public function update(){
-			$database = new Database();
-			$results = $database->query(
+			$db = new Database();
+			$results = $db->query(
 				"UPDATE public.tb_implements SET  
 					txnameimplement = :txnameimplement, txmodelimplement = :txmodelimplement, txtype = :txtype, nuanofabricacaoimp = :nuanofabricacaoimp, txdescricaoimp = :txdescricaoimp, customerfk = :customerfk
 					WHERE idimplement = :idimplement;", array(
@@ -110,8 +113,8 @@
 		}
 
 		public function delete(){
-			$database = new Database();
-			$results = $database->select(
+			$db = new Database();
+			$results = $db->select(
 				"DELETE FROM public.tb_implements ims WHERE ims.idimplement = :idimplement",array(
 					":idimplement"=>$this->getidimplement()
 				)

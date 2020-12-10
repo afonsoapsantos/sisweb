@@ -13,7 +13,7 @@
 
         public function __construct()
         {
-            $database = new Database();
+            $db = new Database();
             // Função que ira fazer toda vez para verificar se o mês foi fechado 
             // para registrar ou verifica se há novo lançamento de movimento de caixa
 
@@ -27,8 +27,8 @@
 
         public function getMaxId()
         {
-            $database = new Database();
-            $idcf = $database->select("SELECT MAX(id) FROM tb_cashflows");
+            $db = new Database();
+            $idcf = $db->select("SELECT MAX(id) FROM tb_cashflows");
             foreach ($idcf as $key => $value) {
 				$idm = $value['max'];
 			}
@@ -38,8 +38,8 @@
 
         public function create(){
             //Insere o registro se o mês for fechado
-            $database = new Database();
-            $cashFlow = $database->select("INSERT INTO public.tb_cashflows 
+            $db = new Database();
+            $cashFlow = $db->select("INSERT INTO public.tb_cashflows 
                     (id, numonth, txtype, vlprice, createdat, updatedat)
                 VALUES 
                     (:id, :numonth, :txtype, :vlprice, :createdat, :updatedat)",
@@ -61,8 +61,8 @@
         public function get()
         {
             # Busca apenas um registro de um mês especifico
-            $database = new Database();
-            $data = $database->select("SELECT * FROM tb_cashflows AS cf WHERE cf.id =", [
+            $db = new Database();
+            $data = $db->select("SELECT * FROM tb_cashflows AS cf WHERE cf.id =", [
                 ":id"=>$this->getid()
             ]);
             if(count($data) === 0){
@@ -75,21 +75,21 @@
         public function read()
         {
             #Retorna todos os meses de acordo com o ano
-            $database = new Database();
-            $results = $database->select("SELECT * FROM tb_cashflows");
+            $db = new Database();
+            $results = $db->select("SELECT * FROM tb_cashflows");
             return $results;
         }
 
         public function update()
         {
-            $database = new Database();
+            $db = new Database();
         }
 
         public function delete()
         {
-            $database = new Database();
+            $db = new Database();
 
-			$data = $database->select(
+			$data = $db->select(
 				"DELETE FROM tb_cashflows AS cf WHERE cf.id = :id", [
 					":id"=>$this->getid()
 				]

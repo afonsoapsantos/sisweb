@@ -13,8 +13,8 @@
 		const SUCCESS = "RequestSuccess";
 		
 		public function getMaxId(){
-			$database = new Database();
-			$idm = $database->select("SELECT MAX(id) FROM tb_requests;");
+			$db = new Database();
+			$idm = $db->select("SELECT MAX(id) FROM tb_requests;");
 			foreach ($idm as $key => $value) {
 				$idmax = $value['max'];
 			}
@@ -25,8 +25,8 @@
 		}
 
 		public static function listRequests($idcustomer){
-			$database = new Database();
-			return $database->select("SELECT * FROM tb_requests rs
+			$db = new Database();
+			return $db->select("SELECT * FROM tb_requests rs
 				INNER JOIN tb_statusrequest sr ON sr.pkstatus = rs.statusfk
 				WHERE rs.customerfk = :idcustomer", array(
 				":idcustomer"=>$idcustomer
@@ -34,8 +34,8 @@
 		}
 
 		public static function listRequestsAdmin(){
-			$database = new Database();
-			return $database->select(
+			$db = new Database();
+			return $db->select(
 				"SELECT * FROM tb_requests rs
 					INNER JOIN tb_customers cs ON rs.customerfk = cs.idcustomer
 					INNER JOIN tb_statusrequest sr ON rs.statusfk = sr.pkstatus
@@ -50,8 +50,8 @@
 		}
 
 		public function getRequest($pkrequest){
-			$database = new Database();
-			$results = $database->select(
+			$db = new Database();
+			$results = $db->select(
 				"SELECT * FROM tb_requests rs 
 					INNER JOIN tb_implements ims ON ims.idimplement = rs.implementfk
 					INNER JOIN tb_customers cs ON cs.idcustomer = rs.customerfk
@@ -65,8 +65,8 @@
 		}
 
 		public function read(){
-			$database = new Database();
-			$results = $database->select(
+			$db = new Database();
+			$results = $db->select(
 				"SELECT * FROM tb_requests rs WHERE id = :id", array(
 					":id"=>$this->getid()
 				)
@@ -76,8 +76,8 @@
 		}
 
 		public function get(){
-			$database = new Database();
-			$results = $database->select(
+			$db = new Database();
+			$results = $db->select(
 				"SELECT * FROM public.tb_requests rs 
 					INNER JOIN public.tb_customers cs ON cs.idcustomer = rs.customerfk
 					INNER JOIN tb_implements ips ON ips.idimplement = rs.implementfk
@@ -92,14 +92,14 @@
 
 		public static function getStatus(){
 
-			$database = new Database();
+			$db = new Database();
 
-			return $database->select("SELECT * FROM tb_statusrequest;");
+			return $db->select("SELECT * FROM tb_statusrequest;");
 		}
 
 		public static function listCustomerImplement(){
-			$database = new Database();
-			return $database->select(
+			$db = new Database();
+			return $db->select(
 				"SELECT * FROM tb_users us, tb_implements is, tb_customers cs 
 					WHERE us.id = cs.userfk 
 						AND cs.idcustomer = is.customerfk;"
@@ -107,9 +107,9 @@
 		}
 
 		public function insertRequest(){
-			$database = new Database();
+			$db = new Database();
 			$this->getMaxId();
-			$results = $database->select(
+			$results = $db->select(
 				"INSERT INTO public.tb_requests(id, txsituation, txproblem, customerfk, farmfk, implementfk, statusfk)
 				VALUES (:id, :txsituation, :txproblem, :customerfk, :farmfk, :implementfk, :statusfk);", 
 				array(
@@ -124,8 +124,8 @@
 		}
 
 		public function update(){
-			$database = new Database();
-			$results = $database->select(
+			$db = new Database();
+			$results = $db->select(
 				"UPDATE tb_requests 
 					SET txsituation = :txsituation, txproblem = :txproblem, customerfk = :customerfk, farmfk = :farmfk, implementfk = :implementfk, statusfk = :statusfk
 					WHERE id = :id", array(
@@ -141,9 +141,9 @@
 		}
 		
 		public function delete(){
-			$database = new Database();
+			$db = new Database();
 			$this->verifyStatus();
-			$results = $database->select(
+			$results = $db->select(
 				"DELETE FROM tb_requests rs WHERE rs.id = :id", array(
 					":id"=>$this->getid()
 			));

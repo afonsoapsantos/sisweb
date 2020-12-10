@@ -15,8 +15,8 @@
 		const SUCCESS = "Success";
 		
 		public function getMaxId(){
-			$database = new Database();
-			$idm = $database->select("SELECT MAX(id) FROM tb_media;");
+			$db = new Database();
+			$idm = $db->select("SELECT MAX(id) FROM tb_media;");
 			foreach ($idm as $key => $value) {
 				$max = $value['max'];
 			}
@@ -25,8 +25,8 @@
 		}
 
 		public function get(){
-			$database = new Database();
-			$get = $database->select(
+			$db = new Database();
+			$get = $db->select(
 				"SELECT * FROM tb_media AS m WHERE m.id = :id;",array(
 					":id"=>$this->getid()
 			));
@@ -34,8 +34,8 @@
 		}
 
 		public function create(){
-			$database = new Database();
-			$create = $database->query(
+			$db = new Database();
+			$create = $db->query(
 				"INSERT INTO public.tb_media(id, txname, txlocal, txdescription, createdat, updatedat)
 				VALUES (:id, :txname, :txlocal, :txdescription, :createdat, :updatedat);",
 				[
@@ -52,16 +52,16 @@
 		}//END
 
 		public function delete(){
-			$database = new Database();
-			$database->select("DELETE FROM tb_mediarequest mr WHERE mr.requestfk = :idrequest",array(
+			$db = new Database();
+			$db->select("DELETE FROM tb_mediarequest mr WHERE mr.requestfk = :idrequest",array(
 				":idrequest"=>$this->getid()
 			));
 			$this->setSuccess("Deleted");
 		}
 
 		public function update(){
-			$database = new Database();
-			$update = $database->query(
+			$db = new Database();
+			$update = $db->query(
 				"UPDATE tb_media AS m
 					SET txname=:txname, txlocal=:txlocal, txdescription=:txdescription, 
 						createdat=:createdat, updatedat=:updatedat 
@@ -80,15 +80,15 @@
 		}
 
 		public function read(){
-			$database = new Database();
-			return $database->select(
+			$db = new Database();
+			return $db->select(
 				"SELECT * FROM tb_media;"
 			);
 		}
 
 		public function getStatus(){
-			$database = new Database();
-			return $database->select("SELECT * FROM tb_status s WHERE s.idstatus = :idstatus;",
+			$db = new Database();
+			return $db->select("SELECT * FROM tb_status s WHERE s.idstatus = :idstatus;",
 				array(
 					":idstatus"=>$this->getidstatus()
 				));
@@ -96,8 +96,8 @@
 
 		public static function getIdmediaByCustomerRequest($idcustomer, $idrequest){
 
-			$database = new Database();
-			$idmedia = $database->select("SELECT idmedia FROM tb_mediarequest mrt WHERE mrt.customerfk = :customerfk AND mrt.requestfk = :requestfk;",
+			$db = new Database();
+			$idmedia = $db->select("SELECT idmedia FROM tb_mediarequest mrt WHERE mrt.customerfk = :customerfk AND mrt.requestfk = :requestfk;",
 			array(
 				":customerfk"=>$idcustomer,
 				":requestfk"=>$idrequest
@@ -107,8 +107,8 @@
 		}
 
 		public static function listAllByRequest($pkrequest){
-			$database = new Database();
-			$results = $database->select(
+			$db = new Database();
+			$results = $db->select(
 				"SELECT * FROM tb_mediarequest mr WHERE mr.requestfk = :pkrequest", array(
 					":pkrequest"=>$pkrequest
 				)
@@ -118,8 +118,8 @@
 		}
 
 		public static function listAllByOrder($pkorder){
-			$database = new Database();
-			$results = $database->select(
+			$db = new Database();
+			$results = $db->select(
 				"SELECT * FROM tb_mediaorders mo WHERE mo.orderfk = :pkorder", array(
 					":pkorder"=>$pkorder
 				)
@@ -129,8 +129,8 @@
 		}
 		
 		public static function listAllByOrderOpen($pkorder){
-			$database = new Database();
-			$results = $database->select(
+			$db = new Database();
+			$results = $db->select(
 				"SELECT * FROM tb_mediaorders mo 
 					INNER JOIN tb_statusorder so ON so.pkstatus = 1
 					WHERE mo.requestfk = :pkorder", array(

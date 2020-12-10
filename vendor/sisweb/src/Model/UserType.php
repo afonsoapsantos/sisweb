@@ -8,8 +8,8 @@
     class UserType extends Model{
 
         public function read(){
-            $database = new Database();
-			return $database->select(
+            $db = new Database();
+			return $db->select(
                 "SELECT * FROM tb_userstype;"
             );
         }

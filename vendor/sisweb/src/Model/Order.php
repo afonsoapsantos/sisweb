@@ -13,8 +13,8 @@
 		const ERROR  = "OrderError";
 
 		public function verifyOrder($id){
-			$database = new Database();
-			$verify = $database->select("SELECT * FROM tb_orders os WHERE os.requestfk = :id", array(
+			$db = new Database();
+			$verify = $db->select("SELECT * FROM tb_orders os WHERE os.requestfk = :id", array(
 				":id"=>$id
 			));
 
@@ -25,8 +25,8 @@
 
 		public function getMaxid(){
 
-			$database = new Database();
-			$idm = $database->select("SELECT MAX(id) FROM tb_orders;");
+			$db = new Database();
+			$idm = $db->select("SELECT MAX(id) FROM tb_orders;");
 			foreach ($idm as $key => $value) {
 				$max = $value['max'];
 			}
@@ -36,8 +36,8 @@
 		}
 
 		public function get(){
-			$database = new Database();
-			$get = $database->select(
+			$db = new Database();
+			$get = $db->select(
 				"SELECT * FROM tb_orders os 
 					WHERE id = :id;",array(
 				":id"=>$this->getid()
@@ -46,9 +46,9 @@
 		}
 
 		public function create(){
-			$database = new Database();
+			$db = new Database();
 			$this->verifyOrder((int)$this->getrequestfk());
-			$results = $database->select(
+			$results = $db->select(
 				"INSERT INTO public.tb_orders (id, txdescription, txlocation, customerfk, farmfk, implementfk, statusfk, requestfk)
 					VALUES (:id, :txdescription, :txlocation, :customerfk, :farmfk, :implementfk, :statusfk, :requestfk);", 
 					array(
@@ -65,8 +65,8 @@
 		}
 
 		public static function read(){
-			$database = new Database();
-			return $database->select(
+			$db = new Database();
+			return $db->select(
 				"SELECT * FROM public.tb_orders os
 					INNER JOIN tb_farms fs ON fs.idfarm = os.farmfk
 					INNER JOIN tb_implements ips ON ips.idimplement = os.implementfk
@@ -75,8 +75,8 @@
 		}
 
 		public function update(){
-			$database = new Database();
-			$update = $database->select(
+			$db = new Database();
+			$update = $db->select(
 				"UPDATE public.tb_orders 
 					SET statusfk= :statusfk, technicianfk = :technicianfk, dtstart = :dtstart,
 						dtend = :dtend, hrend = :hrend, hrstart = :hrstart 
@@ -95,8 +95,8 @@
 		}
 
 		public function delete(){
-			$database = new Database();
-			$database->select("DELETE FROM tb_orders AS o WHERE o.id = :id", 
+			$db = new Database();
+			$db->select("DELETE FROM tb_orders AS o WHERE o.id = :id", 
 				[
 					":id"=>$this->getid()
 				]
@@ -104,8 +104,8 @@
 		}
 
 		public function getOrder(){
-			$database = new Database();
-			$results = $database->select(
+			$db = new Database();
+			$results = $db->select(
 				"SELECT * FROM tb_orders os 
 					INNER JOIN tb_customers cs ON cs.idcustomer = os.customerfk
 					INNER JOIN tb_implements ips ON ips.idimplement = os.implementfk
@@ -118,8 +118,8 @@
 		}
 
 		public function listOrdersOpen(){
-			$database = new Database();
-			return $results = $database->select(
+			$db = new Database();
+			return $results = $db->select(
 				"SELECT * FROM public.tb_orders os
 					INNER JOIN tb_farms fs ON fs.idfarm = os.farmfk
 					INNER JOIN tb_implements ips ON ips.idimplement = os.implementfk
@@ -129,8 +129,8 @@
 		}		
 
 		public function getOrderByTechnician($pktechnician){
-			$database = new Database();
-			$results = $database->select(
+			$db = new Database();
+			$results = $db->select(
 				"SELECT * FROM tb_orders os 
 					INNER JOIN tb_customers cs ON cs.idcustomer = os.customerfk
 					INNER JOIN tb_implements ips ON ips.idimplement = os.implementfk
@@ -145,8 +145,8 @@
 		}
 
 		public static function listOrdersByCustomer($idcustomer){
-			$database = new Database();
-			$results = $database->select(
+			$db = new Database();
+			$results = $db->select(
 				"SELECT * FROM tb_orders os 
 					INNER JOIN tb_statusorders so ON so.pkstatus = os.statusfk
 					INNER JOIN tb_farms fs ON fs.idfarm = os.farmfk

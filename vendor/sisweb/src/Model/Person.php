@@ -9,9 +9,9 @@
 	 */
 	class Person extends Model{
 		
-		public function save(){
-			$database = new Database();
-			$database->select("INSERT INTO tb_persons
+		public function create(){
+			$db = new Database();
+			$db->select("INSERT INTO tb_persons
 					(id, txname, txlastname, nurg, nucpf, email, nucellphone dtregister)
 				VALUES
 					(:id, :txname, :txlastname, :nurg, :nucpf, :email, :nucellphone :dtregister)",
@@ -28,8 +28,8 @@
 		}
 
 		public function update(){
-			$database = new Database();
-			$data = $database->select(
+			$db = new Database();
+			$data = $db->select(
 				"UPDATE tb_persons
 					SET txname=:txname, txlastname=:txlastname, nurg=:nurg,
 						nucpf=:nucpf, email=:email, nucellphone=:nucellphone, dtregister=:dtregister 
@@ -48,8 +48,8 @@
 		}
 
 		public function delete(){
-			$database = new Database();
-			$database->select(
+			$db = new Database();
+			$db->select(
 				"DELETE FROM tb_persons AS ps WHERE ps.id = :id", [
 					":id"=>$this->getid()
 				]
@@ -59,15 +59,15 @@
 		}
 
 		public function read(){
-			$database = new Database();
-			return $database->select(
+			$db = new Database();
+			return $db->select(
 				"SELECT * FROM tb_persons ps ORDER by ps.id"
 			);
 		}
 
 		public function get(){
-			$database = new Database();
-			$database->select(
+			$db = new Database();
+			$db->select(
 				"SELECT * FROM tb_persons ps WHERE ps.id = :id", [
 					":id"=>$this->getid()
 				]
