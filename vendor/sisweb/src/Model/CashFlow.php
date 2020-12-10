@@ -13,13 +13,15 @@
 
         public function __construct()
         {
+            $database = new Database();
             // Função que ira fazer toda vez para verificar se o mês foi fechado 
             // para registrar ou verifica se há novo lançamento de movimento de caixa
 
             //Pegando o ultimo registro
             $cashmovement = new CashMovement();
-            $cashmovement->get($cashmovement->getMaxId());
-
+            $cashmovement->getMaxId();
+            $cashmovement->setid($cashmovement->getid() - 1);
+            $cashmovement->get();
 
         }
 
@@ -34,14 +36,22 @@
 			$this->setid($id);
         }
 
-        public function save()
-        {
+        public function create(){
             //Insere o registro se o mês for fechado
             $database = new Database();
             $cashFlow = $database->select("INSERT INTO public.tb_cashflows 
-                    (id, numonth, txtype, vlprice)
+                    (id, numonth, txtype, vlprice, createdat, updatedat)
                 VALUES 
-                    (id, numonth, txtype, vlprice)");
+                    (:id, :numonth, :txtype, :vlprice, :createdat, :updatedat)",
+                [
+                    ":id"=>$this->getid(),
+                    ":numonth"=>$this->getnumonth(),
+                    ":txtype"=>$this->gettxtype(),
+                    ":vlprice"=>$this->getvlprice(),
+                    ":createdat"=>$this->getcreatedat(),
+                    ":updatedat"=>$this->getupdatedat()
+                ]
+            );
 
             $this->setData($cashFlow);
 

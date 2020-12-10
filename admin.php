@@ -3,6 +3,7 @@
 	use \Sisweb\PageAdmin;
 	use \Sisweb\Model\User;
 	use \Sisweb\Model\Administrator;
+	use Sisweb\Model\CashFlow;
 	use \Sisweb\Model\Customer;
 	use \Sisweb\Model\Request;
 	use \Sisweb\Model\Provider;
@@ -11,14 +12,15 @@
 	use \Sisweb\Model\Media;
 	use \Sisweb\Model\Order;
 	use \Sisweb\Model\Status;
-use Sisweb\Model\Technician;
-use \Sisweb\Model\UserType;
-
-
+	use Sisweb\Model\Technician;
+	use \Sisweb\Model\UserType;
+	use \Sisweb\Model\CashMovement;
 
 	## ROTA para o Fluxo de Caixa
 	$app->get("/admin/cashFlow", function() {
 		Administrator::validateAdmin();
+
+		$cashflow = new CashFlow();
 
 		$page = new PageAdmin();
 		$page->setTpl("cashFlow", [

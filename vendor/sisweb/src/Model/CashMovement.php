@@ -13,45 +13,46 @@
 		const SUCCESS = "cashMovementSucess";
 		const ERROR  = "cashMovementError";
 
-		public function getMaxID(){
+		public function getMaxId(){
 			$database = new Database();
-			$idcm = $database->select("SELECT MAX(id) FROM tb_cashmovement");
-            foreach ($idcm as $key => $value) {
-				$idm = $value['max'];
+			$idm = $database->select("SELECT MAX(id) FROM tb_cashmovement");
+            foreach ($idm as $key => $value) {
+				$max = $value['max'];
 			}
-			$id = $idm + 1;
+			$id = $max + 1;
 			$this->setid($id);
 		}
 		
-		public function save(){
+		public function create(){
 			$database = new Database();
 
 			$results = $database->select(
-				"INSERT INTO public.tb_cashmovement(id, txdescription, typepayid, nuday, monthid, nuyear, price)
-				VALUES (:id, :txdescription, :typepayid, :nuday, :monthid, :nuyear, :price);", array(	
+				"INSERT INTO public.tb_cashmovement(id, txdescription, typepayid, nuday, monthid, nuyear, balance, createdat, updatedat)
+				VALUES (:id, :txdescription, :typepayid, :nuday, :monthid, :nuyear, :balance, :createdat, :updatedat);",
+				[
 					":id"=>$this->getid(),
 					":txdescription"=>$this->gettxdescription(),
 					":typepayid"=>$this->gettypepayid(),
 					":nuday"=>$this->getnuday(),
 					":monthid"=>$this->getmonthid(),
 					":nuyear"=>$this->getnuyear(),
-					":price"=>$this->getprice()
-				)
+					":balance"=>$this->getbalance(),
+					":createdat"=>$this->getcreatedat(),
+					":updatedat"=>$this->getupdatedat()
+				]
 			);
 
-			$this->setSuccess("Cadastro efetuado com Sucesso!");
+			$this->setSuccess("Created!");
 		}
 
 		public function delete(){
 			$database = new Database();
-
 			$data = $database->select(
 				"DELETE FROM tb_cashmovement AS cm WHERE cm.id = :id", [
 					":id"=>$this->getid()
 				]
 			);
-
-			$this->setSuccess("Registro Deletado!");
+			$this->setSuccess("Deleted!");
 		}
 
 		/*
@@ -61,8 +62,8 @@
 			$database = new Database();
 			$data = $database->select(
 				"UPDATE tb_cashmovement
-					SET id=:id, txdescription=:txdescription,typepayid=:typepayid, 
-						nuday=:nuday, monthid=:monthid, nuyear=:nuyear, price=:price",
+					SET id=:id, txdescription=:txdescription,typepayid=:typepayid, nuday=:nuday, monthid=:monthid,
+						nuyear=:nuyear, price=:price, createdat=:createdat, updatedat=:updatedat",
 				[
 					":id"=>$this->getid(),
 					":txdescription"=>$this->gettxdescription(),
@@ -70,7 +71,9 @@
 					":nuday"=>$this->getnuday(),
 					":monthid"=>$this->getmonthid(),
 					":nuyear"=>$this->getnuyear(),
-					":price"=>$this->getprice()
+					":price"=>$this->getprice(),
+					":createdat"=>$this->getcreatedat(),
+					":updatedat"=>$this->getupdatedat()
 				]
 			);
 
@@ -96,7 +99,7 @@
 
 			$data = $database->select(
 				"SELECT * FROM tb_cashmovement AS cm WHERE cm.id = :id", [
-					":id"=>$this->setid()
+					":id"=>$this->getid()
 				]
 			);
 

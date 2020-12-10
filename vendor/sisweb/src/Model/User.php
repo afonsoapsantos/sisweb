@@ -24,7 +24,7 @@
 			$database = new Database();
 			$results = $database->select(
 				"SELECT * FROM tb_users as us, tb_userstype as ut 
-					WHERE us.txlogin = :LOGIN AND us.fkusertype = ut.idusertype",
+					WHERE us.txlogin = :LOGIN AND us.fkusertype = ut.id",
 				array(
 					":LOGIN"=>$login
 				)
@@ -70,7 +70,7 @@
 				||
 				!$_SESSION[User::SESSION]
 				||
-				!(int)$_SESSION[User::SESSION]["iduser"] > 0
+				!(int)$_SESSION[User::SESSION]["id"] > 0
 			) {
 				//Não está logado
 				return false;
@@ -124,10 +124,10 @@
 
 			$data = $database->select(
 				"INSERT INTO tb_users(id, txlogin, txpassword, fkusertype, fkstatususer, dtregisteruser)
-				VALUES (:id, :login, :password, :fkusertype, :fkstatususer, :dtregisteruser);",array(
+				VALUES (:id, :txlogin, :txpassword, :fkusertype, :fkstatususer, :dtregisteruser);",array(
 					":id"=>$this->getiduser(),
-					":login"=>$this->gettxlogin(),
-					":password"=>$this->gettxpassword(),
+					":txlogin"=>$this->gettxlogin(),
+					":txpassword"=>$this->gettxpassword(),
 					":fkusertype"=>$this->getfkusertype(),
 					":fkstatususer"=>$this->getfkstatususer(),
 					":dtregisteruser"=>$this->getdtregisteruser()
@@ -176,7 +176,7 @@
 			$this->setSuccess("Usuário deletado");
 		}
 
-		public static function getUsersPage($page = 1, $itemsPerPage = 5){
+		public static function getUsersPage($page = 1, $itemsPerPage = 6){
 			$start = ($page - 1) * $itemsPerPage;
 			
 			$database = new Database();
