@@ -4,3 +4,11 @@
 	display: flex;
 	margin: 4rem auto;
 }
+
+a{
+	text-decoration: none;
+}
+
+#link {
+	text-decoration: none;
+}

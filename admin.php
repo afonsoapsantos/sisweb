@@ -127,10 +127,12 @@
 		$user = new User();
 		$status = new Status();
 		$usertype = new UserType();
+
 		$user->setid((int)$id);
 		$userstypes = $usertype->read();
 		$listStatus = $status->read();
 		$user->get();
+		
 		$page = new PageAdmin();
 		$page->setTpl("users-update", array(
 			"user"=>$user->getValues(),

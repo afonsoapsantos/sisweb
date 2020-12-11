@@ -51,7 +51,7 @@
 			            <select class="uis selection" name='fkstatususer'>
 			            	<option value="0">Selecione o status</option>
 			            	{loop="$status"}
-			            		<option value="{$value.idstatus}">{$value.txnamestatus}</option>
+			            		<option value="{$value.idstatus}">{$value.txname}</option>
 			            	{/loop}
 			            </select>
 		            </div>
@@ -61,7 +61,7 @@
 			            <select class="ui selection" name="fkusertype">
 			                <option value='0' selected="0">Selecione o tipo de usuário</option>
 			                {loop="$userstypes"}
-			                	<option value="{$value.idusertype}">{$value.txnameusertype}</option>
+			                	<option value="{$value.id}">{$value.txname}</option>
 			                {/loop}
 			            </select>
 		            </div>

@@ -23,7 +23,7 @@
 								<option >Selecione o status</option>
 								{loop="$status"}
 									<option class="item" value="{$value.id}" 
-									{if="$user.fkstatus == $value.id"}selected{/if}>{$value.txnamestatus}</option>
+									{if="$user.fkstatus == $value.id"}selected{/if}>{$value.txname}</option>
 								{/loop}
 							</select>
 	
@@ -31,7 +31,7 @@
 							<select class="ui selection" name="fkusertype">
 								<option value='0' selected="0">Selecione o tipo de usuário</option>
 								{loop="$userstypes"}
-								<option value="{$value.id}" {if="$user.fkusertype == $value.id"}selected{/if}>{$value.txnameusertype}</option>
+								<option value="{$value.id}" {if="$user.fkusertype == $value.id"}selected{/if}>{$value.txname}</option>
 								{/loop}
 							</select>
 						<div class="buttons">

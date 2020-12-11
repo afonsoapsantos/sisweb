@@ -105,9 +105,9 @@
 		public function read(){
 			$db = new Database();
 			return $db->select(
-				"SELECT * FROM tb_users us
-					INNER JOIN tb_userstype ut ON us.fkusertype = ut.idusertype 
-					INNER JOIN tb_status su ON us.fkstatus = su.idstatus 
+				"SELECT * FROM tb_users AS us
+					INNER JOIN tb_userstype AS ut ON us.fkusertype = ut.idusertype 
+					INNER JOIN tb_status AS su ON us.fkstatus = su.id 
 					ORDER BY us.id;");
 		}
 
@@ -137,7 +137,7 @@
 			$db = new Database();
 			$results = $db->select("SELECT us.*, su.txname, ut.txname FROM tb_users AS us
 			INNER JOIN tb_userstype AS ut ON us.fkusertype = ut.id 
-			INNER JOIN tb_status AS su ON us.fkstatus = su.idstatus
+			INNER JOIN tb_status AS su ON us.fkstatus = su.id
 			WHERE us.id = :id", 
 				[
 					":id"=>$this->getid()
@@ -198,7 +198,7 @@
 			$results = $db->select("
 				SELECT * FROM tb_users us
 					INNER JOIN tb_userstype ut ON us.fkusertype = ut.id 
-					INNER JOIN tb_status su ON us.fkstatus = su.idstatus 
+					INNER JOIN tb_status su ON us.fkstatus = su.id 
 					ORDER BY us.id
 					OFFSET $start 
 					LIMIT $itemsPerPage

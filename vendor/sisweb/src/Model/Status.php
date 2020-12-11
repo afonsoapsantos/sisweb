@@ -18,8 +18,7 @@
 
         public function read(){
 			$db = new Database();
-			$data = $db->select("SELECT * FROM tb_status;");
-			return $data;
+			return $db->select("SELECT * FROM tb_status;");
         }
         
         public function delete()
