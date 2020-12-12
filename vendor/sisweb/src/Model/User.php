@@ -30,13 +30,12 @@
 			}
 
 			$data = $results[0];
+			$this->setData($data);
 
-			if ($password === $data["txpassword"]){
-				$data['txlogin'] = utf8_encode($data['txlogin']);
-				$this->setData($data);
+			if ($password === (int)$this->gettxpassword()){
+				$this->settxlogin(utf8_encode($this->gettxlogin()));
 				$_SESSION[User::SESSION] = $this->getValues();
-				$fkstatus = (int)$_SESSION[User::SESSION]["fkstatus"];
-				if ($fkstatus != 1) {
+				if ((int)$_SESSION[User::SESSION]["fkstatus"] != 1) {
 					throw new \Exception("Acesso não Autorizado");
 				}
 				return $this;
@@ -191,7 +190,7 @@
 			$this->setSuccess("Usuário deletado");
 		}
 
-		public static function getUsersPage($page = 1, $itemsPerPage = 6){
+		public static function getUsersPage($page = 1, $itemsPerPage = 4){
 			$start = ($page - 1) * $itemsPerPage;
 			
 			$db = new Database();

@@ -71,7 +71,7 @@
 	$app->post("/login", function() {
 		try {
 			$user = new User();
-			$user->login($_POST["txlogin"],$_POST["txpassword"]);
+			$user->login($_POST["txlogin"],(int)$_POST["txpassword"]);
 			$fkusertype = $user->getfkusertype();
 			switch ($fkusertype) {
 				case 1:

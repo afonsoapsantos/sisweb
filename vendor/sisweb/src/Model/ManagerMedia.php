@@ -10,12 +10,13 @@
             $db = new Database();
             $data = $db->select(
                 "INSERT INTO tb_managermedia
-                (id, customerfk, requestfk, orderfk, createdat, updatedat)
-                VALUES (:id, :customerfk, :requestfk, :orderfk, :createdat, :updatedat)",
+                (id, customerfk, requestfk, mediafk, orderfk, createdat, updatedat)
+                VALUES (:id, :customerfk, :requestfk, :mediafk, :orderfk, :createdat, :updatedat)",
                 [
                     ":id"=>$this->getid(),
                     ":customerfk"=>$this->getcustomerfk(),
                     ":requestfk"=>$this->getrequestfk(),
+                    ":mediafk"=>$this->getmediafk(),
                     ":orderfk"=>$this->getorderfk(),
                     ":createdat"=>$this->getcreatedat(),
                     ":updatedat"=>$this->getupdatedat(),
@@ -36,12 +37,13 @@
             $db = new Database();
             $data = $db->query(
                 "UPDATE tb_managermedia
-                SET id=:id, customerfk=:customerfk, requestfk=:requestfk, 
+                SET id=:id, customerfk=:customerfk, requestfk=:requestfk, mediafk=:mediafk, 
                     orderfk=:orderfk, createdat=:createdat, updatedat=:updatedat",
                 [
                     ":id"=>$this->setid(),
                     ":customerfk"=>$this->setcustomerfk(),
                     ":requestfk"=>$this->setrequestfk(),
+                    ":mediafk"=>$this->setmediafk(),
                     ":orderfk"=>$this->setorderfk(),
                     ":createdat"=>$this->setcreatedat(),
                     ":updatedat"=>$this->setupdatedat(),

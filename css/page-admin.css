@@ -44,9 +44,9 @@ main h2 {
 
 aside {
 	background: #FFF/*linear-gradient(329.54deg, #29b6d1 0%, #00c7c7 100%) no-repeat*/;
-	padding: 1rem;
-	/* margin-bottom: 2rem; */
-	/* max-width: 30rem; */
+	width: 20rem;
+	word-wrap: break-word;
+	word-break: break-all;
 	border-radius: 0 2rem 2rem 0;
 }
 
@@ -72,8 +72,8 @@ aside .vertical-menu {
 
 	box-sizing: border-box;
 
-	margin: 1rem 1.5rem;
-	padding: 1rem 1.5rem;
+	margin: 1rem auto;
+	padding: 1rem auto;
 
 	width: 100%;
 	height: 100%;

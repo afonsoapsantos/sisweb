@@ -18,10 +18,10 @@
             // para registrar ou verifica se há novo lançamento de movimento de caixa
 
             //Pegando o ultimo registro
-            $cashmovement = new CashMovement();
-            $cashmovement->getMaxId();
-            $cashmovement->setid($cashmovement->getid() - 1);
-            $cashmovement->get();
+            // $cashmovement = new CashMovement();
+            // $cashmovement->getMaxId();
+            // $cashmovement->setid($cashmovement->getid() - 1);
+            // $cashmovement->get();
 
         }
 

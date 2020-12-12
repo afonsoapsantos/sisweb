@@ -3,7 +3,10 @@
     <div class="container">
         <aside>
             <div class="vertical-menu">
-                <a href="" class="item">Movimento</a>
+                <a href="" class="item">Fluxo de Caixa</a>
+                <a href="" class="item">Movimento de Caixa</a>
+                <a href="" class="item">DRE</a>
+                <a href="" class="item">BP - Balanço Patrimonial</a>
             </div>
         </aside>
         <main>
