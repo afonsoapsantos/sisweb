@@ -2,9 +2,8 @@
 
 	namespace Sisweb\Model;
 	use \Sisweb\DB\Database;
-	use \Sisweb\Controller;
 
-	class User extends Person implements UserController {
+	class User extends Person {
 
 		const SESSION = "User";
 		const SECRET = "Sisweb_recovery_32";
