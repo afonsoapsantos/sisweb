@@ -67,8 +67,6 @@
 	    	]);
 		}
 
-		// var_dump($pagination['data']);
-
 		$page = new PageAdmin();
 		$page->setTpl("users",array(
 			"data"=>$pagination['data'],
