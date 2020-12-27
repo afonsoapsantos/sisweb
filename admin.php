@@ -1,6 +1,7 @@
 <?php
 
-	use \Sisweb\PageAdmin;
+use Sisweb\Controller\UserController;
+use \Sisweb\PageAdmin;
 	use \Sisweb\Model\User;
 	use \Sisweb\Model\Administrator;
 	use Sisweb\Model\CashFlow;
@@ -92,11 +93,8 @@
 		Administrator::validateAdmin();
 		
 		try{
-			$user = new User();
-			$user->getMaxId();
-			$user->setData($_POST);
-			$user->setdtregisteruser(date("Y-m-d"));
-			$user->create();
+			$uc = new UserController();
+			$uc->create($_POST);
 			header("Location: /admin/users");
 			exit;
 		}catch(Exception $e){
@@ -212,7 +210,7 @@
 			$order = new Order();
 			$order->getMaxIdOrder();
 			$order->setData($_POST);
-			var_dump($order);
+			// var_dump($order);
 			$order->insert();
 			$request->update();
 			$medias = Media::listAllByRequest($order->getrequestfk());

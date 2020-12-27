@@ -27,17 +27,13 @@
             <?php $counter1=-1;  if( isset($data) && ( is_array($data) || $data instanceof Traversable ) && sizeof($data) ) foreach( $data as $key1 => $value1 ){ $counter1++; ?>
             <tr>
               <td><?php echo htmlspecialchars( $value1["txlogin"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-              <td><?php echo htmlspecialchars( $value1["txnamestatus"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-              <td><?php echo htmlspecialchars( $value1["txnameusertype"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-              <td><?php echo formatDate($value1["dtregisteruser"]); ?></td>
+              <td><?php echo htmlspecialchars( $value1["txnames"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+              <td><?php echo htmlspecialchars( $value1["txnametype"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+              <td><?php echo formatDate($value1["createdat"]); ?></td>
               <td>
-                <a href="/admin/users/<?php echo htmlspecialchars( $value1["id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-                  <span class="material-icons">cached</span>
-                </a>
-                <a href="/admin/users/<?php echo htmlspecialchars( $value1["id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/delete" 
-                  onclick="return confirm('Deseja realmente excluir?')">
-                  <span class="material-icons">delete</span>
-                </a>
+                <a id="link" href="/admin/users/<?php echo htmlspecialchars( $value1["id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">Update</a>
+                <a id="link" href="/admin/users/<?php echo htmlspecialchars( $value1["id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/delete" 
+                  onclick="return confirm('Deseja realmente excluir?')">Delete</a>
               </td>
             </tr>
             <?php } ?>
