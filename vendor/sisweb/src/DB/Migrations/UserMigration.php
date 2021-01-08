@@ -1,26 +1,25 @@
 <?php
 
     namespace Sisweb\DB\Migrations;
-    use Sisweb\DB\Migrations\Capsules;
-    
-    class UserMigration extends Capsules {
+    use \Sisweb\DB\Migrations\Migration;
 
-        public function createTable()
+    class UserMigration extends Migration {
+
+        public function up()
         {
-            $this->schema()->create('users', function ($table) {
-                $table->increments('id')->nullable();
-                $table->char('txlogin', 50)->nullable();
-                $table->char('txpasword', 16)->nullable();
-                $table->integer('usertypefk')->nullable();
-                $table->integer('statusfk')->nullable();
-                $table->date('createdat')->nullable();
-                $table->date('updatedat');
-            });
+           $this->schema()->create('tb_users', function($table){ 
+                $table->increments('id');
+                $table->string('txlogin');
+                $table->string('txpassword'); 
+                $table->integer('fkusertype'); 
+                $table->integer('fkstatus'); 
+                $table->timestamps();
+           });
         }
 
-        public function dropTable()
+        public function down()
         {
-            $this->schema()->dropIfExits('users');
+            $this->schema->drop('tb_users');
         }
 
     }

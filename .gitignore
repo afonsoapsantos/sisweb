@@ -3,3 +3,6 @@
 
 #pastas para ignorar
 .phpintel/
+.doctrine/
+.illuminate/
+.nesbot/

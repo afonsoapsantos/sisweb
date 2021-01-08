@@ -12,28 +12,12 @@
 
 		const ERROR = "FarmError";
 		const SUCCESS = "FarmSucesss";
-		
-		public static function getFarmByCustomer($idcustomer){
-			
-			$database = new Database();
 
-			$data = $database->select(
-				"SELECT * FROM tb_farms fs 
-					INNER JOIN tb_addresses ads ON ads.idaddress = fs.addressfarmfk
-					INNER JOIN tb_cities cts ON cts.pkcity = ads.cityfk
-					INNER JOIN tb_states sts ON sts.pkstate = ads.statefk
- 					WHERE fs.customerfk = :idcustomer", array(
-				":idcustomer"=>$idcustomer
-			));
-
-			return $data;
-
-		}
-
-		public function getMaxId(){
-			$database = new Database();
-			$idm = $database->select("SELECT MAX(idfarm) FROM tb_farms;");
-			foreach ($idm as $key => $value) {
+		public function getMaxId()
+		{
+			$db = new Database();
+			$max = $db->select("SELECT MAX(idfarm) FROM tb_farms;");
+			foreach ($max as $key => $value) {
 				$idmax = $value['max'];
 			}
 
@@ -42,21 +26,10 @@
 			$this->setidfarm($idfarm);
 		}
 
-		public function get() {
-			$database = new Database();
-
-			$data = $database->select(
-				"SELECT * FROM tb_farms fs WHERE fs.idfarm = :idfarm", array(
-				":idfarm"=>$this->getidfarm()
-			));
-
-			$this->setData($data[0]);
-		}
-
-		public function insert(){
-			$database = new Database();
-			$this->getMaxID();
-			$results = $database->select(
+		public function create()
+		{
+			$db = new Database();
+			$results = $db->select(
 				"INSERT INTO public.tb_farms (idfarm, txnamefarm, txdescriptionfarm, addressfarmfk, customerfk) VALUES(:idfarm, :txnamefarm, :txdescriptionfarm, :addressfarmfk, :customerfk)", array(
 					":idfarm"=>$this->getidfarm(), 
 					":txnamefarm"=>$this->gettxnamefarm(), 
@@ -65,12 +38,25 @@
 					":customerfk"=>$this->getcustomerfk()
 				)
 			);
-			$this->setSuccess("Inclusão realizada com sucesso");
+			$this->setSuccess("Created");
 		}
 
-		public function update(){
-			$database = new Database();
-			$results = $database->query(
+		public function read()
+		{
+			$db = new Database();
+
+			$data = $db->select(
+				"SELECT * FROM tb_farms AS fs WHERE fs.idfarm = :idfarm", array(
+				":idfarm"=>$this->getidfarm()
+			));
+
+			$this->setData($data[0]);
+		}
+
+		public function update()
+		{
+			$db = new Database();
+			$results = $db->query(
 				"UPDATE public.tb_farms SET txnamefarm = :txnamefarm, txdescriptionfarm = :txdescriptionfarm, addressfarmfk = :addressfarmfk, customerfk = :customerfk
 				WHERE idfarm = :idfarm;", array(
 					":idfarm"=>$this->getidfarm(),
@@ -80,17 +66,35 @@
 					":customerfk"=>$this->getcustomerfk()
 				)
 			);
-			$this->setSuccess("Alteração realizada com sucesso");
+			$this->setSuccess("Updated");
 		}
 
-		public function delete(){
-			$database = new Database();
-			$results = $database->select(
+		public function delete()
+		{
+			$db = new Database();
+			$results = $db->select(
 				"DELETE FROM public.tb_farms fs WHERE fs.idfarm = :idfarm", array(
 					":idfarm"=>$this->getidfarm()
 				)
 			);
-			$this->setSuccess("Exclusão realizada com sucesso");
+			$this->setSuccess("Deleted");
+		}
+
+		public function search($parameter)
+		{
+			$db = new Database();
+			$data = $db->select(
+				"SELECT * FROM tb_farms as tfs
+					INNER JOIN tb_address AS tads ON tads.idaddres = tfs.addressfk
+					INNER JOIN tb_customer AS tcr ON tcr.idcustomer = tfs.customerfk
+					WHERE tfs.txnamefarm = :parameter
+					OR tfs.txdescription = :parameter
+					OR tfs.addresfk = :parameter
+					OR tfs.customerfk = :parameter", 
+					[
+						":parameter"=>$parameter
+					]
+			);
 		}
 
 		public static function setSuccess($msg){
