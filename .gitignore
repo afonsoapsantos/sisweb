@@ -6,3 +6,5 @@
 .doctrine/
 .illuminate/
 .nesbot/
+vendor/
+.idea/

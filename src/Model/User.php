@@ -12,12 +12,18 @@
 		const SUCCESS = "UserSucesss";
 		const ATTEMPTS = 0;
 
-		public static function getFromSession(){
-			$user = new User();
+		private $user;
+
+		// public function __construct()
+		// {
+		// 	$this->user = new User;
+		// }
+
+		public function getFromSession(){
 			if (isset($_SESSION[User::SESSION]) && (int)$_SESSION[User::SESSION]['id'] > 0) {
-				$user->setData($_SESSION[User::SESSION]);
+				$this->user->setData($_SESSION[User::SESSION]);
 			}
-			return $user;
+			return $$this->user;
 		}
 
 		public function login($login, $password){
@@ -113,7 +119,7 @@
 		public function create(){
 			$db = new Database();
 
-			$data = $db->select(
+			$data = $db->query(
 				"INSERT INTO tb_users(id, txlogin, txpassword, fkusertype,
 							fkstatus, createdat, updatedat)
 				VALUES (:id, :txlogin, :txpassword, :fkusertype, 

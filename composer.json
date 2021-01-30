@@ -1,5 +1,6 @@
 {
     "name": "afonsoapsantos/sisweb",
+    "description": "Site para gerenciamento",
     "authors": [
         {
             "name": "Afonso Santos",
@@ -8,14 +9,22 @@
     ],
     "require": {
     	"phpmailer/phpmailer":"5.2.22",
-    	"slim/slim":"2.0",
+    	"slim/slim":"~2.0",
     	"rain/raintpl":"3.0.0",
         "illuminate/database": "^8.20",
         "illuminate/events": "^8.20"
     },
     "autoload": {
         "psr-4": {
-            "Sisweb\\": "vendor\\sisweb\\src"
+            "Sisweb\\": "src/"
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Sisweb\\src\\test\\": "src/tests/"
+        }
+    },    
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
     }
 }

@@ -2,13 +2,13 @@
 
 session_start();
 
-require_once("vendor/autoload.php");
+require_once("../sisweb/vendor/autoload.php");
 
-use \Slim\Slim;
+use Slim\Factory\AppFactory;
+//$app->addErrorMiddleware(false, true, true);
+$app = AppFactory::create();
 
-$app = new \Slim\Slim();
-
-$app->config('debug', true);
+//$app->config('debug', true);
 
 require_once("functions.php");
 require_once("site.php");

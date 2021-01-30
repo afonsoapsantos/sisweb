@@ -7,11 +7,12 @@
 
     class Migration extends Capsule {
 
-        public function init() {
+        public function __construct() {
             $this->capsule = new Capsule;
             $this->capsule->addConnection([
                 'driver'    => 'pgsql',
                 'host'      => 'localhost',
+                'port'      => '5432',
                 'database'  => 'sisweb',
                 'username'  => 'postgres',
                 'password'  => 'ASO97dpi9vb',
@@ -20,13 +21,14 @@
                 'prefix'    => '',
             ]);
 
-            $this->setEventDispatcher(new Dispatcher(new Container));
+            //$this->setEventDispatcher(new Dispatcher(new Container));
 
             // Make this Capsule instance available globally via static methods... (optional)
-            $this->setAsGlobal();
+            //$this->setAsGlobal();
 
             // Setup the Eloquent ORM... (optional; unless you've used setEventDispatcher())
-            $this->bootEloquent();
+            //$this->bootEloquent();
+            
             $this->schema = $this->capsule->schema();
 
         }

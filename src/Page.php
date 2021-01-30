@@ -3,6 +3,7 @@
 namespace Sisweb;
 
 use Rain\Tpl;
+use \Slim;
 
 class Page {
 

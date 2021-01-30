@@ -13,7 +13,7 @@
 		const PASSWORD = "Sis642691";
 		const NAME_FROM = "Sisweb System";
 
-		private $mail
+		private $mail;
 		
 		public function __construct($toAddress, $toName, $subject, $tplName, $data = array()){
 			

@@ -1,6 +1,7 @@
 <?php
 
 use Sisweb\Controller\UserController;
+use Sisweb\DB\Database;
 use \Sisweb\PageAdmin;
 	use \Sisweb\Model\User;
 	use \Sisweb\Model\Administrator;
@@ -16,6 +17,19 @@ use \Sisweb\PageAdmin;
 	use Sisweb\Model\Technician;
 	use \Sisweb\Model\UserType;
 	use \Sisweb\Model\CashMovement;
+
+	use \Sisweb\DB\Migrations\Migration;
+	use \Sisweb\DB\Migrations\UserMigration;
+
+	##Rota para atualizar DB
+	$app->get("/admin/db", function(){
+		$db = new Database();
+		$migration = new Migration();
+
+		$mu = new UserMigration();
+		$mu->up();
+
+	});
 
 	## ROTA para o Fluxo de Caixa
 	$app->get("/admin/cashFlow", function() {
