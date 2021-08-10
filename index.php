@@ -4,9 +4,8 @@ session_start();
 
 require_once("../sisweb/vendor/autoload.php");
 
-use Slim\Factory\AppFactory;
+$app = new \Slim\Slim();
 //$app->addErrorMiddleware(false, true, true);
-$app = AppFactory::create();
 
 //$app->config('debug', true);
 

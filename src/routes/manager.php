@@ -2,21 +2,15 @@
 
 	##Rotas do GERENTE
 	use \Sisweb\PageManager;
-	use \Sisweb\Model\Person;
 	use \Sisweb\Model\User;
-	use \Sisweb\Model\Customer;
 	use \Sisweb\Model\Manager;
-	use \Sisweb\Model\Technician;
-	use \Sisweb\Model\Farmworker;
 	use \Sisweb\Model\Request;
 	use \Sisweb\Model\Provider;
-	use \Sisweb\Model\Product;
-	use \Sisweb\Model\File;
 	use \Sisweb\Model\Media;
 	use \Sisweb\Model\Order;
 
 	$app->get("/manager", function(){
-		Manager::validateAdmin()();
+		Manager::validateAdmin();
 
 		$page = new PageManager();
 		$page->setTpl("index");
