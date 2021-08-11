@@ -1,11 +1,8 @@
 <?php
-
-	use \Psr\Http\Message\ServerRequestInterface as Request;
-	use \Psr\Http\Message\ResponseInterface as Response;
 	use \Sisweb\Page;
 	use \Sisweb\Model\User; 
 
-	$app->get('/', function($request, $response, $args) {
+	$app->get('/', function() {
 
 		$page = new Page([
 			"header"=>false,
@@ -15,8 +12,6 @@
 		$page->setTpl('login', [
 			'error'=>User::getError()
 		]);
-
-		return $response;
 
 	});
 

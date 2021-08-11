@@ -10,12 +10,12 @@ $app = new \Slim\Slim();
 //$app->config('debug', true);
 
 require_once("functions.php");
-require_once("site.php");
-require_once("admin.php");
-require_once("manager.php");
-require_once("customer.php");
-require_once("technical.php");
-require_once("farmworker.php");
+require_once("./src/routes/site.php");
+require_once("./src/routes/admin.php");
+require_once("./src/routes/manager.php");
+require_once("./src/routes/customer.php");
+require_once("./src/routes/technical.php");
+require_once("./src/routes/farmworker.php");
 
 $app->run();
 
