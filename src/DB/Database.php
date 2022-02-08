@@ -6,7 +6,7 @@ class Database {
 
 	const HOSTNAME = "localhost";
 	const USERNAME = "postgres";
-	const PASSWORD = "ASO97dpi9vb";
+	const PASSWORD = "Senha";
 	const DBNAME = "sisweb";
 	const PORT = "5432";
 	
